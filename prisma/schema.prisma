@@ -1,0 +1,378 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["partialIndexes"]
+  moduleFormat    = "cjs"
+}
+
+generator nestjsDto {
+  provider                    = "prisma-generator-nestjs-dto"
+  output                      = "../src/generated/nestjs-dto"
+  previewFeatures             = ["partialIndexes"]
+  createDtoPrefix             = "Create"
+  definiteAssignmentAssertion = "true"
+  dtoSuffix                   = "Dto"
+  prettier                    = "true"
+  updateDtoPrefix             = "Update"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_account {
+  account_id            String                  @id(map: "pk_tb_account") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id               String                  @db.Uuid
+  username              String?                 @db.VarChar(150)
+  account_status        String                  @default("PENDING") @db.VarChar(30)
+  last_login_at         DateTime?               @db.Timestamptz(6)
+  last_login_channel_id BigInt?
+  password              String?                 @db.VarChar(255)
+  password_changed_at   DateTime?               @db.Timestamptz(6)
+  password_expired_at   DateTime?               @db.Timestamptz(6)
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime?               @db.Timestamptz(6)
+  created_by            String                  @db.Uuid
+  updated_by            String?                 @db.Uuid
+  record_status         String?                 @default("N") @db.VarChar
+  tb_user               tb_user                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_account_user")
+  tb_ms_channel         tb_ms_channel?          @relation(fields: [last_login_channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_account_tb_ms_channel_fk")
+  tb_his_failed_login   tb_his_failed_login[]
+  tb_log_access_session tb_log_access_session[]
+
+  @@index([user_id], map: "idx_tb_account_user_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_his_failed_login {
+  failed_login_id String         @id(map: "failed_login_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  account_id      String         @db.Uuid
+  channel_id      BigInt?
+  login_method_id BigInt
+  username_input  String         @db.VarChar(150)
+  ip_address      String?        @db.Inet
+  device_id       String?        @db.VarChar(100)
+  failure_reason  String?        @db.VarChar(80)
+  failed_at       DateTime       @default(now()) @db.Timestamptz(6)
+  created_at      DateTime       @default(now()) @db.Timestamptz(6)
+  created_by      String         @db.Uuid
+  updated_at      DateTime?      @db.Timestamptz(6)
+  update_by       String?        @db.Uuid
+  record_status   String?        @default("N") @db.VarChar
+  tb_account      tb_account     @relation(fields: [account_id], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_his_failed_login_account")
+  tb_ms_channel   tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_his_failed_login_tb_ms_channel_fk")
+
+  @@index([account_id], map: "idx_tb_his_failed_login_account_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_legal_entity_represent {
+  legal_represent_id String    @id(map: "tb_legal_entity_representative_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id            String    @db.Uuid
+  legal_code         String    @db.VarChar(13)
+  legal_name         String?   @db.VarChar(100)
+  user_legal_id      String?   @db.Uuid
+  remark_legal       String?
+  effective_from     DateTime? @db.Timestamptz(6)
+  effective_to       DateTime? @db.Timestamptz(6)
+  status             String    @default("PENDING_APPROVAL") @db.VarChar(30)
+  created_at         DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime? @db.Timestamptz(6)
+  created_by         String?   @db.Uuid
+  updated_by         String?   @db.Uuid
+  record_status      String    @default("N") @db.VarChar(5)
+  tb_user            tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_legal_entity_representative_user")
+
+  @@index([user_id], map: "idx_tb_legal_entity_representative_user_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_log_access_session {
+  session_id       String         @id(map: "access_session_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  account_id       String         @db.Uuid
+  user_id          String         @db.Uuid
+  login_method_id  BigInt?
+  channel_id       BigInt?
+  ip_address       String?        @db.Inet
+  device_id        String?        @db.VarChar(100)
+  kiosk_id         String?        @db.VarChar(100)
+  session_status   String         @default("ACTIVE") @db.VarChar(30)
+  started_at       DateTime       @default(now()) @db.Timestamptz(6)
+  last_activity_at DateTime?      @db.Timestamptz(6)
+  expired_at       DateTime?      @db.Timestamptz(6)
+  ended_at         DateTime?      @db.Timestamptz(6)
+  created_at       DateTime       @default(now()) @db.Timestamptz(6)
+  created_by       String         @db.Uuid
+  updated_at       DateTime?      @db.Timestamptz(6)
+  updated_by       String?        @db.Uuid
+  record_status    String?        @default("N") @db.VarChar
+  tb_account       tb_account     @relation(fields: [account_id], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_access_session_account")
+  tb_user          tb_user        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_access_session_user")
+  tb_ms_channel    tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_log_access_session_tb_ms_channel_fk")
+  tb_ms_method     tb_ms_method?  @relation(fields: [login_method_id], references: [method_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_log_access_session_tb_ms_method_fk")
+
+  @@index([account_id], map: "idx_tb_access_session_account_id")
+  @@index([user_id], map: "idx_tb_access_session_user_id")
+  @@index([account_id], map: "ix_access_session_account")
+  @@index([kiosk_id], map: "ix_access_session_kiosk", where: raw("(kiosk_id IS NOT NULL)"))
+  @@index([session_status], map: "ix_access_session_status")
+  @@index([user_id], map: "ix_access_session_user")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_channel {
+  channel_id            BigInt                  @id(map: "tb_ms_channel_unique") @default(autoincrement())
+  channel_code          String                  @db.VarChar(30)
+  channel_name          String                  @db.VarChar(255)
+  description           String?
+  is_active             Boolean?
+  display_order         Int?
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  created_by            String?                 @db.Uuid
+  updated_at            DateTime?               @db.Timestamptz(6)
+  update_by             String?                 @db.Uuid
+  record_status         String?                 @default("N") @db.VarChar
+  tb_account            tb_account[]
+  tb_his_failed_login   tb_his_failed_login[]
+  tb_log_access_session tb_log_access_session[]
+  tb_regist_attach      tb_regist_attach[]
+  tb_user               tb_user[]
+  tb_user_consent       tb_user_consent[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_method {
+  method_id             BigInt                  @id(map: "tb_ms_method_unique") @default(autoincrement())
+  method_code           String                  @db.VarChar(30)
+  method_name           String                  @db.VarChar(255)
+  description           String?
+  display_order         Int?
+  is_enable             Boolean?
+  created_at            DateTime                @default(now()) @db.Timestamptz(6)
+  created_by            String?                 @db.Uuid
+  updated_at            DateTime?               @db.Timestamptz(6)
+  update_by             String?                 @db.Uuid
+  record_status         String?                 @default("N") @db.VarChar
+  tb_log_access_session tb_log_access_session[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_role {
+  role_id        String         @id(map: "role_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  role_code      String         @unique(map: "role_role_code_key") @db.VarChar(80)
+  role_name      String         @db.VarChar(200)
+  description    String?
+  is_system_role Boolean        @default(false)
+  status         String         @default("ACTIVE") @db.VarChar(20)
+  created_at     DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime?      @db.Timestamptz(6)
+  created_by     String?        @db.VarChar
+  update_by      String?        @db.Uuid
+  record_status  String?        @default("N") @db.VarChar
+  tb_user_role   tb_user_role[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_user_type {
+  user_type_id            BigInt    @id(map: "tb_ms_user_type_unique") @default(autoincrement())
+  user_type_code          String    @db.VarChar(50)
+  user_type_name          String    @db.VarChar(255)
+  description             String?
+  default_role_code       String?   @db.VarChar(100)
+  registration_allowed    Boolean   @default(true)
+  login_allowed           Boolean   @default(true)
+  require_identity_verify Boolean   @default(true)
+  require_document        Boolean   @default(false)
+  is_internal_user        Boolean   @default(false)
+  record_status           String?   @default("N") @db.VarChar
+  require_office_verify   Boolean?
+  display_order           Int?
+  created_at              DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at              DateTime? @db.Timestamptz(6)
+  update_by               String?   @db.Uuid
+  created_by              String?   @db.Uuid
+  tb_user                 tb_user[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_regist_attach {
+  regist_doc_att_id String        @id(map: "attatch_document_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id           String        @db.Uuid
+  channel_id        Int
+  doc_name          String        @db.VarChar(500)
+  file_name         String?       @db.VarChar(500)
+  file_path         String?
+  file_hash         String?       @db.VarChar(255)
+  mime_type         String?       @db.VarChar(100)
+  file_size         BigInt?
+  upload_seq        Int?
+  remark            String?
+  uploaded_by       String?       @db.Uuid
+  uploaded_at       DateTime      @default(now()) @db.Timestamp(6)
+  created_at        DateTime      @default(now()) @db.Timestamp(6)
+  updated_at        DateTime      @default(now()) @db.Timestamp(6)
+  created_by        String        @db.Uuid
+  update_by         String?       @db.Uuid
+  record_status     String?       @default("N") @db.VarChar
+  tb_ms_channel     tb_ms_channel @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_regist_attach_tb_ms_channel_fk")
+  tb_user           tb_user       @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "user_document_application_id_fkey")
+
+  @@index([regist_doc_att_id], map: "idx_reg_document")
+  @@index([uploaded_at], map: "idx_reg_document_uploaded_at")
+  @@index([channel_id], map: "idx_tb_reg_attachment_upload_source")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user {
+  user_id                                        String                      @id(map: "user_profile_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_type_id                                   BigInt
+  register_channel_id                            BigInt?
+  person_id                                      String?                     @db.VarChar(13)
+  title                                          String?                     @db.VarChar(50)
+  given_name                                     String?                     @db.VarChar(200)
+  middle_name                                    String?                     @db.VarChar
+  family_name                                    String?                     @db.VarChar(200)
+  title_en                                       String?                     @db.VarChar(20)
+  given_name_en                                  String?                     @db.VarChar
+  middle_name_en                                 String?                     @db.VarChar(50)
+  family_name_en                                 String?                     @db.VarChar(100)
+  birth_date                                     DateTime?                   @db.Date
+  date_of_expiry                                 DateTime?                   @db.Date
+  ial_level                                      String?                     @db.VarChar(20)
+  legal_code                                     String?                     @db.VarChar(13)
+  legal_name                                     String?                     @db.VarChar(100)
+  land_office_id                                 String?                     @db.VarChar(100)
+  land_office_name                               String?                     @db.VarChar(100)
+  land_office_position                           String?                     @db.VarChar(100)
+  private_office_id                              String?                     @db.VarChar(100)
+  private_office_name                            String?                     @db.VarChar(100)
+  email                                          String?                     @db.VarChar(100)
+  is_email_verified                              Boolean?
+  mobile_no                                      String?                     @db.VarChar(10)
+  verfity_at                                     DateTime?                   @db.Timestamptz(6)
+  is_verify                                      Boolean?
+  user_status                                    String                      @default("PENDING") @db.VarChar(30)
+  created_at                                     DateTime                    @default(now()) @db.Timestamptz(6)
+  updated_at                                     DateTime?                   @db.Timestamptz(6)
+  update_by                                      String?                     @db.Uuid
+  created_by                                     String                      @db.Uuid
+  record_status                                  String?                     @default("N") @db.VarChar
+  tb_account                                     tb_account[]
+  tb_legal_entity_represent                      tb_legal_entity_represent[]
+  tb_log_access_session                          tb_log_access_session[]
+  tb_regist_attach                               tb_regist_attach[]
+  tb_ms_channel                                  tb_ms_channel?              @relation(fields: [register_channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_tb_ms_channel_fk")
+  tb_ms_user_type                                tb_ms_user_type             @relation(fields: [user_type_id], references: [user_type_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_tb_ms_user_type_fk")
+  tb_user_address                                tb_user_address[]           @ignore
+  tb_user_consent                                tb_user_consent[]
+  tb_user_role_tb_user_role_assigned_byTotb_user tb_user_role[]              @relation("tb_user_role_assigned_byTotb_user")
+  tb_user_role_tb_user_role_user_idTotb_user     tb_user_role[]              @relation("tb_user_role_user_idTotb_user")
+  tb_user_verfity                                tb_user_verfity[]           @ignore
+
+  @@index([legal_code], map: "idx_tb_user_legal_entity_id")
+  @@index([user_type_id], map: "idx_tb_user_user_type_code")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_address {
+  user_address_id String?   @unique(map: "tb_user_address_unique") @db.Uuid
+  user_id         String?   @db.Uuid
+  address_type    Int?
+  home_no         String?   @db.VarChar(20)
+  moo             String?   @db.VarChar(10)
+  alley           String?   @db.VarChar(100)
+  soi             String?   @db.VarChar(100)
+  road            String?   @db.VarChar(100)
+  tambol_code     Int?
+  tambol_name     String?   @db.VarChar(100)
+  amphur_code     Int?
+  amphur_name     String?   @db.VarChar(100)
+  province_code   Int?
+  province_name   String?   @db.VarChar(100)
+  remark          String?
+  is_visible      Boolean?
+  created_at      DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @db.Timestamptz(6)
+  update_by       String?   @db.Uuid
+  created_by      String?   @db.Uuid
+  record_status   String?   @db.VarChar
+  tb_user         tb_user?  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_address_tb_user_fk")
+
+  @@ignore
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_consent {
+  consent_id          String         @id(map: "user_consent_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id             String         @db.Uuid
+  channel_id          BigInt?
+  consent_version     String?        @db.VarChar(50)
+  consent_description String?
+  is_accepted         Boolean
+  accepted_at         DateTime?      @db.Timestamptz(6)
+  withdrawn_at        DateTime?      @db.Timestamptz(6)
+  ip_address          String?        @db.Inet
+  device_id           String?        @db.VarChar(100)
+  created_at          DateTime       @default(now()) @db.Timestamptz(6)
+  created_by          String         @db.Uuid
+  updated_at          DateTime?      @db.Timestamptz(6)
+  update_by           String?        @db.Uuid
+  record_status       String?        @default("N") @db.VarChar
+  tb_user             tb_user        @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_user_consent_user")
+  tb_ms_channel       tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_consent_tb_ms_channel_fk")
+
+  @@index([user_id], map: "idx_tb_user_consent_user_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_role {
+  user_role_id                              String      @id(map: "user_role_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                                   String      @db.Uuid
+  role_id                                   String?     @db.Uuid
+  request_group_code                        String      @db.VarChar(50)
+  assigned_by                               String?     @db.Uuid
+  assigned_at                               DateTime    @default(now()) @db.Timestamptz(6)
+  effective_from                            DateTime    @default(now()) @db.Timestamptz(6)
+  effective_to                              DateTime?   @db.Timestamptz(6)
+  status                                    String      @default("ACTIVE") @db.VarChar(20)
+  created_at                                DateTime    @default(now()) @db.Timestamptz(6)
+  created_by                                String      @db.Uuid
+  updated_at                                DateTime?   @db.Timestamptz(6)
+  update_by                                 String?     @db.Uuid
+  record_status                             String?     @default("N") @db.VarChar
+  tb_user_tb_user_role_assigned_byTotb_user tb_user?    @relation("tb_user_role_assigned_byTotb_user", fields: [assigned_by], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_user_role_assigned_by")
+  tb_user_tb_user_role_user_idTotb_user     tb_user     @relation("tb_user_role_user_idTotb_user", fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_user_role_user")
+  tb_ms_role                                tb_ms_role? @relation(fields: [role_id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_role_tb_ms_role_fk")
+
+  @@unique([user_id, request_group_code, effective_from], map: "user_role_user_id_role_id_effective_from_key")
+  @@index([request_group_code], map: "idx_tb_user_role_role_id")
+  @@index([user_id], map: "idx_tb_user_role_user_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_verfity {
+  user_verify_id String?   @db.Uuid
+  user_id        String    @db.Uuid
+  verify_flag    String?   @default("0") @db.Char(1)
+  verify_by      String?   @db.Uuid
+  verify_at      DateTime? @db.Timestamptz(6)
+  verify_desc    String?
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @db.Timestamptz(6)
+  update_by      String?   @db.Uuid
+  created_by     String    @db.Uuid
+  record_status  String?   @default("N") @db.VarChar
+  tb_user        tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_verfity_tb_user_fk")
+
+  @@unique([user_verify_id, user_id], map: "tb_user_verfity_unique")
+  @@ignore
+}
