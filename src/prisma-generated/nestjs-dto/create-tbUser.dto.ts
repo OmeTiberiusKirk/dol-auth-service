@@ -1,0 +1,30 @@
+export class CreateTbUserDto {
+  person_id?: string | null;
+  title?: string | null;
+  given_name?: string | null;
+  middle_name?: string | null;
+  family_name?: string | null;
+  title_en?: string | null;
+  given_name_en?: string | null;
+  middle_name_en?: string | null;
+  family_name_en?: string | null;
+  birth_date?: Date | null;
+  date_of_expiry?: Date | null;
+  ial_level?: string | null;
+  legal_code?: string | null;
+  legal_name?: string | null;
+  land_office_id?: string | null;
+  land_office_name?: string | null;
+  land_office_position?: string | null;
+  private_office_id?: string | null;
+  private_office_name?: string | null;
+  email?: string | null;
+  is_email_verified?: boolean | null;
+  mobile_no?: string | null;
+  verfity_at?: Date | null;
+  is_verify?: boolean | null;
+  updated_at?: Date | null;
+  update_by?: string | null;
+  created_by!: string;
+  record_status?: string | null;
+}

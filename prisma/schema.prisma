@@ -1,17 +1,18 @@
 generator client {
   provider        = "prisma-client"
-  output          = "../src/generated/prisma"
+  output          = "../src/prisma-generated/prisma"
   previewFeatures = ["partialIndexes"]
   moduleFormat    = "cjs"
 }
 
 generator nestjsDto {
   provider                    = "prisma-generator-nestjs-dto"
-  output                      = "../src/generated/nestjs-dto"
+  output                      = "../src/prisma-generated/nestjs-dto"
   previewFeatures             = ["partialIndexes"]
   createDtoPrefix             = "Create"
   definiteAssignmentAssertion = "true"
   dtoSuffix                   = "Dto"
+  noDependencies              = "true"
   prettier                    = "true"
   updateDtoPrefix             = "Update"
 }
@@ -203,7 +204,7 @@ model tb_ms_user_type {
 model tb_regist_attach {
   regist_doc_att_id String        @id(map: "attatch_document_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id           String        @db.Uuid
-  channel_id        Int
+  channel_id        BigInt
   doc_name          String        @db.VarChar(500)
   file_name         String?       @db.VarChar(500)
   file_path         String?
@@ -269,20 +270,19 @@ model tb_user {
   tb_regist_attach                               tb_regist_attach[]
   tb_ms_channel                                  tb_ms_channel?              @relation(fields: [register_channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_tb_ms_channel_fk")
   tb_ms_user_type                                tb_ms_user_type             @relation(fields: [user_type_id], references: [user_type_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_tb_ms_user_type_fk")
-  tb_user_address                                tb_user_address[]           @ignore
+  tb_user_address                                tb_user_address[]
   tb_user_consent                                tb_user_consent[]
   tb_user_role_tb_user_role_assigned_byTotb_user tb_user_role[]              @relation("tb_user_role_assigned_byTotb_user")
   tb_user_role_tb_user_role_user_idTotb_user     tb_user_role[]              @relation("tb_user_role_user_idTotb_user")
-  tb_user_verfity                                tb_user_verfity[]           @ignore
+  tb_user_verfity                                tb_user_verfity[]
 
   @@index([legal_code], map: "idx_tb_user_legal_entity_id")
   @@index([user_type_id], map: "idx_tb_user_user_type_code")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_user_address {
-  user_address_id String?   @unique(map: "tb_user_address_unique") @db.Uuid
+  user_address_id String    @id(map: "tb_user_address_pk") @unique(map: "tb_user_address_unique") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id         String?   @db.Uuid
   address_type    Int?
   home_no         String?   @db.VarChar(20)
@@ -304,8 +304,6 @@ model tb_user_address {
   created_by      String?   @db.Uuid
   record_status   String?   @db.VarChar
   tb_user         tb_user?  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_address_tb_user_fk")
-
-  @@ignore
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -357,10 +355,9 @@ model tb_user_role {
   @@index([user_id], map: "idx_tb_user_role_user_id")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_user_verfity {
-  user_verify_id String?   @db.Uuid
+  user_verify_id String    @id(map: "tb_user_verfity_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id        String    @db.Uuid
   verify_flag    String?   @default("0") @db.Char(1)
   verify_by      String?   @db.Uuid
@@ -374,5 +371,4 @@ model tb_user_verfity {
   tb_user        tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_verfity_tb_user_fk")
 
   @@unique([user_verify_id, user_id], map: "tb_user_verfity_unique")
-  @@ignore
 }
