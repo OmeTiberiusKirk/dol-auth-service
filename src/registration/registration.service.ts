@@ -6,6 +6,6 @@ export class RegistrationService {
   constructor(private prisma: PrismaService) {}
 
   async createUser(data: unknown) {
-    await this.prisma.tb_user.create({ data });
+    // await this.prisma.tb_user.create({ data });
   }
 }
