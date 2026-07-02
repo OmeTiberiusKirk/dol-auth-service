@@ -19,6 +19,7 @@ generator nestjsDto {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["reg"]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -44,6 +45,7 @@ model tb_account {
   tb_log_access_session tb_log_access_session[]
 
   @@index([user_id], map: "idx_tb_account_user_id")
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -66,6 +68,7 @@ model tb_his_failed_login {
   tb_ms_channel   tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_his_failed_login_tb_ms_channel_fk")
 
   @@index([account_id], map: "idx_tb_his_failed_login_account_id")
+  @@schema("reg")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -88,6 +91,7 @@ model tb_legal_entity_represent {
   tb_user            tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_legal_entity_representative_user")
 
   @@index([user_id], map: "idx_tb_legal_entity_representative_user_id")
+  @@schema("reg")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -122,6 +126,7 @@ model tb_log_access_session {
   @@index([kiosk_id], map: "ix_access_session_kiosk", where: raw("(kiosk_id IS NOT NULL)"))
   @@index([session_status], map: "ix_access_session_status")
   @@index([user_id], map: "ix_access_session_user")
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -143,6 +148,8 @@ model tb_ms_channel {
   tb_regist_attach      tb_regist_attach[]
   tb_user               tb_user[]
   tb_user_consent       tb_user_consent[]
+
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -159,6 +166,8 @@ model tb_ms_method {
   update_by             String?                 @db.Uuid
   record_status         String?                 @default("N") @db.VarChar
   tb_log_access_session tb_log_access_session[]
+
+  @@schema("reg")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -176,6 +185,8 @@ model tb_ms_role {
   update_by      String?        @db.Uuid
   record_status  String?        @default("N") @db.VarChar
   tb_user_role   tb_user_role[]
+
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -198,6 +209,8 @@ model tb_ms_user_type {
   update_by               String?   @db.Uuid
   created_by              String?   @db.Uuid
   tb_user                 tb_user[]
+
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -226,6 +239,7 @@ model tb_regist_attach {
   @@index([regist_doc_att_id], map: "idx_reg_document")
   @@index([uploaded_at], map: "idx_reg_document_uploaded_at")
   @@index([channel_id], map: "idx_tb_reg_attachment_upload_source")
+  @@schema("reg")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -278,6 +292,7 @@ model tb_user {
 
   @@index([legal_code], map: "idx_tb_user_legal_entity_id")
   @@index([user_type_id], map: "idx_tb_user_user_type_code")
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -304,6 +319,8 @@ model tb_user_address {
   created_by      String?   @db.Uuid
   record_status   String?   @db.VarChar
   tb_user         tb_user?  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_address_tb_user_fk")
+
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -327,6 +344,7 @@ model tb_user_consent {
   tb_ms_channel       tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_consent_tb_ms_channel_fk")
 
   @@index([user_id], map: "idx_tb_user_consent_user_id")
+  @@schema("reg")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -353,6 +371,7 @@ model tb_user_role {
   @@unique([user_id, request_group_code, effective_from], map: "user_role_user_id_role_id_effective_from_key")
   @@index([request_group_code], map: "idx_tb_user_role_role_id")
   @@index([user_id], map: "idx_tb_user_role_user_id")
+  @@schema("reg")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -371,4 +390,5 @@ model tb_user_verfity {
   tb_user        tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_verfity_tb_user_fk")
 
   @@unique([user_verify_id, user_id], map: "tb_user_verfity_unique")
+  @@schema("reg")
 }
