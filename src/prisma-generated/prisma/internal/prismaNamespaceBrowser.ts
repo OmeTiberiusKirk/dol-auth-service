@@ -64,7 +64,11 @@ export const ModelName = {
   tb_user_address: 'tb_user_address',
   tb_user_consent: 'tb_user_consent',
   tb_user_role: 'tb_user_role',
-  tb_user_verfity: 'tb_user_verfity'
+  tb_user_verfity: 'tb_user_verfity',
+  tb_ms_land_office: 'tb_ms_land_office',
+  tb_ms_province: 'tb_ms_province',
+  tb_ms_scale: 'tb_ms_scale',
+  tb_ms_tambol: 'tb_ms_tambol'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -387,6 +391,67 @@ export const Tb_user_verfityScalarFieldEnum = {
 } as const
 
 export type Tb_user_verfityScalarFieldEnum = (typeof Tb_user_verfityScalarFieldEnum)[keyof typeof Tb_user_verfityScalarFieldEnum]
+
+
+export const Tb_ms_land_officeScalarFieldEnum = {
+  land_office_id: 'land_office_id',
+  land_office_name: 'land_office_name',
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_land_officeScalarFieldEnum = (typeof Tb_ms_land_officeScalarFieldEnum)[keyof typeof Tb_ms_land_officeScalarFieldEnum]
+
+
+export const Tb_ms_provinceScalarFieldEnum = {
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_provinceScalarFieldEnum = (typeof Tb_ms_provinceScalarFieldEnum)[keyof typeof Tb_ms_provinceScalarFieldEnum]
+
+
+export const Tb_ms_scaleScalarFieldEnum = {
+  scale_id: 'scale_id',
+  scale: 'scale',
+  page: 'page',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_scaleScalarFieldEnum = (typeof Tb_ms_scaleScalarFieldEnum)[keyof typeof Tb_ms_scaleScalarFieldEnum]
+
+
+export const Tb_ms_tambolScalarFieldEnum = {
+  tambol_id: 'tambol_id',
+  tambol_name: 'tambol_name',
+  amphur_id: 'amphur_id',
+  amphur_name: 'amphur_name',
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status',
+  tambol_code: 'tambol_code',
+  amphur_code: 'amphur_code'
+} as const
+
+export type Tb_ms_tambolScalarFieldEnum = (typeof Tb_ms_tambolScalarFieldEnum)[keyof typeof Tb_ms_tambolScalarFieldEnum]
 
 
 export const SortOrder = {

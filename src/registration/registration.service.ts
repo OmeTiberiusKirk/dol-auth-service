@@ -1,11 +1,12 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { CreateUserDto, PersonalDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { validate } from 'class-validator';
 import { RpcException } from '@nestjs/microservices';
 import { Prisma } from 'src/prisma-generated/prisma/client';
 import nodemailer from 'nodemailer';
 import { config } from 'dotenv';
+import { CreatePersonalDto } from './dto/create-personal.dto';
 config();
 
 @Injectable()
@@ -13,7 +14,8 @@ export class RegistrationService {
   constructor(private prisma: PrismaService) {}
 
   async createUser(data: CreateUserDto) {
-    const personal = new PersonalDto(data.personal);
+    const personal = new CreatePersonalDto(data.personal);
+    // const address = new CreateAddressDto(data.address);
     const errors = await validate(personal);
 
     if (errors.length > 0) {

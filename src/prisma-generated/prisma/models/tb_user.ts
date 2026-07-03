@@ -384,7 +384,7 @@ export type Tb_userGroupByOutputType = {
   created_at: Date
   updated_at: Date | null
   update_by: string | null
-  created_by: string
+  created_by: string | null
   record_status: string | null
   _count: Tb_userCountAggregateOutputType | null
   _avg: Tb_userAvgAggregateOutputType | null
@@ -443,7 +443,7 @@ export type tb_userWhereInput = {
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
-  created_by?: Prisma.UuidFilter<"tb_user"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
   tb_account?: Prisma.Tb_accountListRelationFilter
   tb_legal_entity_represent?: Prisma.Tb_legal_entity_representListRelationFilter
@@ -490,7 +490,7 @@ export type tb_userOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_by?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
   tb_account?: Prisma.tb_accountOrderByRelationAggregateInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representOrderByRelationAggregateInput
@@ -507,6 +507,7 @@ export type tb_userOrderByWithRelationInput = {
 
 export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   user_id?: string
+  email?: string
   AND?: Prisma.tb_userWhereInput | Prisma.tb_userWhereInput[]
   OR?: Prisma.tb_userWhereInput[]
   NOT?: Prisma.tb_userWhereInput | Prisma.tb_userWhereInput[]
@@ -531,7 +532,6 @@ export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   land_office_position?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_id?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_name?: Prisma.StringNullableFilter<"tb_user"> | string | null
-  email?: Prisma.StringNullableFilter<"tb_user"> | string | null
   is_email_verified?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
   mobile_no?: Prisma.StringNullableFilter<"tb_user"> | string | null
   verfity_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
@@ -540,7 +540,7 @@ export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
-  created_by?: Prisma.UuidFilter<"tb_user"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
   tb_account?: Prisma.Tb_accountListRelationFilter
   tb_legal_entity_represent?: Prisma.Tb_legal_entity_representListRelationFilter
@@ -553,7 +553,7 @@ export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.Tb_user_roleListRelationFilter
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.Tb_user_roleListRelationFilter
   tb_user_verfity?: Prisma.Tb_user_verfityListRelationFilter
-}, "user_id">
+}, "user_id" | "email">
 
 export type tb_userOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
@@ -587,7 +587,7 @@ export type tb_userOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_by?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.tb_userCountOrderByAggregateInput
   _avg?: Prisma.tb_userAvgOrderByAggregateInput
@@ -631,7 +631,7 @@ export type tb_userScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user"> | string | null
-  created_by?: Prisma.UuidWithAggregatesFilter<"tb_user"> | string
+  created_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
 }
 
@@ -665,7 +665,7 @@ export type tb_userCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -712,7 +712,7 @@ export type tb_userUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -755,7 +755,7 @@ export type tb_userUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -802,7 +802,7 @@ export type tb_userUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -847,7 +847,7 @@ export type tb_userCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
 }
 
@@ -881,7 +881,7 @@ export type tb_userUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -917,7 +917,7 @@ export type tb_userUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1303,7 +1303,7 @@ export type tb_userCreateWithoutTb_accountInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -1349,7 +1349,7 @@ export type tb_userUncheckedCreateWithoutTb_accountInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -1407,7 +1407,7 @@ export type tb_userUpdateWithoutTb_accountInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -1453,7 +1453,7 @@ export type tb_userUncheckedUpdateWithoutTb_accountInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1495,7 +1495,7 @@ export type tb_userCreateWithoutTb_legal_entity_representInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -1541,7 +1541,7 @@ export type tb_userUncheckedCreateWithoutTb_legal_entity_representInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -1599,7 +1599,7 @@ export type tb_userUpdateWithoutTb_legal_entity_representInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -1645,7 +1645,7 @@ export type tb_userUncheckedUpdateWithoutTb_legal_entity_representInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1687,7 +1687,7 @@ export type tb_userCreateWithoutTb_log_access_sessionInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -1733,7 +1733,7 @@ export type tb_userUncheckedCreateWithoutTb_log_access_sessionInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -1791,7 +1791,7 @@ export type tb_userUpdateWithoutTb_log_access_sessionInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -1837,7 +1837,7 @@ export type tb_userUncheckedUpdateWithoutTb_log_access_sessionInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1879,7 +1879,7 @@ export type tb_userCreateWithoutTb_ms_channelInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -1924,7 +1924,7 @@ export type tb_userUncheckedCreateWithoutTb_ms_channelInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -1998,7 +1998,7 @@ export type tb_userScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
-  created_by?: Prisma.UuidFilter<"tb_user"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
 }
 
@@ -2032,7 +2032,7 @@ export type tb_userCreateWithoutTb_ms_user_typeInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2077,7 +2077,7 @@ export type tb_userUncheckedCreateWithoutTb_ms_user_typeInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2146,7 +2146,7 @@ export type tb_userCreateWithoutTb_regist_attachInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2192,7 +2192,7 @@ export type tb_userUncheckedCreateWithoutTb_regist_attachInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2250,7 +2250,7 @@ export type tb_userUpdateWithoutTb_regist_attachInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -2296,7 +2296,7 @@ export type tb_userUncheckedUpdateWithoutTb_regist_attachInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2338,7 +2338,7 @@ export type tb_userCreateWithoutTb_user_addressInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2384,7 +2384,7 @@ export type tb_userUncheckedCreateWithoutTb_user_addressInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2442,7 +2442,7 @@ export type tb_userUpdateWithoutTb_user_addressInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -2488,7 +2488,7 @@ export type tb_userUncheckedUpdateWithoutTb_user_addressInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2530,7 +2530,7 @@ export type tb_userCreateWithoutTb_user_consentInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2576,7 +2576,7 @@ export type tb_userUncheckedCreateWithoutTb_user_consentInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2634,7 +2634,7 @@ export type tb_userUpdateWithoutTb_user_consentInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -2680,7 +2680,7 @@ export type tb_userUncheckedUpdateWithoutTb_user_consentInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2722,7 +2722,7 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2768,7 +2768,7 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_assigned_byTo
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2815,7 +2815,7 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -2861,7 +2861,7 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_user_idTotb_u
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -2919,7 +2919,7 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -2965,7 +2965,7 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_assigned_byTo
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3018,7 +3018,7 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -3064,7 +3064,7 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_user_idTotb_u
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3106,7 +3106,7 @@ export type tb_userCreateWithoutTb_user_verfityInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
@@ -3152,7 +3152,7 @@ export type tb_userUncheckedCreateWithoutTb_user_verfityInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
@@ -3210,7 +3210,7 @@ export type tb_userUpdateWithoutTb_user_verfityInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -3256,7 +3256,7 @@ export type tb_userUncheckedUpdateWithoutTb_user_verfityInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3299,7 +3299,7 @@ export type tb_userCreateManyTb_ms_channelInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
 }
 
@@ -3333,7 +3333,7 @@ export type tb_userUpdateWithoutTb_ms_channelInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -3378,7 +3378,7 @@ export type tb_userUncheckedUpdateWithoutTb_ms_channelInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3422,7 +3422,7 @@ export type tb_userUncheckedUpdateManyWithoutTb_ms_channelInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -3457,7 +3457,7 @@ export type tb_userCreateManyTb_ms_user_typeInput = {
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
-  created_by: string
+  created_by?: string | null
   record_status?: string | null
 }
 
@@ -3491,7 +3491,7 @@ export type tb_userUpdateWithoutTb_ms_user_typeInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
@@ -3536,7 +3536,7 @@ export type tb_userUncheckedUpdateWithoutTb_ms_user_typeInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3580,7 +3580,7 @@ export type tb_userUncheckedUpdateManyWithoutTb_ms_user_typeInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -3918,7 +3918,7 @@ export type $tb_userPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     created_at: Date
     updated_at: Date | null
     update_by: string | null
-    created_by: string
+    created_by: string | null
     record_status: string | null
   }, ExtArgs["result"]["tb_user"]>
   composites: {}

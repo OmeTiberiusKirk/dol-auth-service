@@ -21,7 +21,7 @@ describe('RegistrationService', () => {
   let service: RegistrationService;
   let prisma: PrismaMock;
 
-  // A payload that satisfies every decorator on PersonalDto.
+  // A payload that satisfies every decorator on CreatePersonalDto.
   const validPersonal = {
     person_id: '1234567890123',
     title: 'Mr.',

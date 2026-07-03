@@ -25,6 +25,6 @@ export class CreateTbUserDto {
   is_verify?: boolean | null;
   updated_at?: Date | null;
   update_by?: string | null;
-  created_by!: string;
+  created_by?: string | null;
   record_status?: string | null;
 }

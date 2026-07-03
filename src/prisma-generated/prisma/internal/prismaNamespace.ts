@@ -397,7 +397,11 @@ export const ModelName = {
   tb_user_address: 'tb_user_address',
   tb_user_consent: 'tb_user_consent',
   tb_user_role: 'tb_user_role',
-  tb_user_verfity: 'tb_user_verfity'
+  tb_user_verfity: 'tb_user_verfity',
+  tb_ms_land_office: 'tb_ms_land_office',
+  tb_ms_province: 'tb_ms_province',
+  tb_ms_scale: 'tb_ms_scale',
+  tb_ms_tambol: 'tb_ms_tambol'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tb_account" | "tb_his_failed_login" | "tb_legal_entity_represent" | "tb_log_access_session" | "tb_ms_channel" | "tb_ms_method" | "tb_ms_role" | "tb_ms_user_type" | "tb_regist_attach" | "tb_user" | "tb_user_address" | "tb_user_consent" | "tb_user_role" | "tb_user_verfity"
+    modelProps: "tb_account" | "tb_his_failed_login" | "tb_legal_entity_represent" | "tb_log_access_session" | "tb_ms_channel" | "tb_ms_method" | "tb_ms_role" | "tb_ms_user_type" | "tb_regist_attach" | "tb_user" | "tb_user_address" | "tb_user_consent" | "tb_user_role" | "tb_user_verfity" | "tb_ms_land_office" | "tb_ms_province" | "tb_ms_scale" | "tb_ms_tambol"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1453,6 +1457,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    tb_ms_land_office: {
+      payload: Prisma.$tb_ms_land_officePayload<ExtArgs>
+      fields: Prisma.tb_ms_land_officeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.tb_ms_land_officeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.tb_ms_land_officeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        findFirst: {
+          args: Prisma.tb_ms_land_officeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.tb_ms_land_officeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        findMany: {
+          args: Prisma.tb_ms_land_officeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>[]
+        }
+        create: {
+          args: Prisma.tb_ms_land_officeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        createMany: {
+          args: Prisma.tb_ms_land_officeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.tb_ms_land_officeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>[]
+        }
+        delete: {
+          args: Prisma.tb_ms_land_officeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        update: {
+          args: Prisma.tb_ms_land_officeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        deleteMany: {
+          args: Prisma.tb_ms_land_officeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.tb_ms_land_officeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.tb_ms_land_officeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>[]
+        }
+        upsert: {
+          args: Prisma.tb_ms_land_officeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_land_officePayload>
+        }
+        aggregate: {
+          args: Prisma.Tb_ms_land_officeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTb_ms_land_office>
+        }
+        groupBy: {
+          args: Prisma.tb_ms_land_officeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_land_officeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.tb_ms_land_officeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_land_officeCountAggregateOutputType> | number
+        }
+      }
+    }
+    tb_ms_province: {
+      payload: Prisma.$tb_ms_provincePayload<ExtArgs>
+      fields: Prisma.tb_ms_provinceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.tb_ms_provinceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.tb_ms_provinceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        findFirst: {
+          args: Prisma.tb_ms_provinceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.tb_ms_provinceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        findMany: {
+          args: Prisma.tb_ms_provinceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>[]
+        }
+        create: {
+          args: Prisma.tb_ms_provinceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        createMany: {
+          args: Prisma.tb_ms_provinceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.tb_ms_provinceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>[]
+        }
+        delete: {
+          args: Prisma.tb_ms_provinceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        update: {
+          args: Prisma.tb_ms_provinceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        deleteMany: {
+          args: Prisma.tb_ms_provinceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.tb_ms_provinceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.tb_ms_provinceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>[]
+        }
+        upsert: {
+          args: Prisma.tb_ms_provinceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_provincePayload>
+        }
+        aggregate: {
+          args: Prisma.Tb_ms_provinceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTb_ms_province>
+        }
+        groupBy: {
+          args: Prisma.tb_ms_provinceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_provinceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.tb_ms_provinceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_provinceCountAggregateOutputType> | number
+        }
+      }
+    }
+    tb_ms_scale: {
+      payload: Prisma.$tb_ms_scalePayload<ExtArgs>
+      fields: Prisma.tb_ms_scaleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.tb_ms_scaleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.tb_ms_scaleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        findFirst: {
+          args: Prisma.tb_ms_scaleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.tb_ms_scaleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        findMany: {
+          args: Prisma.tb_ms_scaleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>[]
+        }
+        create: {
+          args: Prisma.tb_ms_scaleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        createMany: {
+          args: Prisma.tb_ms_scaleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.tb_ms_scaleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>[]
+        }
+        delete: {
+          args: Prisma.tb_ms_scaleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        update: {
+          args: Prisma.tb_ms_scaleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        deleteMany: {
+          args: Prisma.tb_ms_scaleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.tb_ms_scaleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.tb_ms_scaleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>[]
+        }
+        upsert: {
+          args: Prisma.tb_ms_scaleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_scalePayload>
+        }
+        aggregate: {
+          args: Prisma.Tb_ms_scaleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTb_ms_scale>
+        }
+        groupBy: {
+          args: Prisma.tb_ms_scaleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_scaleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.tb_ms_scaleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_scaleCountAggregateOutputType> | number
+        }
+      }
+    }
+    tb_ms_tambol: {
+      payload: Prisma.$tb_ms_tambolPayload<ExtArgs>
+      fields: Prisma.tb_ms_tambolFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.tb_ms_tambolFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.tb_ms_tambolFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        findFirst: {
+          args: Prisma.tb_ms_tambolFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.tb_ms_tambolFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        findMany: {
+          args: Prisma.tb_ms_tambolFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>[]
+        }
+        create: {
+          args: Prisma.tb_ms_tambolCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        createMany: {
+          args: Prisma.tb_ms_tambolCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.tb_ms_tambolCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>[]
+        }
+        delete: {
+          args: Prisma.tb_ms_tambolDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        update: {
+          args: Prisma.tb_ms_tambolUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        deleteMany: {
+          args: Prisma.tb_ms_tambolDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.tb_ms_tambolUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.tb_ms_tambolUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>[]
+        }
+        upsert: {
+          args: Prisma.tb_ms_tambolUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_ms_tambolPayload>
+        }
+        aggregate: {
+          args: Prisma.Tb_ms_tambolAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTb_ms_tambol>
+        }
+        groupBy: {
+          args: Prisma.tb_ms_tambolGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_tambolGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.tb_ms_tambolCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Tb_ms_tambolCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1798,6 +2098,67 @@ export const Tb_user_verfityScalarFieldEnum = {
 export type Tb_user_verfityScalarFieldEnum = (typeof Tb_user_verfityScalarFieldEnum)[keyof typeof Tb_user_verfityScalarFieldEnum]
 
 
+export const Tb_ms_land_officeScalarFieldEnum = {
+  land_office_id: 'land_office_id',
+  land_office_name: 'land_office_name',
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_land_officeScalarFieldEnum = (typeof Tb_ms_land_officeScalarFieldEnum)[keyof typeof Tb_ms_land_officeScalarFieldEnum]
+
+
+export const Tb_ms_provinceScalarFieldEnum = {
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_provinceScalarFieldEnum = (typeof Tb_ms_provinceScalarFieldEnum)[keyof typeof Tb_ms_provinceScalarFieldEnum]
+
+
+export const Tb_ms_scaleScalarFieldEnum = {
+  scale_id: 'scale_id',
+  scale: 'scale',
+  page: 'page',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status'
+} as const
+
+export type Tb_ms_scaleScalarFieldEnum = (typeof Tb_ms_scaleScalarFieldEnum)[keyof typeof Tb_ms_scaleScalarFieldEnum]
+
+
+export const Tb_ms_tambolScalarFieldEnum = {
+  tambol_id: 'tambol_id',
+  tambol_name: 'tambol_name',
+  amphur_id: 'amphur_id',
+  amphur_name: 'amphur_name',
+  province_id: 'province_id',
+  province_name: 'province_name',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  update_by: 'update_by',
+  created_by: 'created_by',
+  record_status: 'record_status',
+  tambol_code: 'tambol_code',
+  amphur_code: 'amphur_code'
+} as const
+
+export type Tb_ms_tambolScalarFieldEnum = (typeof Tb_ms_tambolScalarFieldEnum)[keyof typeof Tb_ms_tambolScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2028,6 +2389,10 @@ export type GlobalOmitConfig = {
   tb_user_consent?: Prisma.tb_user_consentOmit
   tb_user_role?: Prisma.tb_user_roleOmit
   tb_user_verfity?: Prisma.tb_user_verfityOmit
+  tb_ms_land_office?: Prisma.tb_ms_land_officeOmit
+  tb_ms_province?: Prisma.tb_ms_provinceOmit
+  tb_ms_scale?: Prisma.tb_ms_scaleOmit
+  tb_ms_tambol?: Prisma.tb_ms_tambolOmit
 }
 
 /* Types for Logging */
