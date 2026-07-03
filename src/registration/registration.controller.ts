@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { RegistrationService } from './registration.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from 'src/common/dto/create-user.dto';
 
 @Controller()
 export class RegistrationController {

@@ -1,12 +1,12 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { validate } from 'class-validator';
 import { RpcException } from '@nestjs/microservices';
 import { Prisma } from 'src/prisma-generated/prisma/client';
 import nodemailer from 'nodemailer';
 import { config } from 'dotenv';
-import { CreatePersonalDto } from './dto/create-personal.dto';
+import { CreateUserDto } from 'src/common/dto/create-user.dto';
+import { CreatePersonalDto } from 'src/common/dto/create-personal.dto';
 config();
 
 @Injectable()
