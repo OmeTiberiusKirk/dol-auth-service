@@ -29,8 +29,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Tb_accounts
- * const tb_accounts = await prisma.tb_account.findMany()
+ * // Fetch zero or more Tb_ms_amphurs
+ * const tb_ms_amphurs = await prisma.tb_ms_amphur.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -39,6 +39,31 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model tb_ms_amphur
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_amphur = Prisma.tb_ms_amphurModel
+/**
+ * Model tb_ms_land_office
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_land_office = Prisma.tb_ms_land_officeModel
+/**
+ * Model tb_ms_province
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_province = Prisma.tb_ms_provinceModel
+/**
+ * Model tb_ms_scale
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_scale = Prisma.tb_ms_scaleModel
+/**
+ * Model tb_ms_tambol
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_tambol = Prisma.tb_ms_tambolModel
 /**
  * Model tb_account
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -115,23 +140,3 @@ export type tb_user_role = Prisma.tb_user_roleModel
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  */
 export type tb_user_verfity = Prisma.tb_user_verfityModel
-/**
- * Model tb_ms_land_office
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_land_office = Prisma.tb_ms_land_officeModel
-/**
- * Model tb_ms_province
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_province = Prisma.tb_ms_provinceModel
-/**
- * Model tb_ms_scale
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_scale = Prisma.tb_ms_scaleModel
-/**
- * Model tb_ms_tambol
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_tambol = Prisma.tb_ms_tambolModel

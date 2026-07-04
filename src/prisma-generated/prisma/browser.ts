@@ -18,6 +18,31 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
+ * Model tb_ms_amphur
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_amphur = Prisma.tb_ms_amphurModel
+/**
+ * Model tb_ms_land_office
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_land_office = Prisma.tb_ms_land_officeModel
+/**
+ * Model tb_ms_province
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_province = Prisma.tb_ms_provinceModel
+/**
+ * Model tb_ms_scale
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_scale = Prisma.tb_ms_scaleModel
+/**
+ * Model tb_ms_tambol
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type tb_ms_tambol = Prisma.tb_ms_tambolModel
+/**
  * Model tb_account
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -93,23 +118,3 @@ export type tb_user_role = Prisma.tb_user_roleModel
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  */
 export type tb_user_verfity = Prisma.tb_user_verfityModel
-/**
- * Model tb_ms_land_office
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_land_office = Prisma.tb_ms_land_officeModel
-/**
- * Model tb_ms_province
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_province = Prisma.tb_ms_provinceModel
-/**
- * Model tb_ms_scale
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_scale = Prisma.tb_ms_scaleModel
-/**
- * Model tb_ms_tambol
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_ms_tambol = Prisma.tb_ms_tambolModel

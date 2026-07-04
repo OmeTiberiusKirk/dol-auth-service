@@ -8,6 +8,11 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/tb_ms_amphur.js'
+export type * from './models/tb_ms_land_office.js'
+export type * from './models/tb_ms_province.js'
+export type * from './models/tb_ms_scale.js'
+export type * from './models/tb_ms_tambol.js'
 export type * from './models/tb_account.js'
 export type * from './models/tb_his_failed_login.js'
 export type * from './models/tb_legal_entity_represent.js'
@@ -22,8 +27,4 @@ export type * from './models/tb_user_address.js'
 export type * from './models/tb_user_consent.js'
 export type * from './models/tb_user_role.js'
 export type * from './models/tb_user_verfity.js'
-export type * from './models/tb_ms_land_office.js'
-export type * from './models/tb_ms_province.js'
-export type * from './models/tb_ms_scale.js'
-export type * from './models/tb_ms_tambol.js'
 export type * from './commonInputTypes.js'

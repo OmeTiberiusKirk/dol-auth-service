@@ -22,6 +22,83 @@ datasource db {
   schemas  = ["mas", "reg"]
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_amphur {
+  amphur_id     String    @db.VarChar(4)
+  amphur_name   String?   @db.VarChar(100)
+  province_id   String?   @db.VarChar(4)
+  province_name String?   @db.VarChar(100)
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime? @db.Timestamptz(6)
+  update_by     String?   @db.Uuid
+  created_by    String?   @db.Uuid
+  record_status String?   @default("N") @db.VarChar
+  amphur_code   String    @id(map: "tb_ms_amphur_pk") @db.VarChar(8)
+
+  @@schema("mas")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_land_office {
+  land_office_id   String    @unique(map: "tb_ms_land_office_unique") @db.VarChar
+  land_office_name String    @db.VarChar(100)
+  province_id      Int
+  province_name    String    @db.VarChar
+  created_at       DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime? @db.Timestamptz(6)
+  update_by        String?   @db.Uuid
+  created_by       String?   @db.Uuid
+  record_status    String?   @default("N") @db.VarChar
+
+  @@schema("mas")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_province {
+  province_id   String    @unique(map: "tb_ms_province_unique") @db.VarChar(4)
+  province_name String    @db.VarChar(100)
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime? @db.Timestamptz(6)
+  update_by     String?   @db.Uuid
+  created_by    String?   @db.Uuid
+  record_status String?   @default("N") @db.VarChar
+
+  @@schema("mas")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_scale {
+  scale_id      Int       @unique(map: "tb_ms_scale_unique")
+  scale         Int
+  page          Int
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime? @db.Timestamptz(6)
+  update_by     String?   @db.Uuid
+  created_by    String?   @db.Uuid
+  record_status String?   @default("N") @db.VarChar
+
+  @@schema("mas")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_ms_tambol {
+  tambol_id     String    @db.VarChar(4)
+  tambol_name   String    @db.VarChar(100)
+  amphur_id     String    @db.VarChar(4)
+  amphur_name   String    @db.VarChar(100)
+  province_id   String    @db.VarChar(4)
+  province_name String    @db.VarChar(100)
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime? @db.Timestamptz(6)
+  update_by     String?   @db.Uuid
+  created_by    String?   @db.Uuid
+  record_status String?   @default("N") @db.VarChar
+  tambol_code   String    @id(map: "pk_tb_ms_tambol") @unique(map: "tb_ms_tambol_unique") @db.VarChar(10)
+  amphur_code   String?   @db.VarChar(10)
+
+  @@schema("mas")
+}
+
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_account {
@@ -391,83 +468,4 @@ model tb_user_verfity {
 
   @@unique([user_verify_id, user_id], map: "tb_user_verfity_unique")
   @@schema("reg")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model tb_ms_amphur {
-  amphur_id     String?   @db.VarChar(4)
-  amphur_name   String?   @db.VarChar(100)
-  province_id   String?   @db.VarChar(4)
-  province_name String?   @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-  amphur_code   String?   @unique(map: "tb_ms_amphur_unique") @db.VarChar(8)
-
-  @@ignore
-  @@schema("mas")
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model tb_ms_land_office {
-  land_office_id   String    @unique(map: "tb_ms_land_office_unique") @db.VarChar
-  land_office_name String    @db.VarChar(100)
-  province_id      Int
-  province_name    String    @db.VarChar
-  created_at       DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at       DateTime? @db.Timestamptz(6)
-  update_by        String?   @db.Uuid
-  created_by       String?   @db.Uuid
-  record_status    String?   @default("N") @db.VarChar
-
-  @@schema("mas")
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model tb_ms_province {
-  province_id   String    @unique(map: "tb_ms_province_unique") @db.VarChar(4)
-  province_name String    @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-
-  @@schema("mas")
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model tb_ms_scale {
-  scale_id      Int       @unique(map: "tb_ms_scale_unique")
-  scale         Int
-  page          Int
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-
-  @@schema("mas")
-}
-
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model tb_ms_tambol {
-  tambol_id     String    @db.VarChar(4)
-  tambol_name   String    @db.VarChar(100)
-  amphur_id     String    @db.VarChar(4)
-  amphur_name   String    @db.VarChar(100)
-  province_id   String    @db.VarChar(4)
-  province_name String    @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-  tambol_code   String    @id(map: "pk_tb_ms_tambol") @unique(map: "tb_ms_tambol_unique") @db.VarChar(10)
-  amphur_code   String?   @db.VarChar(10)
-
-  @@schema("mas")
 }
