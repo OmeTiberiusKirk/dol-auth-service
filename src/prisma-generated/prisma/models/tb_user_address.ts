@@ -62,6 +62,8 @@ export type Tb_user_addressMinAggregateOutputType = {
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  post_code: string | null
+  tel_no: string | null
 }
 
 export type Tb_user_addressMaxAggregateOutputType = {
@@ -86,6 +88,8 @@ export type Tb_user_addressMaxAggregateOutputType = {
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  post_code: string | null
+  tel_no: string | null
 }
 
 export type Tb_user_addressCountAggregateOutputType = {
@@ -110,6 +114,8 @@ export type Tb_user_addressCountAggregateOutputType = {
   update_by: number
   created_by: number
   record_status: number
+  post_code: number
+  tel_no: number
   _all: number
 }
 
@@ -150,6 +156,8 @@ export type Tb_user_addressMinAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  post_code?: true
+  tel_no?: true
 }
 
 export type Tb_user_addressMaxAggregateInputType = {
@@ -174,6 +182,8 @@ export type Tb_user_addressMaxAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  post_code?: true
+  tel_no?: true
 }
 
 export type Tb_user_addressCountAggregateInputType = {
@@ -198,6 +208,8 @@ export type Tb_user_addressCountAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  post_code?: true
+  tel_no?: true
   _all?: true
 }
 
@@ -289,7 +301,7 @@ export type tb_user_addressGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 
 export type Tb_user_addressGroupByOutputType = {
   user_address_id: string
-  user_id: string | null
+  user_id: string
   address_type: number | null
   home_no: string | null
   moo: string | null
@@ -309,6 +321,8 @@ export type Tb_user_addressGroupByOutputType = {
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  post_code: string | null
+  tel_no: string | null
   _count: Tb_user_addressCountAggregateOutputType | null
   _avg: Tb_user_addressAvgAggregateOutputType | null
   _sum: Tb_user_addressSumAggregateOutputType | null
@@ -336,7 +350,7 @@ export type tb_user_addressWhereInput = {
   OR?: Prisma.tb_user_addressWhereInput[]
   NOT?: Prisma.tb_user_addressWhereInput | Prisma.tb_user_addressWhereInput[]
   user_address_id?: Prisma.UuidFilter<"tb_user_address"> | string
-  user_id?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
+  user_id?: Prisma.UuidFilter<"tb_user_address"> | string
   address_type?: Prisma.IntNullableFilter<"tb_user_address"> | number | null
   home_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
   moo?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
@@ -356,12 +370,14 @@ export type tb_user_addressWhereInput = {
   update_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
-  tb_user?: Prisma.XOR<Prisma.Tb_userNullableScalarRelationFilter, Prisma.tb_userWhereInput> | null
+  post_code?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  tel_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  tb_user?: Prisma.XOR<Prisma.Tb_userScalarRelationFilter, Prisma.tb_userWhereInput>
 }
 
 export type tb_user_addressOrderByWithRelationInput = {
   user_address_id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   address_type?: Prisma.SortOrderInput | Prisma.SortOrder
   home_no?: Prisma.SortOrderInput | Prisma.SortOrder
   moo?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -381,6 +397,8 @@ export type tb_user_addressOrderByWithRelationInput = {
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  post_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  tel_no?: Prisma.SortOrderInput | Prisma.SortOrder
   tb_user?: Prisma.tb_userOrderByWithRelationInput
 }
 
@@ -389,7 +407,7 @@ export type tb_user_addressWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.tb_user_addressWhereInput | Prisma.tb_user_addressWhereInput[]
   OR?: Prisma.tb_user_addressWhereInput[]
   NOT?: Prisma.tb_user_addressWhereInput | Prisma.tb_user_addressWhereInput[]
-  user_id?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
+  user_id?: Prisma.UuidFilter<"tb_user_address"> | string
   address_type?: Prisma.IntNullableFilter<"tb_user_address"> | number | null
   home_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
   moo?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
@@ -409,12 +427,14 @@ export type tb_user_addressWhereUniqueInput = Prisma.AtLeast<{
   update_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
-  tb_user?: Prisma.XOR<Prisma.Tb_userNullableScalarRelationFilter, Prisma.tb_userWhereInput> | null
-}, "user_address_id" | "user_address_id">
+  post_code?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  tel_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  tb_user?: Prisma.XOR<Prisma.Tb_userScalarRelationFilter, Prisma.tb_userWhereInput>
+}, "user_address_id">
 
 export type tb_user_addressOrderByWithAggregationInput = {
   user_address_id?: Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   address_type?: Prisma.SortOrderInput | Prisma.SortOrder
   home_no?: Prisma.SortOrderInput | Prisma.SortOrder
   moo?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -434,6 +454,8 @@ export type tb_user_addressOrderByWithAggregationInput = {
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  post_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  tel_no?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.tb_user_addressCountOrderByAggregateInput
   _avg?: Prisma.tb_user_addressAvgOrderByAggregateInput
   _max?: Prisma.tb_user_addressMaxOrderByAggregateInput
@@ -446,7 +468,7 @@ export type tb_user_addressScalarWhereWithAggregatesInput = {
   OR?: Prisma.tb_user_addressScalarWhereWithAggregatesInput[]
   NOT?: Prisma.tb_user_addressScalarWhereWithAggregatesInput | Prisma.tb_user_addressScalarWhereWithAggregatesInput[]
   user_address_id?: Prisma.UuidWithAggregatesFilter<"tb_user_address"> | string
-  user_id?: Prisma.UuidNullableWithAggregatesFilter<"tb_user_address"> | string | null
+  user_id?: Prisma.UuidWithAggregatesFilter<"tb_user_address"> | string
   address_type?: Prisma.IntNullableWithAggregatesFilter<"tb_user_address"> | number | null
   home_no?: Prisma.StringNullableWithAggregatesFilter<"tb_user_address"> | string | null
   moo?: Prisma.StringNullableWithAggregatesFilter<"tb_user_address"> | string | null
@@ -466,6 +488,8 @@ export type tb_user_addressScalarWhereWithAggregatesInput = {
   update_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user_address"> | string | null
   created_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user_address"> | string | null
   record_status?: Prisma.StringNullableWithAggregatesFilter<"tb_user_address"> | string | null
+  post_code?: Prisma.StringNullableWithAggregatesFilter<"tb_user_address"> | string | null
+  tel_no?: Prisma.StringNullableWithAggregatesFilter<"tb_user_address"> | string | null
 }
 
 export type tb_user_addressCreateInput = {
@@ -489,12 +513,14 @@ export type tb_user_addressCreateInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
-  tb_user?: Prisma.tb_userCreateNestedOneWithoutTb_user_addressInput
+  post_code?: string | null
+  tel_no?: string | null
+  tb_user: Prisma.tb_userCreateNestedOneWithoutTb_user_addressInput
 }
 
 export type tb_user_addressUncheckedCreateInput = {
   user_address_id?: string
-  user_id?: string | null
+  user_id: string
   address_type?: number | null
   home_no?: string | null
   moo?: string | null
@@ -514,6 +540,8 @@ export type tb_user_addressUncheckedCreateInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  post_code?: string | null
+  tel_no?: string | null
 }
 
 export type tb_user_addressUpdateInput = {
@@ -537,12 +565,14 @@ export type tb_user_addressUpdateInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tb_user?: Prisma.tb_userUpdateOneWithoutTb_user_addressNestedInput
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_user_addressNestedInput
 }
 
 export type tb_user_addressUncheckedUpdateInput = {
   user_address_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   address_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   home_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   moo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -562,11 +592,13 @@ export type tb_user_addressUncheckedUpdateInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_user_addressCreateManyInput = {
   user_address_id?: string
-  user_id?: string | null
+  user_id: string
   address_type?: number | null
   home_no?: string | null
   moo?: string | null
@@ -586,6 +618,8 @@ export type tb_user_addressCreateManyInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  post_code?: string | null
+  tel_no?: string | null
 }
 
 export type tb_user_addressUpdateManyMutationInput = {
@@ -609,11 +643,13 @@ export type tb_user_addressUpdateManyMutationInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_user_addressUncheckedUpdateManyInput = {
   user_address_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
   address_type?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   home_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   moo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -633,6 +669,8 @@ export type tb_user_addressUncheckedUpdateManyInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Tb_user_addressListRelationFilter = {
@@ -667,6 +705,8 @@ export type tb_user_addressCountOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  post_code?: Prisma.SortOrder
+  tel_no?: Prisma.SortOrder
 }
 
 export type tb_user_addressAvgOrderByAggregateInput = {
@@ -698,6 +738,8 @@ export type tb_user_addressMaxOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  post_code?: Prisma.SortOrder
+  tel_no?: Prisma.SortOrder
 }
 
 export type tb_user_addressMinOrderByAggregateInput = {
@@ -722,6 +764,8 @@ export type tb_user_addressMinOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  post_code?: Prisma.SortOrder
+  tel_no?: Prisma.SortOrder
 }
 
 export type tb_user_addressSumOrderByAggregateInput = {
@@ -794,6 +838,8 @@ export type tb_user_addressCreateWithoutTb_userInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  post_code?: string | null
+  tel_no?: string | null
 }
 
 export type tb_user_addressUncheckedCreateWithoutTb_userInput = {
@@ -817,6 +863,8 @@ export type tb_user_addressUncheckedCreateWithoutTb_userInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  post_code?: string | null
+  tel_no?: string | null
 }
 
 export type tb_user_addressCreateOrConnectWithoutTb_userInput = {
@@ -850,7 +898,7 @@ export type tb_user_addressScalarWhereInput = {
   OR?: Prisma.tb_user_addressScalarWhereInput[]
   NOT?: Prisma.tb_user_addressScalarWhereInput | Prisma.tb_user_addressScalarWhereInput[]
   user_address_id?: Prisma.UuidFilter<"tb_user_address"> | string
-  user_id?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
+  user_id?: Prisma.UuidFilter<"tb_user_address"> | string
   address_type?: Prisma.IntNullableFilter<"tb_user_address"> | number | null
   home_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
   moo?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
@@ -870,6 +918,8 @@ export type tb_user_addressScalarWhereInput = {
   update_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user_address"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  post_code?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
+  tel_no?: Prisma.StringNullableFilter<"tb_user_address"> | string | null
 }
 
 export type tb_user_addressCreateManyTb_userInput = {
@@ -893,6 +943,8 @@ export type tb_user_addressCreateManyTb_userInput = {
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  post_code?: string | null
+  tel_no?: string | null
 }
 
 export type tb_user_addressUpdateWithoutTb_userInput = {
@@ -916,6 +968,8 @@ export type tb_user_addressUpdateWithoutTb_userInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_user_addressUncheckedUpdateWithoutTb_userInput = {
@@ -939,6 +993,8 @@ export type tb_user_addressUncheckedUpdateWithoutTb_userInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_user_addressUncheckedUpdateManyWithoutTb_userInput = {
@@ -962,6 +1018,8 @@ export type tb_user_addressUncheckedUpdateManyWithoutTb_userInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  post_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -988,7 +1046,9 @@ export type tb_user_addressSelect<ExtArgs extends runtime.Types.Extensions.Inter
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  post_code?: boolean
+  tel_no?: boolean
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user_address"]>
 
 export type tb_user_addressSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1013,7 +1073,9 @@ export type tb_user_addressSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  post_code?: boolean
+  tel_no?: boolean
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user_address"]>
 
 export type tb_user_addressSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1038,7 +1100,9 @@ export type tb_user_addressSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  post_code?: boolean
+  tel_no?: boolean
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user_address"]>
 
 export type tb_user_addressSelectScalar = {
@@ -1063,27 +1127,29 @@ export type tb_user_addressSelectScalar = {
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
+  post_code?: boolean
+  tel_no?: boolean
 }
 
-export type tb_user_addressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_address_id" | "user_id" | "address_type" | "home_no" | "moo" | "alley" | "soi" | "road" | "tambol_code" | "tambol_name" | "amphur_code" | "amphur_name" | "province_code" | "province_name" | "remark" | "is_visible" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status", ExtArgs["result"]["tb_user_address"]>
+export type tb_user_addressOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_address_id" | "user_id" | "address_type" | "home_no" | "moo" | "alley" | "soi" | "road" | "tambol_code" | "tambol_name" | "amphur_code" | "amphur_name" | "province_code" | "province_name" | "remark" | "is_visible" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status" | "post_code" | "tel_no", ExtArgs["result"]["tb_user_address"]>
 export type tb_user_addressInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }
 export type tb_user_addressIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }
 export type tb_user_addressIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  tb_user?: boolean | Prisma.tb_user_address$tb_userArgs<ExtArgs>
+  tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
 }
 
 export type $tb_user_addressPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "tb_user_address"
   objects: {
-    tb_user: Prisma.$tb_userPayload<ExtArgs> | null
+    tb_user: Prisma.$tb_userPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     user_address_id: string
-    user_id: string | null
+    user_id: string
     address_type: number | null
     home_no: string | null
     moo: string | null
@@ -1103,6 +1169,8 @@ export type $tb_user_addressPayload<ExtArgs extends runtime.Types.Extensions.Int
     update_by: string | null
     created_by: string | null
     record_status: string | null
+    post_code: string | null
+    tel_no: string | null
   }, ExtArgs["result"]["tb_user_address"]>
   composites: {}
 }
@@ -1497,7 +1565,7 @@ readonly fields: tb_user_addressFieldRefs;
  */
 export interface Prisma__tb_user_addressClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  tb_user<T extends Prisma.tb_user_address$tb_userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_user_address$tb_userArgs<ExtArgs>>): Prisma.Prisma__tb_userClient<runtime.Types.Result.GetResult<Prisma.$tb_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  tb_user<T extends Prisma.tb_userDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_userDefaultArgs<ExtArgs>>): Prisma.Prisma__tb_userClient<runtime.Types.Result.GetResult<Prisma.$tb_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1548,6 +1616,8 @@ export interface tb_user_addressFieldRefs {
   readonly update_by: Prisma.FieldRef<"tb_user_address", 'String'>
   readonly created_by: Prisma.FieldRef<"tb_user_address", 'String'>
   readonly record_status: Prisma.FieldRef<"tb_user_address", 'String'>
+  readonly post_code: Prisma.FieldRef<"tb_user_address", 'String'>
+  readonly tel_no: Prisma.FieldRef<"tb_user_address", 'String'>
 }
     
 
@@ -1771,7 +1841,7 @@ export type tb_user_addressCreateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * The data needed to create a tb_user_address.
    */
-  data?: Prisma.XOR<Prisma.tb_user_addressCreateInput, Prisma.tb_user_addressUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.tb_user_addressCreateInput, Prisma.tb_user_addressUncheckedCreateInput>
 }
 
 /**
@@ -1946,25 +2016,6 @@ export type tb_user_addressDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many tb_user_addresses to delete.
    */
   limit?: number
-}
-
-/**
- * tb_user_address.tb_user
- */
-export type tb_user_address$tb_userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the tb_user
-   */
-  select?: Prisma.tb_userSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the tb_user
-   */
-  omit?: Prisma.tb_userOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.tb_userInclude<ExtArgs> | null
-  where?: Prisma.tb_userWhereInput
 }
 
 /**

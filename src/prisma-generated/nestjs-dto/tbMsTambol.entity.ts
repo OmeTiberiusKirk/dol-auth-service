@@ -1,3 +1,5 @@
+import { TbMsAmphur } from './tbMsAmphur.entity';
+
 export class TbMsTambol {
   tambol_id!: string;
   tambol_name!: string;
@@ -12,4 +14,5 @@ export class TbMsTambol {
   record_status!: string | null;
   tambol_code!: string;
   amphur_code!: string | null;
+  tb_ms_amphur?: TbMsAmphur;
 }

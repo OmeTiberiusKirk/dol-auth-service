@@ -20,14 +20,16 @@ export class TbUserDto {
   private_office_id!: string | null;
   private_office_name!: string | null;
   email!: string | null;
-  is_email_verified!: boolean | null;
+  is_email_verified!: number | null;
   mobile_no!: string | null;
   verfity_at!: Date | null;
-  is_verify!: boolean | null;
+  is_verify!: number | null;
   user_status!: string;
   created_at!: Date;
   updated_at!: Date | null;
   update_by!: string | null;
   created_by!: string | null;
   record_status!: string | null;
+  register_method_id!: bigint | null;
+  private_office_address!: string | null;
 }

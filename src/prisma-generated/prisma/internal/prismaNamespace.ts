@@ -401,8 +401,7 @@ export const ModelName = {
   tb_user: 'tb_user',
   tb_user_address: 'tb_user_address',
   tb_user_consent: 'tb_user_consent',
-  tb_user_role: 'tb_user_role',
-  tb_user_verfity: 'tb_user_verfity'
+  tb_user_role: 'tb_user_role'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tb_ms_amphur" | "tb_ms_land_office" | "tb_ms_province" | "tb_ms_scale" | "tb_ms_tambol" | "tb_account" | "tb_his_failed_login" | "tb_legal_entity_represent" | "tb_log_access_session" | "tb_ms_channel" | "tb_ms_method" | "tb_ms_role" | "tb_ms_user_type" | "tb_regist_attach" | "tb_user" | "tb_user_address" | "tb_user_consent" | "tb_user_role" | "tb_user_verfity"
+    modelProps: "tb_ms_amphur" | "tb_ms_land_office" | "tb_ms_province" | "tb_ms_scale" | "tb_ms_tambol" | "tb_account" | "tb_his_failed_login" | "tb_legal_entity_represent" | "tb_log_access_session" | "tb_ms_channel" | "tb_ms_method" | "tb_ms_role" | "tb_ms_user_type" | "tb_regist_attach" | "tb_user" | "tb_user_address" | "tb_user_consent" | "tb_user_role"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1754,80 +1753,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    tb_user_verfity: {
-      payload: Prisma.$tb_user_verfityPayload<ExtArgs>
-      fields: Prisma.tb_user_verfityFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.tb_user_verfityFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.tb_user_verfityFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        findFirst: {
-          args: Prisma.tb_user_verfityFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.tb_user_verfityFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        findMany: {
-          args: Prisma.tb_user_verfityFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>[]
-        }
-        create: {
-          args: Prisma.tb_user_verfityCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        createMany: {
-          args: Prisma.tb_user_verfityCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.tb_user_verfityCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>[]
-        }
-        delete: {
-          args: Prisma.tb_user_verfityDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        update: {
-          args: Prisma.tb_user_verfityUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        deleteMany: {
-          args: Prisma.tb_user_verfityDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.tb_user_verfityUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.tb_user_verfityUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>[]
-        }
-        upsert: {
-          args: Prisma.tb_user_verfityUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$tb_user_verfityPayload>
-        }
-        aggregate: {
-          args: Prisma.Tb_user_verfityAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateTb_user_verfity>
-        }
-        groupBy: {
-          args: Prisma.tb_user_verfityGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Tb_user_verfityGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.tb_user_verfityCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.Tb_user_verfityCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -1958,7 +1883,8 @@ export const Tb_accountScalarFieldEnum = {
   updated_at: 'updated_at',
   created_by: 'created_by',
   updated_by: 'updated_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  last_login_method_id: 'last_login_method_id'
 } as const
 
 export type Tb_accountScalarFieldEnum = (typeof Tb_accountScalarFieldEnum)[keyof typeof Tb_accountScalarFieldEnum]
@@ -2159,7 +2085,9 @@ export const Tb_userScalarFieldEnum = {
   updated_at: 'updated_at',
   update_by: 'update_by',
   created_by: 'created_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  register_method_id: 'register_method_id',
+  private_office_address: 'private_office_address'
 } as const
 
 export type Tb_userScalarFieldEnum = (typeof Tb_userScalarFieldEnum)[keyof typeof Tb_userScalarFieldEnum]
@@ -2186,7 +2114,9 @@ export const Tb_user_addressScalarFieldEnum = {
   updated_at: 'updated_at',
   update_by: 'update_by',
   created_by: 'created_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  post_code: 'post_code',
+  tel_no: 'tel_no'
 } as const
 
 export type Tb_user_addressScalarFieldEnum = (typeof Tb_user_addressScalarFieldEnum)[keyof typeof Tb_user_addressScalarFieldEnum]
@@ -2231,23 +2161,6 @@ export const Tb_user_roleScalarFieldEnum = {
 } as const
 
 export type Tb_user_roleScalarFieldEnum = (typeof Tb_user_roleScalarFieldEnum)[keyof typeof Tb_user_roleScalarFieldEnum]
-
-
-export const Tb_user_verfityScalarFieldEnum = {
-  user_verify_id: 'user_verify_id',
-  user_id: 'user_id',
-  verify_flag: 'verify_flag',
-  verify_by: 'verify_by',
-  verify_at: 'verify_at',
-  verify_desc: 'verify_desc',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  update_by: 'update_by',
-  created_by: 'created_by',
-  record_status: 'record_status'
-} as const
-
-export type Tb_user_verfityScalarFieldEnum = (typeof Tb_user_verfityScalarFieldEnum)[keyof typeof Tb_user_verfityScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2484,7 +2397,6 @@ export type GlobalOmitConfig = {
   tb_user_address?: Prisma.tb_user_addressOmit
   tb_user_consent?: Prisma.tb_user_consentOmit
   tb_user_role?: Prisma.tb_user_roleOmit
-  tb_user_verfity?: Prisma.tb_user_verfityOmit
 }
 
 /* Types for Logging */

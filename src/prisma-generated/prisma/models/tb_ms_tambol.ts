@@ -246,6 +246,7 @@ export type tb_ms_tambolWhereInput = {
   record_status?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
   tambol_code?: Prisma.StringFilter<"tb_ms_tambol"> | string
   amphur_code?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
+  tb_ms_amphur?: Prisma.XOR<Prisma.Tb_ms_amphurScalarRelationFilter, Prisma.tb_ms_amphurWhereInput>
 }
 
 export type tb_ms_tambolOrderByWithRelationInput = {
@@ -262,10 +263,12 @@ export type tb_ms_tambolOrderByWithRelationInput = {
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
   tambol_code?: Prisma.SortOrder
   amphur_code?: Prisma.SortOrderInput | Prisma.SortOrder
+  tb_ms_amphur?: Prisma.tb_ms_amphurOrderByWithRelationInput
 }
 
 export type tb_ms_tambolWhereUniqueInput = Prisma.AtLeast<{
   tambol_code?: string
+  tambol_id_amphur_id_province_id?: Prisma.tb_ms_tambolTambol_idAmphur_idProvince_idCompoundUniqueInput
   AND?: Prisma.tb_ms_tambolWhereInput | Prisma.tb_ms_tambolWhereInput[]
   OR?: Prisma.tb_ms_tambolWhereInput[]
   NOT?: Prisma.tb_ms_tambolWhereInput | Prisma.tb_ms_tambolWhereInput[]
@@ -281,7 +284,8 @@ export type tb_ms_tambolWhereUniqueInput = Prisma.AtLeast<{
   created_by?: Prisma.UuidNullableFilter<"tb_ms_tambol"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
   amphur_code?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
-}, "tambol_code" | "tambol_code">
+  tb_ms_amphur?: Prisma.XOR<Prisma.Tb_ms_amphurScalarRelationFilter, Prisma.tb_ms_amphurWhereInput>
+}, "tambol_id_amphur_id_province_id" | "tambol_code">
 
 export type tb_ms_tambolOrderByWithAggregationInput = {
   tambol_id?: Prisma.SortOrder
@@ -324,9 +328,7 @@ export type tb_ms_tambolScalarWhereWithAggregatesInput = {
 export type tb_ms_tambolCreateInput = {
   tambol_id: string
   tambol_name: string
-  amphur_id: string
   amphur_name: string
-  province_id: string
   province_name: string
   created_at?: Date | string
   updated_at?: Date | string | null
@@ -335,6 +337,7 @@ export type tb_ms_tambolCreateInput = {
   record_status?: string | null
   tambol_code: string
   amphur_code?: string | null
+  tb_ms_amphur: Prisma.tb_ms_amphurCreateNestedOneWithoutTb_ms_tambolInput
 }
 
 export type tb_ms_tambolUncheckedCreateInput = {
@@ -356,9 +359,7 @@ export type tb_ms_tambolUncheckedCreateInput = {
 export type tb_ms_tambolUpdateInput = {
   tambol_id?: Prisma.StringFieldUpdateOperationsInput | string
   tambol_name?: Prisma.StringFieldUpdateOperationsInput | string
-  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.StringFieldUpdateOperationsInput | string
-  province_id?: Prisma.StringFieldUpdateOperationsInput | string
   province_name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -367,6 +368,7 @@ export type tb_ms_tambolUpdateInput = {
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tambol_code?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_ms_amphur?: Prisma.tb_ms_amphurUpdateOneRequiredWithoutTb_ms_tambolNestedInput
 }
 
 export type tb_ms_tambolUncheckedUpdateInput = {
@@ -404,9 +406,7 @@ export type tb_ms_tambolCreateManyInput = {
 export type tb_ms_tambolUpdateManyMutationInput = {
   tambol_id?: Prisma.StringFieldUpdateOperationsInput | string
   tambol_name?: Prisma.StringFieldUpdateOperationsInput | string
-  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.StringFieldUpdateOperationsInput | string
-  province_id?: Prisma.StringFieldUpdateOperationsInput | string
   province_name?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -431,6 +431,22 @@ export type tb_ms_tambolUncheckedUpdateManyInput = {
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tambol_code?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type Tb_ms_tambolListRelationFilter = {
+  every?: Prisma.tb_ms_tambolWhereInput
+  some?: Prisma.tb_ms_tambolWhereInput
+  none?: Prisma.tb_ms_tambolWhereInput
+}
+
+export type tb_ms_tambolOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type tb_ms_tambolTambol_idAmphur_idProvince_idCompoundUniqueInput = {
+  tambol_id: string
+  amphur_id: string
+  province_id: string
 }
 
 export type tb_ms_tambolCountOrderByAggregateInput = {
@@ -481,6 +497,177 @@ export type tb_ms_tambolMinOrderByAggregateInput = {
   amphur_code?: Prisma.SortOrder
 }
 
+export type tb_ms_tambolCreateNestedManyWithoutTb_ms_amphurInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput> | Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput[] | Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput[]
+  connectOrCreate?: Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput[]
+  createMany?: Prisma.tb_ms_tambolCreateManyTb_ms_amphurInputEnvelope
+  connect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+}
+
+export type tb_ms_tambolUncheckedCreateNestedManyWithoutTb_ms_amphurInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput> | Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput[] | Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput[]
+  connectOrCreate?: Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput[]
+  createMany?: Prisma.tb_ms_tambolCreateManyTb_ms_amphurInputEnvelope
+  connect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+}
+
+export type tb_ms_tambolUpdateManyWithoutTb_ms_amphurNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput> | Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput[] | Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput[]
+  connectOrCreate?: Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput[]
+  upsert?: Prisma.tb_ms_tambolUpsertWithWhereUniqueWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpsertWithWhereUniqueWithoutTb_ms_amphurInput[]
+  createMany?: Prisma.tb_ms_tambolCreateManyTb_ms_amphurInputEnvelope
+  set?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  disconnect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  delete?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  connect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  update?: Prisma.tb_ms_tambolUpdateWithWhereUniqueWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpdateWithWhereUniqueWithoutTb_ms_amphurInput[]
+  updateMany?: Prisma.tb_ms_tambolUpdateManyWithWhereWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpdateManyWithWhereWithoutTb_ms_amphurInput[]
+  deleteMany?: Prisma.tb_ms_tambolScalarWhereInput | Prisma.tb_ms_tambolScalarWhereInput[]
+}
+
+export type tb_ms_tambolUncheckedUpdateManyWithoutTb_ms_amphurNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput> | Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput[] | Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput[]
+  connectOrCreate?: Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput[]
+  upsert?: Prisma.tb_ms_tambolUpsertWithWhereUniqueWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpsertWithWhereUniqueWithoutTb_ms_amphurInput[]
+  createMany?: Prisma.tb_ms_tambolCreateManyTb_ms_amphurInputEnvelope
+  set?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  disconnect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  delete?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  connect?: Prisma.tb_ms_tambolWhereUniqueInput | Prisma.tb_ms_tambolWhereUniqueInput[]
+  update?: Prisma.tb_ms_tambolUpdateWithWhereUniqueWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpdateWithWhereUniqueWithoutTb_ms_amphurInput[]
+  updateMany?: Prisma.tb_ms_tambolUpdateManyWithWhereWithoutTb_ms_amphurInput | Prisma.tb_ms_tambolUpdateManyWithWhereWithoutTb_ms_amphurInput[]
+  deleteMany?: Prisma.tb_ms_tambolScalarWhereInput | Prisma.tb_ms_tambolScalarWhereInput[]
+}
+
+export type tb_ms_tambolCreateWithoutTb_ms_amphurInput = {
+  tambol_id: string
+  tambol_name: string
+  amphur_name: string
+  province_name: string
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  tambol_code: string
+  amphur_code?: string | null
+}
+
+export type tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput = {
+  tambol_id: string
+  tambol_name: string
+  amphur_name: string
+  province_name: string
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  tambol_code: string
+  amphur_code?: string | null
+}
+
+export type tb_ms_tambolCreateOrConnectWithoutTb_ms_amphurInput = {
+  where: Prisma.tb_ms_tambolWhereUniqueInput
+  create: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput>
+}
+
+export type tb_ms_tambolCreateManyTb_ms_amphurInputEnvelope = {
+  data: Prisma.tb_ms_tambolCreateManyTb_ms_amphurInput | Prisma.tb_ms_tambolCreateManyTb_ms_amphurInput[]
+  skipDuplicates?: boolean
+}
+
+export type tb_ms_tambolUpsertWithWhereUniqueWithoutTb_ms_amphurInput = {
+  where: Prisma.tb_ms_tambolWhereUniqueInput
+  update: Prisma.XOR<Prisma.tb_ms_tambolUpdateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedUpdateWithoutTb_ms_amphurInput>
+  create: Prisma.XOR<Prisma.tb_ms_tambolCreateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedCreateWithoutTb_ms_amphurInput>
+}
+
+export type tb_ms_tambolUpdateWithWhereUniqueWithoutTb_ms_amphurInput = {
+  where: Prisma.tb_ms_tambolWhereUniqueInput
+  data: Prisma.XOR<Prisma.tb_ms_tambolUpdateWithoutTb_ms_amphurInput, Prisma.tb_ms_tambolUncheckedUpdateWithoutTb_ms_amphurInput>
+}
+
+export type tb_ms_tambolUpdateManyWithWhereWithoutTb_ms_amphurInput = {
+  where: Prisma.tb_ms_tambolScalarWhereInput
+  data: Prisma.XOR<Prisma.tb_ms_tambolUpdateManyMutationInput, Prisma.tb_ms_tambolUncheckedUpdateManyWithoutTb_ms_amphurInput>
+}
+
+export type tb_ms_tambolScalarWhereInput = {
+  AND?: Prisma.tb_ms_tambolScalarWhereInput | Prisma.tb_ms_tambolScalarWhereInput[]
+  OR?: Prisma.tb_ms_tambolScalarWhereInput[]
+  NOT?: Prisma.tb_ms_tambolScalarWhereInput | Prisma.tb_ms_tambolScalarWhereInput[]
+  tambol_id?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  tambol_name?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  amphur_id?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  amphur_name?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  province_id?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  province_name?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  created_at?: Prisma.DateTimeFilter<"tb_ms_tambol"> | Date | string
+  updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_tambol"> | Date | string | null
+  update_by?: Prisma.UuidNullableFilter<"tb_ms_tambol"> | string | null
+  created_by?: Prisma.UuidNullableFilter<"tb_ms_tambol"> | string | null
+  record_status?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
+  tambol_code?: Prisma.StringFilter<"tb_ms_tambol"> | string
+  amphur_code?: Prisma.StringNullableFilter<"tb_ms_tambol"> | string | null
+}
+
+export type tb_ms_tambolCreateManyTb_ms_amphurInput = {
+  tambol_id: string
+  tambol_name: string
+  amphur_name: string
+  province_name: string
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  tambol_code: string
+  amphur_code?: string | null
+}
+
+export type tb_ms_tambolUpdateWithoutTb_ms_amphurInput = {
+  tambol_id?: Prisma.StringFieldUpdateOperationsInput | string
+  tambol_name?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.StringFieldUpdateOperationsInput | string
+  province_name?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tambol_code?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type tb_ms_tambolUncheckedUpdateWithoutTb_ms_amphurInput = {
+  tambol_id?: Prisma.StringFieldUpdateOperationsInput | string
+  tambol_name?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.StringFieldUpdateOperationsInput | string
+  province_name?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tambol_code?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type tb_ms_tambolUncheckedUpdateManyWithoutTb_ms_amphurInput = {
+  tambol_id?: Prisma.StringFieldUpdateOperationsInput | string
+  tambol_name?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.StringFieldUpdateOperationsInput | string
+  province_name?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tambol_code?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 
 
 export type tb_ms_tambolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -497,6 +684,7 @@ export type tb_ms_tambolSelect<ExtArgs extends runtime.Types.Extensions.Internal
   record_status?: boolean
   tambol_code?: boolean
   amphur_code?: boolean
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_tambol"]>
 
 export type tb_ms_tambolSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -513,6 +701,7 @@ export type tb_ms_tambolSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   record_status?: boolean
   tambol_code?: boolean
   amphur_code?: boolean
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_tambol"]>
 
 export type tb_ms_tambolSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -529,6 +718,7 @@ export type tb_ms_tambolSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   record_status?: boolean
   tambol_code?: boolean
   amphur_code?: boolean
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_tambol"]>
 
 export type tb_ms_tambolSelectScalar = {
@@ -548,10 +738,21 @@ export type tb_ms_tambolSelectScalar = {
 }
 
 export type tb_ms_tambolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"tambol_id" | "tambol_name" | "amphur_id" | "amphur_name" | "province_id" | "province_name" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status" | "tambol_code" | "amphur_code", ExtArgs["result"]["tb_ms_tambol"]>
+export type tb_ms_tambolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
+}
+export type tb_ms_tambolIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
+}
+export type tb_ms_tambolIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_amphur?: boolean | Prisma.tb_ms_amphurDefaultArgs<ExtArgs>
+}
 
 export type $tb_ms_tambolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "tb_ms_tambol"
-  objects: {}
+  objects: {
+    tb_ms_amphur: Prisma.$tb_ms_amphurPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     tambol_id: string
     tambol_name: string
@@ -960,6 +1161,7 @@ readonly fields: tb_ms_tambolFieldRefs;
  */
 export interface Prisma__tb_ms_tambolClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tb_ms_amphur<T extends Prisma.tb_ms_amphurDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_ms_amphurDefaultArgs<ExtArgs>>): Prisma.Prisma__tb_ms_amphurClient<runtime.Types.Result.GetResult<Prisma.$tb_ms_amphurPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1019,6 +1221,10 @@ export type tb_ms_tambolFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_tambol to fetch.
    */
   where: Prisma.tb_ms_tambolWhereUniqueInput
@@ -1037,6 +1243,10 @@ export type tb_ms_tambolFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_tambol to fetch.
    */
   where: Prisma.tb_ms_tambolWhereUniqueInput
@@ -1054,6 +1264,10 @@ export type tb_ms_tambolFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
   /**
    * Filter, which tb_ms_tambol to fetch.
    */
@@ -1103,6 +1317,10 @@ export type tb_ms_tambolFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_tambol to fetch.
    */
   where?: Prisma.tb_ms_tambolWhereInput
@@ -1150,6 +1368,10 @@ export type tb_ms_tambolFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
   /**
    * Filter, which tb_ms_tambols to fetch.
    */
@@ -1199,6 +1421,10 @@ export type tb_ms_tambolCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
+  /**
    * The data needed to create a tb_ms_tambol.
    */
   data: Prisma.XOR<Prisma.tb_ms_tambolCreateInput, Prisma.tb_ms_tambolUncheckedCreateInput>
@@ -1232,6 +1458,10 @@ export type tb_ms_tambolCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    */
   data: Prisma.tb_ms_tambolCreateManyInput | Prisma.tb_ms_tambolCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1246,6 +1476,10 @@ export type tb_ms_tambolUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
   /**
    * The data needed to update a tb_ms_tambol.
    */
@@ -1298,6 +1532,10 @@ export type tb_ms_tambolUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many tb_ms_tambols to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1312,6 +1550,10 @@ export type tb_ms_tambolUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
   /**
    * The filter to search for the tb_ms_tambol to update in case it exists.
    */
@@ -1338,6 +1580,10 @@ export type tb_ms_tambolDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
   /**
    * Filter which tb_ms_tambol to delete.
    */
@@ -1370,4 +1616,8 @@ export type tb_ms_tambolDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the tb_ms_tambol
    */
   omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
 }

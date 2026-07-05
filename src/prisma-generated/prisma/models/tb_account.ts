@@ -29,10 +29,12 @@ export type AggregateTb_account = {
 
 export type Tb_accountAvgAggregateOutputType = {
   last_login_channel_id: number | null
+  last_login_method_id: number | null
 }
 
 export type Tb_accountSumAggregateOutputType = {
   last_login_channel_id: bigint | null
+  last_login_method_id: bigint | null
 }
 
 export type Tb_accountMinAggregateOutputType = {
@@ -50,6 +52,7 @@ export type Tb_accountMinAggregateOutputType = {
   created_by: string | null
   updated_by: string | null
   record_status: string | null
+  last_login_method_id: bigint | null
 }
 
 export type Tb_accountMaxAggregateOutputType = {
@@ -67,6 +70,7 @@ export type Tb_accountMaxAggregateOutputType = {
   created_by: string | null
   updated_by: string | null
   record_status: string | null
+  last_login_method_id: bigint | null
 }
 
 export type Tb_accountCountAggregateOutputType = {
@@ -84,16 +88,19 @@ export type Tb_accountCountAggregateOutputType = {
   created_by: number
   updated_by: number
   record_status: number
+  last_login_method_id: number
   _all: number
 }
 
 
 export type Tb_accountAvgAggregateInputType = {
   last_login_channel_id?: true
+  last_login_method_id?: true
 }
 
 export type Tb_accountSumAggregateInputType = {
   last_login_channel_id?: true
+  last_login_method_id?: true
 }
 
 export type Tb_accountMinAggregateInputType = {
@@ -111,6 +118,7 @@ export type Tb_accountMinAggregateInputType = {
   created_by?: true
   updated_by?: true
   record_status?: true
+  last_login_method_id?: true
 }
 
 export type Tb_accountMaxAggregateInputType = {
@@ -128,6 +136,7 @@ export type Tb_accountMaxAggregateInputType = {
   created_by?: true
   updated_by?: true
   record_status?: true
+  last_login_method_id?: true
 }
 
 export type Tb_accountCountAggregateInputType = {
@@ -145,6 +154,7 @@ export type Tb_accountCountAggregateInputType = {
   created_by?: true
   updated_by?: true
   record_status?: true
+  last_login_method_id?: true
   _all?: true
 }
 
@@ -246,9 +256,10 @@ export type Tb_accountGroupByOutputType = {
   password_expired_at: Date | null
   created_at: Date
   updated_at: Date | null
-  created_by: string
+  created_by: string | null
   updated_by: string | null
   record_status: string | null
+  last_login_method_id: bigint | null
   _count: Tb_accountCountAggregateOutputType | null
   _avg: Tb_accountAvgAggregateOutputType | null
   _sum: Tb_accountSumAggregateOutputType | null
@@ -286,11 +297,13 @@ export type tb_accountWhereInput = {
   password_expired_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"tb_account"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
-  created_by?: Prisma.UuidFilter<"tb_account"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   updated_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_account"> | string | null
+  last_login_method_id?: Prisma.BigIntNullableFilter<"tb_account"> | bigint | number | null
   tb_user?: Prisma.XOR<Prisma.Tb_userScalarRelationFilter, Prisma.tb_userWhereInput>
   tb_ms_channel?: Prisma.XOR<Prisma.Tb_ms_channelNullableScalarRelationFilter, Prisma.tb_ms_channelWhereInput> | null
+  tb_ms_method?: Prisma.XOR<Prisma.Tb_ms_methodNullableScalarRelationFilter, Prisma.tb_ms_methodWhereInput> | null
   tb_his_failed_login?: Prisma.Tb_his_failed_loginListRelationFilter
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
 }
@@ -307,17 +320,20 @@ export type tb_accountOrderByWithRelationInput = {
   password_expired_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_by?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrderInput | Prisma.SortOrder
   tb_user?: Prisma.tb_userOrderByWithRelationInput
   tb_ms_channel?: Prisma.tb_ms_channelOrderByWithRelationInput
+  tb_ms_method?: Prisma.tb_ms_methodOrderByWithRelationInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginOrderByRelationAggregateInput
   tb_log_access_session?: Prisma.tb_log_access_sessionOrderByRelationAggregateInput
 }
 
 export type tb_accountWhereUniqueInput = Prisma.AtLeast<{
   account_id?: string
+  last_login_method_id?: bigint | number
   AND?: Prisma.tb_accountWhereInput | Prisma.tb_accountWhereInput[]
   OR?: Prisma.tb_accountWhereInput[]
   NOT?: Prisma.tb_accountWhereInput | Prisma.tb_accountWhereInput[]
@@ -331,14 +347,15 @@ export type tb_accountWhereUniqueInput = Prisma.AtLeast<{
   password_expired_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"tb_account"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
-  created_by?: Prisma.UuidFilter<"tb_account"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   updated_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_account"> | string | null
   tb_user?: Prisma.XOR<Prisma.Tb_userScalarRelationFilter, Prisma.tb_userWhereInput>
   tb_ms_channel?: Prisma.XOR<Prisma.Tb_ms_channelNullableScalarRelationFilter, Prisma.tb_ms_channelWhereInput> | null
+  tb_ms_method?: Prisma.XOR<Prisma.Tb_ms_methodNullableScalarRelationFilter, Prisma.tb_ms_methodWhereInput> | null
   tb_his_failed_login?: Prisma.Tb_his_failed_loginListRelationFilter
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
-}, "account_id">
+}, "account_id" | "last_login_method_id">
 
 export type tb_accountOrderByWithAggregationInput = {
   account_id?: Prisma.SortOrder
@@ -352,9 +369,10 @@ export type tb_accountOrderByWithAggregationInput = {
   password_expired_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  created_by?: Prisma.SortOrder
+  created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.tb_accountCountOrderByAggregateInput
   _avg?: Prisma.tb_accountAvgOrderByAggregateInput
   _max?: Prisma.tb_accountMaxOrderByAggregateInput
@@ -377,26 +395,28 @@ export type tb_accountScalarWhereWithAggregatesInput = {
   password_expired_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_account"> | Date | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"tb_account"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_account"> | Date | string | null
-  created_by?: Prisma.UuidWithAggregatesFilter<"tb_account"> | string
+  created_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_account"> | string | null
   updated_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_account"> | string | null
   record_status?: Prisma.StringNullableWithAggregatesFilter<"tb_account"> | string | null
+  last_login_method_id?: Prisma.BigIntNullableWithAggregatesFilter<"tb_account"> | bigint | number | null
 }
 
 export type tb_accountCreateInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
   tb_user: Prisma.tb_userCreateNestedOneWithoutTb_accountInput
   tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_accountInput
+  tb_ms_method?: Prisma.tb_ms_methodCreateNestedOneWithoutTb_accountInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_accountInput
 }
@@ -405,7 +425,7 @@ export type tb_accountUncheckedCreateInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -413,9 +433,10 @@ export type tb_accountUncheckedCreateInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_accountInput
 }
@@ -430,11 +451,12 @@ export type tb_accountUpdateInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_accountNestedInput
   tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_accountNestedInput
+  tb_ms_method?: Prisma.tb_ms_methodUpdateOneWithoutTb_accountNestedInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_accountNestedInput
 }
@@ -451,9 +473,10 @@ export type tb_accountUncheckedUpdateInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_accountNestedInput
 }
@@ -462,7 +485,7 @@ export type tb_accountCreateManyInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -470,9 +493,10 @@ export type tb_accountCreateManyInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
 }
 
 export type tb_accountUpdateManyMutationInput = {
@@ -485,7 +509,7 @@ export type tb_accountUpdateManyMutationInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -502,9 +526,10 @@ export type tb_accountUncheckedUpdateManyInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type tb_accountCountOrderByAggregateInput = {
@@ -522,10 +547,12 @@ export type tb_accountCountOrderByAggregateInput = {
   created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrder
 }
 
 export type tb_accountAvgOrderByAggregateInput = {
   last_login_channel_id?: Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrder
 }
 
 export type tb_accountMaxOrderByAggregateInput = {
@@ -543,6 +570,7 @@ export type tb_accountMaxOrderByAggregateInput = {
   created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrder
 }
 
 export type tb_accountMinOrderByAggregateInput = {
@@ -560,10 +588,12 @@ export type tb_accountMinOrderByAggregateInput = {
   created_by?: Prisma.SortOrder
   updated_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrder
 }
 
 export type tb_accountSumOrderByAggregateInput = {
   last_login_channel_id?: Prisma.SortOrder
+  last_login_method_id?: Prisma.SortOrder
 }
 
 export type Tb_accountScalarRelationFilter = {
@@ -579,6 +609,11 @@ export type Tb_accountListRelationFilter = {
 
 export type tb_accountOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type Tb_accountNullableScalarRelationFilter = {
+  is?: Prisma.tb_accountWhereInput | null
+  isNot?: Prisma.tb_accountWhereInput | null
 }
 
 export type NullableBigIntFieldUpdateOperationsInput = {
@@ -659,6 +694,38 @@ export type tb_accountUncheckedUpdateManyWithoutTb_ms_channelNestedInput = {
   deleteMany?: Prisma.tb_accountScalarWhereInput | Prisma.tb_accountScalarWhereInput[]
 }
 
+export type tb_accountCreateNestedOneWithoutTb_ms_methodInput = {
+  create?: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+  connectOrCreate?: Prisma.tb_accountCreateOrConnectWithoutTb_ms_methodInput
+  connect?: Prisma.tb_accountWhereUniqueInput
+}
+
+export type tb_accountUncheckedCreateNestedOneWithoutTb_ms_methodInput = {
+  create?: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+  connectOrCreate?: Prisma.tb_accountCreateOrConnectWithoutTb_ms_methodInput
+  connect?: Prisma.tb_accountWhereUniqueInput
+}
+
+export type tb_accountUpdateOneWithoutTb_ms_methodNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+  connectOrCreate?: Prisma.tb_accountCreateOrConnectWithoutTb_ms_methodInput
+  upsert?: Prisma.tb_accountUpsertWithoutTb_ms_methodInput
+  disconnect?: Prisma.tb_accountWhereInput | boolean
+  delete?: Prisma.tb_accountWhereInput | boolean
+  connect?: Prisma.tb_accountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tb_accountUpdateToOneWithWhereWithoutTb_ms_methodInput, Prisma.tb_accountUpdateWithoutTb_ms_methodInput>, Prisma.tb_accountUncheckedUpdateWithoutTb_ms_methodInput>
+}
+
+export type tb_accountUncheckedUpdateOneWithoutTb_ms_methodNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+  connectOrCreate?: Prisma.tb_accountCreateOrConnectWithoutTb_ms_methodInput
+  upsert?: Prisma.tb_accountUpsertWithoutTb_ms_methodInput
+  disconnect?: Prisma.tb_accountWhereInput | boolean
+  delete?: Prisma.tb_accountWhereInput | boolean
+  connect?: Prisma.tb_accountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tb_accountUpdateToOneWithWhereWithoutTb_ms_methodInput, Prisma.tb_accountUpdateWithoutTb_ms_methodInput>, Prisma.tb_accountUncheckedUpdateWithoutTb_ms_methodInput>
+}
+
 export type tb_accountCreateNestedManyWithoutTb_userInput = {
   create?: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_userInput, Prisma.tb_accountUncheckedCreateWithoutTb_userInput> | Prisma.tb_accountCreateWithoutTb_userInput[] | Prisma.tb_accountUncheckedCreateWithoutTb_userInput[]
   connectOrCreate?: Prisma.tb_accountCreateOrConnectWithoutTb_userInput | Prisma.tb_accountCreateOrConnectWithoutTb_userInput[]
@@ -704,18 +771,19 @@ export type tb_accountUncheckedUpdateManyWithoutTb_userNestedInput = {
 export type tb_accountCreateWithoutTb_his_failed_loginInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
   tb_user: Prisma.tb_userCreateNestedOneWithoutTb_accountInput
   tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_accountInput
+  tb_ms_method?: Prisma.tb_ms_methodCreateNestedOneWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_accountInput
 }
 
@@ -723,7 +791,7 @@ export type tb_accountUncheckedCreateWithoutTb_his_failed_loginInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -731,9 +799,10 @@ export type tb_accountUncheckedCreateWithoutTb_his_failed_loginInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_accountInput
 }
 
@@ -763,11 +832,12 @@ export type tb_accountUpdateWithoutTb_his_failed_loginInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_accountNestedInput
   tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_accountNestedInput
+  tb_ms_method?: Prisma.tb_ms_methodUpdateOneWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_accountNestedInput
 }
 
@@ -783,27 +853,29 @@ export type tb_accountUncheckedUpdateWithoutTb_his_failed_loginInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_accountNestedInput
 }
 
 export type tb_accountCreateWithoutTb_log_access_sessionInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
   tb_user: Prisma.tb_userCreateNestedOneWithoutTb_accountInput
   tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_accountInput
+  tb_ms_method?: Prisma.tb_ms_methodCreateNestedOneWithoutTb_accountInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginCreateNestedManyWithoutTb_accountInput
 }
 
@@ -811,7 +883,7 @@ export type tb_accountUncheckedCreateWithoutTb_log_access_sessionInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -819,9 +891,10 @@ export type tb_accountUncheckedCreateWithoutTb_log_access_sessionInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedCreateNestedManyWithoutTb_accountInput
 }
 
@@ -851,11 +924,12 @@ export type tb_accountUpdateWithoutTb_log_access_sessionInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_accountNestedInput
   tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_accountNestedInput
+  tb_ms_method?: Prisma.tb_ms_methodUpdateOneWithoutTb_accountNestedInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginUpdateManyWithoutTb_accountNestedInput
 }
 
@@ -871,26 +945,28 @@ export type tb_accountUncheckedUpdateWithoutTb_log_access_sessionInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedUpdateManyWithoutTb_accountNestedInput
 }
 
 export type tb_accountCreateWithoutTb_ms_channelInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
   tb_user: Prisma.tb_userCreateNestedOneWithoutTb_accountInput
+  tb_ms_method?: Prisma.tb_ms_methodCreateNestedOneWithoutTb_accountInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_accountInput
 }
@@ -899,16 +975,17 @@ export type tb_accountUncheckedCreateWithoutTb_ms_channelInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_accountInput
 }
@@ -954,33 +1031,36 @@ export type tb_accountScalarWhereInput = {
   password_expired_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
   created_at?: Prisma.DateTimeFilter<"tb_account"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_account"> | Date | string | null
-  created_by?: Prisma.UuidFilter<"tb_account"> | string
+  created_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   updated_by?: Prisma.UuidNullableFilter<"tb_account"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_account"> | string | null
+  last_login_method_id?: Prisma.BigIntNullableFilter<"tb_account"> | bigint | number | null
 }
 
-export type tb_accountCreateWithoutTb_userInput = {
+export type tb_accountCreateWithoutTb_ms_methodInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  tb_user: Prisma.tb_userCreateNestedOneWithoutTb_accountInput
   tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_accountInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_accountInput
 }
 
-export type tb_accountUncheckedCreateWithoutTb_userInput = {
+export type tb_accountUncheckedCreateWithoutTb_ms_methodInput = {
   account_id?: string
+  user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -988,9 +1068,101 @@ export type tb_accountUncheckedCreateWithoutTb_userInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedCreateNestedManyWithoutTb_accountInput
+  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_accountInput
+}
+
+export type tb_accountCreateOrConnectWithoutTb_ms_methodInput = {
+  where: Prisma.tb_accountWhereUniqueInput
+  create: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+}
+
+export type tb_accountUpsertWithoutTb_ms_methodInput = {
+  update: Prisma.XOR<Prisma.tb_accountUpdateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedUpdateWithoutTb_ms_methodInput>
+  create: Prisma.XOR<Prisma.tb_accountCreateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedCreateWithoutTb_ms_methodInput>
+  where?: Prisma.tb_accountWhereInput
+}
+
+export type tb_accountUpdateToOneWithWhereWithoutTb_ms_methodInput = {
+  where?: Prisma.tb_accountWhereInput
+  data: Prisma.XOR<Prisma.tb_accountUpdateWithoutTb_ms_methodInput, Prisma.tb_accountUncheckedUpdateWithoutTb_ms_methodInput>
+}
+
+export type tb_accountUpdateWithoutTb_ms_methodInput = {
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  account_status?: Prisma.StringFieldUpdateOperationsInput | string
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_accountNestedInput
+  tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_accountNestedInput
+  tb_his_failed_login?: Prisma.tb_his_failed_loginUpdateManyWithoutTb_accountNestedInput
+  tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_accountNestedInput
+}
+
+export type tb_accountUncheckedUpdateWithoutTb_ms_methodInput = {
+  account_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  account_status?: Prisma.StringFieldUpdateOperationsInput | string
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  last_login_channel_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedUpdateManyWithoutTb_accountNestedInput
+  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_accountNestedInput
+}
+
+export type tb_accountCreateWithoutTb_userInput = {
+  account_id?: string
+  username?: string | null
+  account_status: string
+  last_login_at?: Date | string | null
+  password?: string | null
+  password_changed_at?: Date | string | null
+  password_expired_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  created_by?: string | null
+  updated_by?: string | null
+  record_status?: string | null
+  tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_accountInput
+  tb_ms_method?: Prisma.tb_ms_methodCreateNestedOneWithoutTb_accountInput
+  tb_his_failed_login?: Prisma.tb_his_failed_loginCreateNestedManyWithoutTb_accountInput
+  tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_accountInput
+}
+
+export type tb_accountUncheckedCreateWithoutTb_userInput = {
+  account_id?: string
+  username?: string | null
+  account_status: string
+  last_login_at?: Date | string | null
+  last_login_channel_id?: bigint | number | null
+  password?: string | null
+  password_changed_at?: Date | string | null
+  password_expired_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  created_by?: string | null
+  updated_by?: string | null
+  record_status?: string | null
+  last_login_method_id?: bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedCreateNestedManyWithoutTb_accountInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_accountInput
 }
@@ -1025,16 +1197,17 @@ export type tb_accountCreateManyTb_ms_channelInput = {
   account_id?: string
   user_id: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   password?: string | null
   password_changed_at?: Date | string | null
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
 }
 
 export type tb_accountUpdateWithoutTb_ms_channelInput = {
@@ -1047,10 +1220,11 @@ export type tb_accountUpdateWithoutTb_ms_channelInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_user?: Prisma.tb_userUpdateOneRequiredWithoutTb_accountNestedInput
+  tb_ms_method?: Prisma.tb_ms_methodUpdateOneWithoutTb_accountNestedInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_accountNestedInput
 }
@@ -1066,9 +1240,10 @@ export type tb_accountUncheckedUpdateWithoutTb_ms_channelInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_accountNestedInput
 }
@@ -1084,15 +1259,16 @@ export type tb_accountUncheckedUpdateManyWithoutTb_ms_channelInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 export type tb_accountCreateManyTb_userInput = {
   account_id?: string
   username?: string | null
-  account_status?: string
+  account_status: string
   last_login_at?: Date | string | null
   last_login_channel_id?: bigint | number | null
   password?: string | null
@@ -1100,9 +1276,10 @@ export type tb_accountCreateManyTb_userInput = {
   password_expired_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string | null
-  created_by: string
+  created_by?: string | null
   updated_by?: string | null
   record_status?: string | null
+  last_login_method_id?: bigint | number | null
 }
 
 export type tb_accountUpdateWithoutTb_userInput = {
@@ -1115,10 +1292,11 @@ export type tb_accountUpdateWithoutTb_userInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_accountNestedInput
+  tb_ms_method?: Prisma.tb_ms_methodUpdateOneWithoutTb_accountNestedInput
   tb_his_failed_login?: Prisma.tb_his_failed_loginUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_accountNestedInput
 }
@@ -1134,9 +1312,10 @@ export type tb_accountUncheckedUpdateWithoutTb_userInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   tb_his_failed_login?: Prisma.tb_his_failed_loginUncheckedUpdateManyWithoutTb_accountNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_accountNestedInput
 }
@@ -1152,9 +1331,10 @@ export type tb_accountUncheckedUpdateManyWithoutTb_userInput = {
   password_expired_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   updated_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_login_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
 }
 
 
@@ -1212,8 +1392,10 @@ export type tb_accountSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   created_by?: boolean
   updated_by?: boolean
   record_status?: boolean
+  last_login_method_id?: boolean
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
   tb_his_failed_login?: boolean | Prisma.tb_account$tb_his_failed_loginArgs<ExtArgs>
   tb_log_access_session?: boolean | Prisma.tb_account$tb_log_access_sessionArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_accountCountOutputTypeDefaultArgs<ExtArgs>
@@ -1234,8 +1416,10 @@ export type tb_accountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   created_by?: boolean
   updated_by?: boolean
   record_status?: boolean
+  last_login_method_id?: boolean
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
 }, ExtArgs["result"]["tb_account"]>
 
 export type tb_accountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1253,8 +1437,10 @@ export type tb_accountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   created_by?: boolean
   updated_by?: boolean
   record_status?: boolean
+  last_login_method_id?: boolean
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
 }, ExtArgs["result"]["tb_account"]>
 
 export type tb_accountSelectScalar = {
@@ -1272,12 +1458,14 @@ export type tb_accountSelectScalar = {
   created_by?: boolean
   updated_by?: boolean
   record_status?: boolean
+  last_login_method_id?: boolean
 }
 
-export type tb_accountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"account_id" | "user_id" | "username" | "account_status" | "last_login_at" | "last_login_channel_id" | "password" | "password_changed_at" | "password_expired_at" | "created_at" | "updated_at" | "created_by" | "updated_by" | "record_status", ExtArgs["result"]["tb_account"]>
+export type tb_accountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"account_id" | "user_id" | "username" | "account_status" | "last_login_at" | "last_login_channel_id" | "password" | "password_changed_at" | "password_expired_at" | "created_at" | "updated_at" | "created_by" | "updated_by" | "record_status" | "last_login_method_id", ExtArgs["result"]["tb_account"]>
 export type tb_accountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
   tb_his_failed_login?: boolean | Prisma.tb_account$tb_his_failed_loginArgs<ExtArgs>
   tb_log_access_session?: boolean | Prisma.tb_account$tb_log_access_sessionArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_accountCountOutputTypeDefaultArgs<ExtArgs>
@@ -1285,10 +1473,12 @@ export type tb_accountInclude<ExtArgs extends runtime.Types.Extensions.InternalA
 export type tb_accountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
 }
 export type tb_accountIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tb_user?: boolean | Prisma.tb_userDefaultArgs<ExtArgs>
   tb_ms_channel?: boolean | Prisma.tb_account$tb_ms_channelArgs<ExtArgs>
+  tb_ms_method?: boolean | Prisma.tb_account$tb_ms_methodArgs<ExtArgs>
 }
 
 export type $tb_accountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1296,6 +1486,7 @@ export type $tb_accountPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     tb_user: Prisma.$tb_userPayload<ExtArgs>
     tb_ms_channel: Prisma.$tb_ms_channelPayload<ExtArgs> | null
+    tb_ms_method: Prisma.$tb_ms_methodPayload<ExtArgs> | null
     tb_his_failed_login: Prisma.$tb_his_failed_loginPayload<ExtArgs>[]
     tb_log_access_session: Prisma.$tb_log_access_sessionPayload<ExtArgs>[]
   }
@@ -1311,9 +1502,10 @@ export type $tb_accountPayload<ExtArgs extends runtime.Types.Extensions.Internal
     password_expired_at: Date | null
     created_at: Date
     updated_at: Date | null
-    created_by: string
+    created_by: string | null
     updated_by: string | null
     record_status: string | null
+    last_login_method_id: bigint | null
   }, ExtArgs["result"]["tb_account"]>
   composites: {}
 }
@@ -1710,6 +1902,7 @@ export interface Prisma__tb_accountClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tb_user<T extends Prisma.tb_userDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_userDefaultArgs<ExtArgs>>): Prisma.Prisma__tb_userClient<runtime.Types.Result.GetResult<Prisma.$tb_userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tb_ms_channel<T extends Prisma.tb_account$tb_ms_channelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_account$tb_ms_channelArgs<ExtArgs>>): Prisma.Prisma__tb_ms_channelClient<runtime.Types.Result.GetResult<Prisma.$tb_ms_channelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  tb_ms_method<T extends Prisma.tb_account$tb_ms_methodArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_account$tb_ms_methodArgs<ExtArgs>>): Prisma.Prisma__tb_ms_methodClient<runtime.Types.Result.GetResult<Prisma.$tb_ms_methodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tb_his_failed_login<T extends Prisma.tb_account$tb_his_failed_loginArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_account$tb_his_failed_loginArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_his_failed_loginPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tb_log_access_session<T extends Prisma.tb_account$tb_log_access_sessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_account$tb_log_access_sessionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_log_access_sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1755,6 +1948,7 @@ export interface tb_accountFieldRefs {
   readonly created_by: Prisma.FieldRef<"tb_account", 'String'>
   readonly updated_by: Prisma.FieldRef<"tb_account", 'String'>
   readonly record_status: Prisma.FieldRef<"tb_account", 'String'>
+  readonly last_login_method_id: Prisma.FieldRef<"tb_account", 'BigInt'>
 }
     
 
@@ -2172,6 +2366,25 @@ export type tb_account$tb_ms_channelArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.tb_ms_channelInclude<ExtArgs> | null
   where?: Prisma.tb_ms_channelWhereInput
+}
+
+/**
+ * tb_account.tb_ms_method
+ */
+export type tb_account$tb_ms_methodArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tb_ms_method
+   */
+  select?: Prisma.tb_ms_methodSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tb_ms_method
+   */
+  omit?: Prisma.tb_ms_methodOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_methodInclude<ExtArgs> | null
+  where?: Prisma.tb_ms_methodWhereInput
 }
 
 /**

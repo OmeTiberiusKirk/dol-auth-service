@@ -268,6 +268,7 @@ export type tb_ms_methodWhereInput = {
   updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_method"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_ms_method"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_ms_method"> | string | null
+  tb_account?: Prisma.XOR<Prisma.Tb_accountNullableScalarRelationFilter, Prisma.tb_accountWhereInput> | null
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
 }
 
@@ -283,6 +284,7 @@ export type tb_ms_methodOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  tb_account?: Prisma.tb_accountOrderByWithRelationInput
   tb_log_access_session?: Prisma.tb_log_access_sessionOrderByRelationAggregateInput
 }
 
@@ -301,6 +303,7 @@ export type tb_ms_methodWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_method"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_ms_method"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_ms_method"> | string | null
+  tb_account?: Prisma.XOR<Prisma.Tb_accountNullableScalarRelationFilter, Prisma.tb_accountWhereInput> | null
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
 }, "method_id">
 
@@ -352,6 +355,7 @@ export type tb_ms_methodCreateInput = {
   updated_at?: Date | string | null
   update_by?: string | null
   record_status?: string | null
+  tb_account?: Prisma.tb_accountCreateNestedOneWithoutTb_ms_methodInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_ms_methodInput
 }
 
@@ -367,6 +371,7 @@ export type tb_ms_methodUncheckedCreateInput = {
   updated_at?: Date | string | null
   update_by?: string | null
   record_status?: string | null
+  tb_account?: Prisma.tb_accountUncheckedCreateNestedOneWithoutTb_ms_methodInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_ms_methodInput
 }
 
@@ -382,6 +387,7 @@ export type tb_ms_methodUpdateInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_account?: Prisma.tb_accountUpdateOneWithoutTb_ms_methodNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_ms_methodNestedInput
 }
 
@@ -397,6 +403,7 @@ export type tb_ms_methodUncheckedUpdateInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_account?: Prisma.tb_accountUncheckedUpdateOneWithoutTb_ms_methodNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_ms_methodNestedInput
 }
 
@@ -499,6 +506,22 @@ export type tb_ms_methodSumOrderByAggregateInput = {
   display_order?: Prisma.SortOrder
 }
 
+export type tb_ms_methodCreateNestedOneWithoutTb_accountInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_methodCreateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedCreateWithoutTb_accountInput>
+  connectOrCreate?: Prisma.tb_ms_methodCreateOrConnectWithoutTb_accountInput
+  connect?: Prisma.tb_ms_methodWhereUniqueInput
+}
+
+export type tb_ms_methodUpdateOneWithoutTb_accountNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_methodCreateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedCreateWithoutTb_accountInput>
+  connectOrCreate?: Prisma.tb_ms_methodCreateOrConnectWithoutTb_accountInput
+  upsert?: Prisma.tb_ms_methodUpsertWithoutTb_accountInput
+  disconnect?: Prisma.tb_ms_methodWhereInput | boolean
+  delete?: Prisma.tb_ms_methodWhereInput | boolean
+  connect?: Prisma.tb_ms_methodWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tb_ms_methodUpdateToOneWithWhereWithoutTb_accountInput, Prisma.tb_ms_methodUpdateWithoutTb_accountInput>, Prisma.tb_ms_methodUncheckedUpdateWithoutTb_accountInput>
+}
+
 export type tb_ms_methodCreateNestedOneWithoutTb_log_access_sessionInput = {
   create?: Prisma.XOR<Prisma.tb_ms_methodCreateWithoutTb_log_access_sessionInput, Prisma.tb_ms_methodUncheckedCreateWithoutTb_log_access_sessionInput>
   connectOrCreate?: Prisma.tb_ms_methodCreateOrConnectWithoutTb_log_access_sessionInput
@@ -515,6 +538,82 @@ export type tb_ms_methodUpdateOneWithoutTb_log_access_sessionNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.tb_ms_methodUpdateToOneWithWhereWithoutTb_log_access_sessionInput, Prisma.tb_ms_methodUpdateWithoutTb_log_access_sessionInput>, Prisma.tb_ms_methodUncheckedUpdateWithoutTb_log_access_sessionInput>
 }
 
+export type tb_ms_methodCreateWithoutTb_accountInput = {
+  method_id?: bigint | number
+  method_code: string
+  method_name: string
+  description?: string | null
+  display_order?: number | null
+  is_enable?: boolean | null
+  created_at?: Date | string
+  created_by?: string | null
+  updated_at?: Date | string | null
+  update_by?: string | null
+  record_status?: string | null
+  tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_ms_methodInput
+}
+
+export type tb_ms_methodUncheckedCreateWithoutTb_accountInput = {
+  method_id?: bigint | number
+  method_code: string
+  method_name: string
+  description?: string | null
+  display_order?: number | null
+  is_enable?: boolean | null
+  created_at?: Date | string
+  created_by?: string | null
+  updated_at?: Date | string | null
+  update_by?: string | null
+  record_status?: string | null
+  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_ms_methodInput
+}
+
+export type tb_ms_methodCreateOrConnectWithoutTb_accountInput = {
+  where: Prisma.tb_ms_methodWhereUniqueInput
+  create: Prisma.XOR<Prisma.tb_ms_methodCreateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedCreateWithoutTb_accountInput>
+}
+
+export type tb_ms_methodUpsertWithoutTb_accountInput = {
+  update: Prisma.XOR<Prisma.tb_ms_methodUpdateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedUpdateWithoutTb_accountInput>
+  create: Prisma.XOR<Prisma.tb_ms_methodCreateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedCreateWithoutTb_accountInput>
+  where?: Prisma.tb_ms_methodWhereInput
+}
+
+export type tb_ms_methodUpdateToOneWithWhereWithoutTb_accountInput = {
+  where?: Prisma.tb_ms_methodWhereInput
+  data: Prisma.XOR<Prisma.tb_ms_methodUpdateWithoutTb_accountInput, Prisma.tb_ms_methodUncheckedUpdateWithoutTb_accountInput>
+}
+
+export type tb_ms_methodUpdateWithoutTb_accountInput = {
+  method_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  method_code?: Prisma.StringFieldUpdateOperationsInput | string
+  method_name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  display_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_enable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_ms_methodNestedInput
+}
+
+export type tb_ms_methodUncheckedUpdateWithoutTb_accountInput = {
+  method_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  method_code?: Prisma.StringFieldUpdateOperationsInput | string
+  method_name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  display_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  is_enable?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_ms_methodNestedInput
+}
+
 export type tb_ms_methodCreateWithoutTb_log_access_sessionInput = {
   method_id?: bigint | number
   method_code: string
@@ -527,6 +626,7 @@ export type tb_ms_methodCreateWithoutTb_log_access_sessionInput = {
   updated_at?: Date | string | null
   update_by?: string | null
   record_status?: string | null
+  tb_account?: Prisma.tb_accountCreateNestedOneWithoutTb_ms_methodInput
 }
 
 export type tb_ms_methodUncheckedCreateWithoutTb_log_access_sessionInput = {
@@ -541,6 +641,7 @@ export type tb_ms_methodUncheckedCreateWithoutTb_log_access_sessionInput = {
   updated_at?: Date | string | null
   update_by?: string | null
   record_status?: string | null
+  tb_account?: Prisma.tb_accountUncheckedCreateNestedOneWithoutTb_ms_methodInput
 }
 
 export type tb_ms_methodCreateOrConnectWithoutTb_log_access_sessionInput = {
@@ -571,6 +672,7 @@ export type tb_ms_methodUpdateWithoutTb_log_access_sessionInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_account?: Prisma.tb_accountUpdateOneWithoutTb_ms_methodNestedInput
 }
 
 export type tb_ms_methodUncheckedUpdateWithoutTb_log_access_sessionInput = {
@@ -585,6 +687,7 @@ export type tb_ms_methodUncheckedUpdateWithoutTb_log_access_sessionInput = {
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tb_account?: Prisma.tb_accountUncheckedUpdateOneWithoutTb_ms_methodNestedInput
 }
 
 
@@ -630,6 +733,7 @@ export type tb_ms_methodSelect<ExtArgs extends runtime.Types.Extensions.Internal
   updated_at?: boolean
   update_by?: boolean
   record_status?: boolean
+  tb_account?: boolean | Prisma.tb_ms_method$tb_accountArgs<ExtArgs>
   tb_log_access_session?: boolean | Prisma.tb_ms_method$tb_log_access_sessionArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_ms_methodCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_method"]>
@@ -678,6 +782,7 @@ export type tb_ms_methodSelectScalar = {
 
 export type tb_ms_methodOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"method_id" | "method_code" | "method_name" | "description" | "display_order" | "is_enable" | "created_at" | "created_by" | "updated_at" | "update_by" | "record_status", ExtArgs["result"]["tb_ms_method"]>
 export type tb_ms_methodInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_account?: boolean | Prisma.tb_ms_method$tb_accountArgs<ExtArgs>
   tb_log_access_session?: boolean | Prisma.tb_ms_method$tb_log_access_sessionArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_ms_methodCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -687,6 +792,7 @@ export type tb_ms_methodIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $tb_ms_methodPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "tb_ms_method"
   objects: {
+    tb_account: Prisma.$tb_accountPayload<ExtArgs> | null
     tb_log_access_session: Prisma.$tb_log_access_sessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1095,6 +1201,7 @@ readonly fields: tb_ms_methodFieldRefs;
  */
 export interface Prisma__tb_ms_methodClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tb_account<T extends Prisma.tb_ms_method$tb_accountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_ms_method$tb_accountArgs<ExtArgs>>): Prisma.Prisma__tb_accountClient<runtime.Types.Result.GetResult<Prisma.$tb_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tb_log_access_session<T extends Prisma.tb_ms_method$tb_log_access_sessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_ms_method$tb_log_access_sessionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_log_access_sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1526,6 +1633,25 @@ export type tb_ms_methodDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many tb_ms_methods to delete.
    */
   limit?: number
+}
+
+/**
+ * tb_ms_method.tb_account
+ */
+export type tb_ms_method$tb_accountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tb_account
+   */
+  select?: Prisma.tb_accountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tb_account
+   */
+  omit?: Prisma.tb_accountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_accountInclude<ExtArgs> | null
+  where?: Prisma.tb_accountWhereInput
 }
 
 /**

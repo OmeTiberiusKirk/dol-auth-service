@@ -30,11 +30,17 @@ export type AggregateTb_user = {
 export type Tb_userAvgAggregateOutputType = {
   user_type_id: number | null
   register_channel_id: number | null
+  is_email_verified: number | null
+  is_verify: number | null
+  register_method_id: number | null
 }
 
 export type Tb_userSumAggregateOutputType = {
   user_type_id: bigint | null
   register_channel_id: bigint | null
+  is_email_verified: number | null
+  is_verify: number | null
+  register_method_id: bigint | null
 }
 
 export type Tb_userMinAggregateOutputType = {
@@ -61,16 +67,18 @@ export type Tb_userMinAggregateOutputType = {
   private_office_id: string | null
   private_office_name: string | null
   email: string | null
-  is_email_verified: boolean | null
+  is_email_verified: number | null
   mobile_no: string | null
   verfity_at: Date | null
-  is_verify: boolean | null
+  is_verify: number | null
   user_status: string | null
   created_at: Date | null
   updated_at: Date | null
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  register_method_id: bigint | null
+  private_office_address: string | null
 }
 
 export type Tb_userMaxAggregateOutputType = {
@@ -97,16 +105,18 @@ export type Tb_userMaxAggregateOutputType = {
   private_office_id: string | null
   private_office_name: string | null
   email: string | null
-  is_email_verified: boolean | null
+  is_email_verified: number | null
   mobile_no: string | null
   verfity_at: Date | null
-  is_verify: boolean | null
+  is_verify: number | null
   user_status: string | null
   created_at: Date | null
   updated_at: Date | null
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  register_method_id: bigint | null
+  private_office_address: string | null
 }
 
 export type Tb_userCountAggregateOutputType = {
@@ -143,6 +153,8 @@ export type Tb_userCountAggregateOutputType = {
   update_by: number
   created_by: number
   record_status: number
+  register_method_id: number
+  private_office_address: number
   _all: number
 }
 
@@ -150,11 +162,17 @@ export type Tb_userCountAggregateOutputType = {
 export type Tb_userAvgAggregateInputType = {
   user_type_id?: true
   register_channel_id?: true
+  is_email_verified?: true
+  is_verify?: true
+  register_method_id?: true
 }
 
 export type Tb_userSumAggregateInputType = {
   user_type_id?: true
   register_channel_id?: true
+  is_email_verified?: true
+  is_verify?: true
+  register_method_id?: true
 }
 
 export type Tb_userMinAggregateInputType = {
@@ -191,6 +209,8 @@ export type Tb_userMinAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  register_method_id?: true
+  private_office_address?: true
 }
 
 export type Tb_userMaxAggregateInputType = {
@@ -227,6 +247,8 @@ export type Tb_userMaxAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  register_method_id?: true
+  private_office_address?: true
 }
 
 export type Tb_userCountAggregateInputType = {
@@ -263,6 +285,8 @@ export type Tb_userCountAggregateInputType = {
   update_by?: true
   created_by?: true
   record_status?: true
+  register_method_id?: true
+  private_office_address?: true
   _all?: true
 }
 
@@ -376,16 +400,18 @@ export type Tb_userGroupByOutputType = {
   private_office_id: string | null
   private_office_name: string | null
   email: string | null
-  is_email_verified: boolean | null
+  is_email_verified: number | null
   mobile_no: string | null
   verfity_at: Date | null
-  is_verify: boolean | null
+  is_verify: number | null
   user_status: string
   created_at: Date
   updated_at: Date | null
   update_by: string | null
   created_by: string | null
   record_status: string | null
+  register_method_id: bigint | null
+  private_office_address: string | null
   _count: Tb_userCountAggregateOutputType | null
   _avg: Tb_userAvgAggregateOutputType | null
   _sum: Tb_userSumAggregateOutputType | null
@@ -435,16 +461,18 @@ export type tb_userWhereInput = {
   private_office_id?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_name?: Prisma.StringNullableFilter<"tb_user"> | string | null
   email?: Prisma.StringNullableFilter<"tb_user"> | string | null
-  is_email_verified?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  is_email_verified?: Prisma.IntNullableFilter<"tb_user"> | number | null
   mobile_no?: Prisma.StringNullableFilter<"tb_user"> | string | null
   verfity_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
-  is_verify?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  is_verify?: Prisma.IntNullableFilter<"tb_user"> | number | null
   user_status?: Prisma.StringFilter<"tb_user"> | string
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
+  register_method_id?: Prisma.BigIntNullableFilter<"tb_user"> | bigint | number | null
+  private_office_address?: Prisma.StringNullableFilter<"tb_user"> | string | null
   tb_account?: Prisma.Tb_accountListRelationFilter
   tb_legal_entity_represent?: Prisma.Tb_legal_entity_representListRelationFilter
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
@@ -455,7 +483,6 @@ export type tb_userWhereInput = {
   tb_user_consent?: Prisma.Tb_user_consentListRelationFilter
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.Tb_user_roleListRelationFilter
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.Tb_user_roleListRelationFilter
-  tb_user_verfity?: Prisma.Tb_user_verfityListRelationFilter
 }
 
 export type tb_userOrderByWithRelationInput = {
@@ -492,6 +519,8 @@ export type tb_userOrderByWithRelationInput = {
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  register_method_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  private_office_address?: Prisma.SortOrderInput | Prisma.SortOrder
   tb_account?: Prisma.tb_accountOrderByRelationAggregateInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representOrderByRelationAggregateInput
   tb_log_access_session?: Prisma.tb_log_access_sessionOrderByRelationAggregateInput
@@ -502,12 +531,10 @@ export type tb_userOrderByWithRelationInput = {
   tb_user_consent?: Prisma.tb_user_consentOrderByRelationAggregateInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleOrderByRelationAggregateInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleOrderByRelationAggregateInput
-  tb_user_verfity?: Prisma.tb_user_verfityOrderByRelationAggregateInput
 }
 
 export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   user_id?: string
-  email?: string
   AND?: Prisma.tb_userWhereInput | Prisma.tb_userWhereInput[]
   OR?: Prisma.tb_userWhereInput[]
   NOT?: Prisma.tb_userWhereInput | Prisma.tb_userWhereInput[]
@@ -532,16 +559,19 @@ export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   land_office_position?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_id?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_name?: Prisma.StringNullableFilter<"tb_user"> | string | null
-  is_email_verified?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  email?: Prisma.StringNullableFilter<"tb_user"> | string | null
+  is_email_verified?: Prisma.IntNullableFilter<"tb_user"> | number | null
   mobile_no?: Prisma.StringNullableFilter<"tb_user"> | string | null
   verfity_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
-  is_verify?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  is_verify?: Prisma.IntNullableFilter<"tb_user"> | number | null
   user_status?: Prisma.StringFilter<"tb_user"> | string
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
+  register_method_id?: Prisma.BigIntNullableFilter<"tb_user"> | bigint | number | null
+  private_office_address?: Prisma.StringNullableFilter<"tb_user"> | string | null
   tb_account?: Prisma.Tb_accountListRelationFilter
   tb_legal_entity_represent?: Prisma.Tb_legal_entity_representListRelationFilter
   tb_log_access_session?: Prisma.Tb_log_access_sessionListRelationFilter
@@ -552,8 +582,7 @@ export type tb_userWhereUniqueInput = Prisma.AtLeast<{
   tb_user_consent?: Prisma.Tb_user_consentListRelationFilter
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.Tb_user_roleListRelationFilter
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.Tb_user_roleListRelationFilter
-  tb_user_verfity?: Prisma.Tb_user_verfityListRelationFilter
-}, "user_id" | "email">
+}, "user_id">
 
 export type tb_userOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
@@ -589,6 +618,8 @@ export type tb_userOrderByWithAggregationInput = {
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
+  register_method_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  private_office_address?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.tb_userCountOrderByAggregateInput
   _avg?: Prisma.tb_userAvgOrderByAggregateInput
   _max?: Prisma.tb_userMaxOrderByAggregateInput
@@ -623,16 +654,18 @@ export type tb_userScalarWhereWithAggregatesInput = {
   private_office_id?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
   private_office_name?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
-  is_email_verified?: Prisma.BoolNullableWithAggregatesFilter<"tb_user"> | boolean | null
+  is_email_verified?: Prisma.IntNullableWithAggregatesFilter<"tb_user"> | number | null
   mobile_no?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
   verfity_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_user"> | Date | string | null
-  is_verify?: Prisma.BoolNullableWithAggregatesFilter<"tb_user"> | boolean | null
+  is_verify?: Prisma.IntNullableWithAggregatesFilter<"tb_user"> | number | null
   user_status?: Prisma.StringWithAggregatesFilter<"tb_user"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user"> | string | null
   created_by?: Prisma.UuidNullableWithAggregatesFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
+  register_method_id?: Prisma.BigIntNullableWithAggregatesFilter<"tb_user"> | bigint | number | null
+  private_office_address?: Prisma.StringNullableWithAggregatesFilter<"tb_user"> | string | null
 }
 
 export type tb_userCreateInput = {
@@ -657,16 +690,18 @@ export type tb_userCreateInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -677,7 +712,6 @@ export type tb_userCreateInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateInput = {
@@ -704,16 +738,18 @@ export type tb_userUncheckedCreateInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -722,7 +758,6 @@ export type tb_userUncheckedCreateInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUpdateInput = {
@@ -747,16 +782,18 @@ export type tb_userUpdateInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -767,7 +804,6 @@ export type tb_userUpdateInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateInput = {
@@ -794,16 +830,18 @@ export type tb_userUncheckedUpdateInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -812,7 +850,6 @@ export type tb_userUncheckedUpdateInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateManyInput = {
@@ -839,16 +876,18 @@ export type tb_userCreateManyInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
 }
 
 export type tb_userUpdateManyMutationInput = {
@@ -873,16 +912,18 @@ export type tb_userUpdateManyMutationInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_userUncheckedUpdateManyInput = {
@@ -909,16 +950,18 @@ export type tb_userUncheckedUpdateManyInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type Tb_userScalarRelationFilter = {
@@ -970,11 +1013,16 @@ export type tb_userCountOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  register_method_id?: Prisma.SortOrder
+  private_office_address?: Prisma.SortOrder
 }
 
 export type tb_userAvgOrderByAggregateInput = {
   user_type_id?: Prisma.SortOrder
   register_channel_id?: Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrder
+  is_verify?: Prisma.SortOrder
+  register_method_id?: Prisma.SortOrder
 }
 
 export type tb_userMaxOrderByAggregateInput = {
@@ -1011,6 +1059,8 @@ export type tb_userMaxOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  register_method_id?: Prisma.SortOrder
+  private_office_address?: Prisma.SortOrder
 }
 
 export type tb_userMinOrderByAggregateInput = {
@@ -1047,11 +1097,16 @@ export type tb_userMinOrderByAggregateInput = {
   update_by?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   record_status?: Prisma.SortOrder
+  register_method_id?: Prisma.SortOrder
+  private_office_address?: Prisma.SortOrder
 }
 
 export type tb_userSumOrderByAggregateInput = {
   user_type_id?: Prisma.SortOrder
   register_channel_id?: Prisma.SortOrder
+  is_email_verified?: Prisma.SortOrder
+  is_verify?: Prisma.SortOrder
+  register_method_id?: Prisma.SortOrder
 }
 
 export type Tb_userNullableScalarRelationFilter = {
@@ -1205,12 +1260,10 @@ export type tb_userCreateNestedOneWithoutTb_user_addressInput = {
   connect?: Prisma.tb_userWhereUniqueInput
 }
 
-export type tb_userUpdateOneWithoutTb_user_addressNestedInput = {
+export type tb_userUpdateOneRequiredWithoutTb_user_addressNestedInput = {
   create?: Prisma.XOR<Prisma.tb_userCreateWithoutTb_user_addressInput, Prisma.tb_userUncheckedCreateWithoutTb_user_addressInput>
   connectOrCreate?: Prisma.tb_userCreateOrConnectWithoutTb_user_addressInput
   upsert?: Prisma.tb_userUpsertWithoutTb_user_addressInput
-  disconnect?: Prisma.tb_userWhereInput | boolean
-  delete?: Prisma.tb_userWhereInput | boolean
   connect?: Prisma.tb_userWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.tb_userUpdateToOneWithWhereWithoutTb_user_addressInput, Prisma.tb_userUpdateWithoutTb_user_addressInput>, Prisma.tb_userUncheckedUpdateWithoutTb_user_addressInput>
 }
@@ -1259,20 +1312,6 @@ export type tb_userUpdateOneRequiredWithoutTb_user_role_tb_user_role_user_idTotb
   update?: Prisma.XOR<Prisma.XOR<Prisma.tb_userUpdateToOneWithWhereWithoutTb_user_role_tb_user_role_user_idTotb_userInput, Prisma.tb_userUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput>, Prisma.tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput>
 }
 
-export type tb_userCreateNestedOneWithoutTb_user_verfityInput = {
-  create?: Prisma.XOR<Prisma.tb_userCreateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedCreateWithoutTb_user_verfityInput>
-  connectOrCreate?: Prisma.tb_userCreateOrConnectWithoutTb_user_verfityInput
-  connect?: Prisma.tb_userWhereUniqueInput
-}
-
-export type tb_userUpdateOneRequiredWithoutTb_user_verfityNestedInput = {
-  create?: Prisma.XOR<Prisma.tb_userCreateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedCreateWithoutTb_user_verfityInput>
-  connectOrCreate?: Prisma.tb_userCreateOrConnectWithoutTb_user_verfityInput
-  upsert?: Prisma.tb_userUpsertWithoutTb_user_verfityInput
-  connect?: Prisma.tb_userWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.tb_userUpdateToOneWithWhereWithoutTb_user_verfityInput, Prisma.tb_userUpdateWithoutTb_user_verfityInput>, Prisma.tb_userUncheckedUpdateWithoutTb_user_verfityInput>
-}
-
 export type tb_userCreateWithoutTb_accountInput = {
   user_id?: string
   person_id?: string | null
@@ -1295,16 +1334,18 @@ export type tb_userCreateWithoutTb_accountInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachCreateNestedManyWithoutTb_userInput
@@ -1314,7 +1355,6 @@ export type tb_userCreateWithoutTb_accountInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_accountInput = {
@@ -1341,16 +1381,18 @@ export type tb_userUncheckedCreateWithoutTb_accountInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedCreateNestedManyWithoutTb_userInput
@@ -1358,7 +1400,6 @@ export type tb_userUncheckedCreateWithoutTb_accountInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_accountInput = {
@@ -1399,16 +1440,18 @@ export type tb_userUpdateWithoutTb_accountInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUpdateManyWithoutTb_userNestedInput
@@ -1418,7 +1461,6 @@ export type tb_userUpdateWithoutTb_accountInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_accountInput = {
@@ -1445,16 +1487,18 @@ export type tb_userUncheckedUpdateWithoutTb_accountInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1462,7 +1506,6 @@ export type tb_userUncheckedUpdateWithoutTb_accountInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_legal_entity_representInput = {
@@ -1487,16 +1530,18 @@ export type tb_userCreateWithoutTb_legal_entity_representInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachCreateNestedManyWithoutTb_userInput
@@ -1506,7 +1551,6 @@ export type tb_userCreateWithoutTb_legal_entity_representInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_legal_entity_representInput = {
@@ -1533,16 +1577,18 @@ export type tb_userUncheckedCreateWithoutTb_legal_entity_representInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedCreateNestedManyWithoutTb_userInput
@@ -1550,7 +1596,6 @@ export type tb_userUncheckedCreateWithoutTb_legal_entity_representInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_legal_entity_representInput = {
@@ -1591,16 +1636,18 @@ export type tb_userUpdateWithoutTb_legal_entity_representInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUpdateManyWithoutTb_userNestedInput
@@ -1610,7 +1657,6 @@ export type tb_userUpdateWithoutTb_legal_entity_representInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_legal_entity_representInput = {
@@ -1637,16 +1683,18 @@ export type tb_userUncheckedUpdateWithoutTb_legal_entity_representInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1654,7 +1702,6 @@ export type tb_userUncheckedUpdateWithoutTb_legal_entity_representInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_log_access_sessionInput = {
@@ -1679,16 +1726,18 @@ export type tb_userCreateWithoutTb_log_access_sessionInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachCreateNestedManyWithoutTb_userInput
@@ -1698,7 +1747,6 @@ export type tb_userCreateWithoutTb_log_access_sessionInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_log_access_sessionInput = {
@@ -1725,16 +1773,18 @@ export type tb_userUncheckedCreateWithoutTb_log_access_sessionInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedCreateNestedManyWithoutTb_userInput
@@ -1742,7 +1792,6 @@ export type tb_userUncheckedCreateWithoutTb_log_access_sessionInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_log_access_sessionInput = {
@@ -1783,16 +1832,18 @@ export type tb_userUpdateWithoutTb_log_access_sessionInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUpdateManyWithoutTb_userNestedInput
@@ -1802,7 +1853,6 @@ export type tb_userUpdateWithoutTb_log_access_sessionInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_log_access_sessionInput = {
@@ -1829,16 +1879,18 @@ export type tb_userUncheckedUpdateWithoutTb_log_access_sessionInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_regist_attach?: Prisma.tb_regist_attachUncheckedUpdateManyWithoutTb_userNestedInput
@@ -1846,7 +1898,6 @@ export type tb_userUncheckedUpdateWithoutTb_log_access_sessionInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_ms_channelInput = {
@@ -1871,16 +1922,18 @@ export type tb_userCreateWithoutTb_ms_channelInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -1890,7 +1943,6 @@ export type tb_userCreateWithoutTb_ms_channelInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_ms_channelInput = {
@@ -1916,16 +1968,18 @@ export type tb_userUncheckedCreateWithoutTb_ms_channelInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -1934,7 +1988,6 @@ export type tb_userUncheckedCreateWithoutTb_ms_channelInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_ms_channelInput = {
@@ -1990,16 +2043,18 @@ export type tb_userScalarWhereInput = {
   private_office_id?: Prisma.StringNullableFilter<"tb_user"> | string | null
   private_office_name?: Prisma.StringNullableFilter<"tb_user"> | string | null
   email?: Prisma.StringNullableFilter<"tb_user"> | string | null
-  is_email_verified?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  is_email_verified?: Prisma.IntNullableFilter<"tb_user"> | number | null
   mobile_no?: Prisma.StringNullableFilter<"tb_user"> | string | null
   verfity_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
-  is_verify?: Prisma.BoolNullableFilter<"tb_user"> | boolean | null
+  is_verify?: Prisma.IntNullableFilter<"tb_user"> | number | null
   user_status?: Prisma.StringFilter<"tb_user"> | string
   created_at?: Prisma.DateTimeFilter<"tb_user"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_user"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_user"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_user"> | string | null
+  register_method_id?: Prisma.BigIntNullableFilter<"tb_user"> | bigint | number | null
+  private_office_address?: Prisma.StringNullableFilter<"tb_user"> | string | null
 }
 
 export type tb_userCreateWithoutTb_ms_user_typeInput = {
@@ -2024,16 +2079,18 @@ export type tb_userCreateWithoutTb_ms_user_typeInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2043,7 +2100,6 @@ export type tb_userCreateWithoutTb_ms_user_typeInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_ms_user_typeInput = {
@@ -2069,16 +2125,18 @@ export type tb_userUncheckedCreateWithoutTb_ms_user_typeInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2087,7 +2145,6 @@ export type tb_userUncheckedCreateWithoutTb_ms_user_typeInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_ms_user_typeInput = {
@@ -2138,16 +2195,18 @@ export type tb_userCreateWithoutTb_regist_attachInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2157,7 +2216,6 @@ export type tb_userCreateWithoutTb_regist_attachInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_regist_attachInput = {
@@ -2184,16 +2242,18 @@ export type tb_userUncheckedCreateWithoutTb_regist_attachInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2201,7 +2261,6 @@ export type tb_userUncheckedCreateWithoutTb_regist_attachInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_regist_attachInput = {
@@ -2242,16 +2301,18 @@ export type tb_userUpdateWithoutTb_regist_attachInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -2261,7 +2322,6 @@ export type tb_userUpdateWithoutTb_regist_attachInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_regist_attachInput = {
@@ -2288,16 +2348,18 @@ export type tb_userUncheckedUpdateWithoutTb_regist_attachInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2305,7 +2367,6 @@ export type tb_userUncheckedUpdateWithoutTb_regist_attachInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_user_addressInput = {
@@ -2330,16 +2391,18 @@ export type tb_userCreateWithoutTb_user_addressInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2349,7 +2412,6 @@ export type tb_userCreateWithoutTb_user_addressInput = {
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_user_addressInput = {
@@ -2376,16 +2438,18 @@ export type tb_userUncheckedCreateWithoutTb_user_addressInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2393,7 +2457,6 @@ export type tb_userUncheckedCreateWithoutTb_user_addressInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_user_addressInput = {
@@ -2434,16 +2497,18 @@ export type tb_userUpdateWithoutTb_user_addressInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -2453,7 +2518,6 @@ export type tb_userUpdateWithoutTb_user_addressInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_user_addressInput = {
@@ -2480,16 +2544,18 @@ export type tb_userUncheckedUpdateWithoutTb_user_addressInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2497,7 +2563,6 @@ export type tb_userUncheckedUpdateWithoutTb_user_addressInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_user_consentInput = {
@@ -2522,16 +2587,18 @@ export type tb_userCreateWithoutTb_user_consentInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2541,7 +2608,6 @@ export type tb_userCreateWithoutTb_user_consentInput = {
   tb_user_address?: Prisma.tb_user_addressCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_user_consentInput = {
@@ -2568,16 +2634,18 @@ export type tb_userUncheckedCreateWithoutTb_user_consentInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2585,7 +2653,6 @@ export type tb_userUncheckedCreateWithoutTb_user_consentInput = {
   tb_user_address?: Prisma.tb_user_addressUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_user_consentInput = {
@@ -2626,16 +2693,18 @@ export type tb_userUpdateWithoutTb_user_consentInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -2645,7 +2714,6 @@ export type tb_userUpdateWithoutTb_user_consentInput = {
   tb_user_address?: Prisma.tb_user_addressUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_user_consentInput = {
@@ -2672,16 +2740,18 @@ export type tb_userUncheckedUpdateWithoutTb_user_consentInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2689,7 +2759,6 @@ export type tb_userUncheckedUpdateWithoutTb_user_consentInput = {
   tb_user_address?: Prisma.tb_user_addressUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userCreateWithoutTb_user_role_tb_user_role_assigned_byTotb_userInput = {
@@ -2714,16 +2783,18 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2733,7 +2804,6 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   tb_user_address?: Prisma.tb_user_addressCreateNestedManyWithoutTb_userInput
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_assigned_byTotb_userInput = {
@@ -2760,16 +2830,18 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_assigned_byTo
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2777,7 +2849,6 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_assigned_byTo
   tb_user_address?: Prisma.tb_user_addressUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_user_role_tb_user_role_assigned_byTotb_userInput = {
@@ -2807,16 +2878,18 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
@@ -2826,7 +2899,6 @@ export type tb_userCreateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   tb_user_address?: Prisma.tb_user_addressCreateNestedManyWithoutTb_userInput
   tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_user_idTotb_userInput = {
@@ -2853,16 +2925,18 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_user_idTotb_u
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
   tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
@@ -2870,7 +2944,6 @@ export type tb_userUncheckedCreateWithoutTb_user_role_tb_user_role_user_idTotb_u
   tb_user_address?: Prisma.tb_user_addressUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedCreateNestedManyWithoutTb_userInput
 }
 
 export type tb_userCreateOrConnectWithoutTb_user_role_tb_user_role_user_idTotb_userInput = {
@@ -2911,16 +2984,18 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -2930,7 +3005,6 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_assigned_byTotb_userIn
   tb_user_address?: Prisma.tb_user_addressUpdateManyWithoutTb_userNestedInput
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_assigned_byTotb_userInput = {
@@ -2957,16 +3031,18 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_assigned_byTo
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -2974,7 +3050,6 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_assigned_byTo
   tb_user_address?: Prisma.tb_user_addressUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUpsertWithoutTb_user_role_tb_user_role_user_idTotb_userInput = {
@@ -3010,16 +3085,18 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -3029,7 +3106,6 @@ export type tb_userUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput 
   tb_user_address?: Prisma.tb_user_addressUpdateManyWithoutTb_userNestedInput
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_user_idTotb_userInput = {
@@ -3056,16 +3132,18 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_user_idTotb_u
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3073,199 +3151,6 @@ export type tb_userUncheckedUpdateWithoutTb_user_role_tb_user_role_user_idTotb_u
   tb_user_address?: Prisma.tb_user_addressUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
-}
-
-export type tb_userCreateWithoutTb_user_verfityInput = {
-  user_id?: string
-  person_id?: string | null
-  title?: string | null
-  given_name?: string | null
-  middle_name?: string | null
-  family_name?: string | null
-  title_en?: string | null
-  given_name_en?: string | null
-  middle_name_en?: string | null
-  family_name_en?: string | null
-  birth_date?: Date | string | null
-  date_of_expiry?: Date | string | null
-  ial_level?: string | null
-  legal_code?: string | null
-  legal_name?: string | null
-  land_office_id?: string | null
-  land_office_name?: string | null
-  land_office_position?: string | null
-  private_office_id?: string | null
-  private_office_name?: string | null
-  email?: string | null
-  is_email_verified?: boolean | null
-  mobile_no?: string | null
-  verfity_at?: Date | string | null
-  is_verify?: boolean | null
-  user_status?: string
-  created_at?: Date | string
-  updated_at?: Date | string | null
-  update_by?: string | null
-  created_by?: string | null
-  record_status?: string | null
-  tb_account?: Prisma.tb_accountCreateNestedManyWithoutTb_userInput
-  tb_legal_entity_represent?: Prisma.tb_legal_entity_representCreateNestedManyWithoutTb_userInput
-  tb_log_access_session?: Prisma.tb_log_access_sessionCreateNestedManyWithoutTb_userInput
-  tb_regist_attach?: Prisma.tb_regist_attachCreateNestedManyWithoutTb_userInput
-  tb_ms_channel?: Prisma.tb_ms_channelCreateNestedOneWithoutTb_userInput
-  tb_ms_user_type: Prisma.tb_ms_user_typeCreateNestedOneWithoutTb_userInput
-  tb_user_address?: Prisma.tb_user_addressCreateNestedManyWithoutTb_userInput
-  tb_user_consent?: Prisma.tb_user_consentCreateNestedManyWithoutTb_userInput
-  tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
-  tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-}
-
-export type tb_userUncheckedCreateWithoutTb_user_verfityInput = {
-  user_id?: string
-  user_type_id: bigint | number
-  register_channel_id?: bigint | number | null
-  person_id?: string | null
-  title?: string | null
-  given_name?: string | null
-  middle_name?: string | null
-  family_name?: string | null
-  title_en?: string | null
-  given_name_en?: string | null
-  middle_name_en?: string | null
-  family_name_en?: string | null
-  birth_date?: Date | string | null
-  date_of_expiry?: Date | string | null
-  ial_level?: string | null
-  legal_code?: string | null
-  legal_name?: string | null
-  land_office_id?: string | null
-  land_office_name?: string | null
-  land_office_position?: string | null
-  private_office_id?: string | null
-  private_office_name?: string | null
-  email?: string | null
-  is_email_verified?: boolean | null
-  mobile_no?: string | null
-  verfity_at?: Date | string | null
-  is_verify?: boolean | null
-  user_status?: string
-  created_at?: Date | string
-  updated_at?: Date | string | null
-  update_by?: string | null
-  created_by?: string | null
-  record_status?: string | null
-  tb_account?: Prisma.tb_accountUncheckedCreateNestedManyWithoutTb_userInput
-  tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedCreateNestedManyWithoutTb_userInput
-  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedCreateNestedManyWithoutTb_userInput
-  tb_regist_attach?: Prisma.tb_regist_attachUncheckedCreateNestedManyWithoutTb_userInput
-  tb_user_address?: Prisma.tb_user_addressUncheckedCreateNestedManyWithoutTb_userInput
-  tb_user_consent?: Prisma.tb_user_consentUncheckedCreateNestedManyWithoutTb_userInput
-  tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_assigned_byTotb_userInput
-  tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedCreateNestedManyWithoutTb_user_tb_user_role_user_idTotb_userInput
-}
-
-export type tb_userCreateOrConnectWithoutTb_user_verfityInput = {
-  where: Prisma.tb_userWhereUniqueInput
-  create: Prisma.XOR<Prisma.tb_userCreateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedCreateWithoutTb_user_verfityInput>
-}
-
-export type tb_userUpsertWithoutTb_user_verfityInput = {
-  update: Prisma.XOR<Prisma.tb_userUpdateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedUpdateWithoutTb_user_verfityInput>
-  create: Prisma.XOR<Prisma.tb_userCreateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedCreateWithoutTb_user_verfityInput>
-  where?: Prisma.tb_userWhereInput
-}
-
-export type tb_userUpdateToOneWithWhereWithoutTb_user_verfityInput = {
-  where?: Prisma.tb_userWhereInput
-  data: Prisma.XOR<Prisma.tb_userUpdateWithoutTb_user_verfityInput, Prisma.tb_userUncheckedUpdateWithoutTb_user_verfityInput>
-}
-
-export type tb_userUpdateWithoutTb_user_verfityInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  person_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  given_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  family_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  given_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middle_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  family_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  date_of_expiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ial_level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  legal_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  legal_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  user_status?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
-  tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
-  tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
-  tb_regist_attach?: Prisma.tb_regist_attachUpdateManyWithoutTb_userNestedInput
-  tb_ms_channel?: Prisma.tb_ms_channelUpdateOneWithoutTb_userNestedInput
-  tb_ms_user_type?: Prisma.tb_ms_user_typeUpdateOneRequiredWithoutTb_userNestedInput
-  tb_user_address?: Prisma.tb_user_addressUpdateManyWithoutTb_userNestedInput
-  tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
-  tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
-  tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-}
-
-export type tb_userUncheckedUpdateWithoutTb_user_verfityInput = {
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  user_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  register_channel_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  person_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  given_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middle_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  family_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  given_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  middle_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  family_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  date_of_expiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  ial_level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  legal_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  legal_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  land_office_position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  user_status?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_regist_attach?: Prisma.tb_regist_attachUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_user_address?: Prisma.tb_user_addressUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
-  tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
-  tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
 }
 
 export type tb_userCreateManyTb_ms_channelInput = {
@@ -3291,16 +3176,18 @@ export type tb_userCreateManyTb_ms_channelInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
 }
 
 export type tb_userUpdateWithoutTb_ms_channelInput = {
@@ -3325,16 +3212,18 @@ export type tb_userUpdateWithoutTb_ms_channelInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -3344,7 +3233,6 @@ export type tb_userUpdateWithoutTb_ms_channelInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_ms_channelInput = {
@@ -3370,16 +3258,18 @@ export type tb_userUncheckedUpdateWithoutTb_ms_channelInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3388,7 +3278,6 @@ export type tb_userUncheckedUpdateWithoutTb_ms_channelInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateManyWithoutTb_ms_channelInput = {
@@ -3414,16 +3303,18 @@ export type tb_userUncheckedUpdateManyWithoutTb_ms_channelInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type tb_userCreateManyTb_ms_user_typeInput = {
@@ -3449,16 +3340,18 @@ export type tb_userCreateManyTb_ms_user_typeInput = {
   private_office_id?: string | null
   private_office_name?: string | null
   email?: string | null
-  is_email_verified?: boolean | null
+  is_email_verified?: number | null
   mobile_no?: string | null
   verfity_at?: Date | string | null
-  is_verify?: boolean | null
+  is_verify?: number | null
   user_status?: string
   created_at?: Date | string
   updated_at?: Date | string | null
   update_by?: string | null
   created_by?: string | null
   record_status?: string | null
+  register_method_id?: bigint | number | null
+  private_office_address?: string | null
 }
 
 export type tb_userUpdateWithoutTb_ms_user_typeInput = {
@@ -3483,16 +3376,18 @@ export type tb_userUpdateWithoutTb_ms_user_typeInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUpdateManyWithoutTb_userNestedInput
@@ -3502,7 +3397,6 @@ export type tb_userUpdateWithoutTb_ms_user_typeInput = {
   tb_user_consent?: Prisma.tb_user_consentUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateWithoutTb_ms_user_typeInput = {
@@ -3528,16 +3422,18 @@ export type tb_userUncheckedUpdateWithoutTb_ms_user_typeInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tb_account?: Prisma.tb_accountUncheckedUpdateManyWithoutTb_userNestedInput
   tb_legal_entity_represent?: Prisma.tb_legal_entity_representUncheckedUpdateManyWithoutTb_userNestedInput
   tb_log_access_session?: Prisma.tb_log_access_sessionUncheckedUpdateManyWithoutTb_userNestedInput
@@ -3546,7 +3442,6 @@ export type tb_userUncheckedUpdateWithoutTb_ms_user_typeInput = {
   tb_user_consent?: Prisma.tb_user_consentUncheckedUpdateManyWithoutTb_userNestedInput
   tb_user_role_tb_user_role_assigned_byTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_assigned_byTotb_userNestedInput
   tb_user_role_tb_user_role_user_idTotb_user?: Prisma.tb_user_roleUncheckedUpdateManyWithoutTb_user_tb_user_role_user_idTotb_userNestedInput
-  tb_user_verfity?: Prisma.tb_user_verfityUncheckedUpdateManyWithoutTb_userNestedInput
 }
 
 export type tb_userUncheckedUpdateManyWithoutTb_ms_user_typeInput = {
@@ -3572,16 +3467,18 @@ export type tb_userUncheckedUpdateManyWithoutTb_ms_user_typeInput = {
   private_office_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   private_office_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_email_verified?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_email_verified?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   mobile_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verfity_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  is_verify?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  is_verify?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  register_method_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  private_office_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -3598,7 +3495,6 @@ export type Tb_userCountOutputType = {
   tb_user_consent: number
   tb_user_role_tb_user_role_assigned_byTotb_user: number
   tb_user_role_tb_user_role_user_idTotb_user: number
-  tb_user_verfity: number
 }
 
 export type Tb_userCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3610,7 +3506,6 @@ export type Tb_userCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   tb_user_consent?: boolean | Tb_userCountOutputTypeCountTb_user_consentArgs
   tb_user_role_tb_user_role_assigned_byTotb_user?: boolean | Tb_userCountOutputTypeCountTb_user_role_tb_user_role_assigned_byTotb_userArgs
   tb_user_role_tb_user_role_user_idTotb_user?: boolean | Tb_userCountOutputTypeCountTb_user_role_tb_user_role_user_idTotb_userArgs
-  tb_user_verfity?: boolean | Tb_userCountOutputTypeCountTb_user_verfityArgs
 }
 
 /**
@@ -3679,13 +3574,6 @@ export type Tb_userCountOutputTypeCountTb_user_role_tb_user_role_user_idTotb_use
   where?: Prisma.tb_user_roleWhereInput
 }
 
-/**
- * Tb_userCountOutputType without action
- */
-export type Tb_userCountOutputTypeCountTb_user_verfityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.tb_user_verfityWhereInput
-}
-
 
 export type tb_userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   user_id?: boolean
@@ -3721,6 +3609,8 @@ export type tb_userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
+  register_method_id?: boolean
+  private_office_address?: boolean
   tb_account?: boolean | Prisma.tb_user$tb_accountArgs<ExtArgs>
   tb_legal_entity_represent?: boolean | Prisma.tb_user$tb_legal_entity_representArgs<ExtArgs>
   tb_log_access_session?: boolean | Prisma.tb_user$tb_log_access_sessionArgs<ExtArgs>
@@ -3731,7 +3621,6 @@ export type tb_userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   tb_user_consent?: boolean | Prisma.tb_user$tb_user_consentArgs<ExtArgs>
   tb_user_role_tb_user_role_assigned_byTotb_user?: boolean | Prisma.tb_user$tb_user_role_tb_user_role_assigned_byTotb_userArgs<ExtArgs>
   tb_user_role_tb_user_role_user_idTotb_user?: boolean | Prisma.tb_user$tb_user_role_tb_user_role_user_idTotb_userArgs<ExtArgs>
-  tb_user_verfity?: boolean | Prisma.tb_user$tb_user_verfityArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_userCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user"]>
 
@@ -3769,6 +3658,8 @@ export type tb_userSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
+  register_method_id?: boolean
+  private_office_address?: boolean
   tb_ms_channel?: boolean | Prisma.tb_user$tb_ms_channelArgs<ExtArgs>
   tb_ms_user_type?: boolean | Prisma.tb_ms_user_typeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user"]>
@@ -3807,6 +3698,8 @@ export type tb_userSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
+  register_method_id?: boolean
+  private_office_address?: boolean
   tb_ms_channel?: boolean | Prisma.tb_user$tb_ms_channelArgs<ExtArgs>
   tb_ms_user_type?: boolean | Prisma.tb_ms_user_typeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_user"]>
@@ -3845,9 +3738,11 @@ export type tb_userSelectScalar = {
   update_by?: boolean
   created_by?: boolean
   record_status?: boolean
+  register_method_id?: boolean
+  private_office_address?: boolean
 }
 
-export type tb_userOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_type_id" | "register_channel_id" | "person_id" | "title" | "given_name" | "middle_name" | "family_name" | "title_en" | "given_name_en" | "middle_name_en" | "family_name_en" | "birth_date" | "date_of_expiry" | "ial_level" | "legal_code" | "legal_name" | "land_office_id" | "land_office_name" | "land_office_position" | "private_office_id" | "private_office_name" | "email" | "is_email_verified" | "mobile_no" | "verfity_at" | "is_verify" | "user_status" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status", ExtArgs["result"]["tb_user"]>
+export type tb_userOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "user_type_id" | "register_channel_id" | "person_id" | "title" | "given_name" | "middle_name" | "family_name" | "title_en" | "given_name_en" | "middle_name_en" | "family_name_en" | "birth_date" | "date_of_expiry" | "ial_level" | "legal_code" | "legal_name" | "land_office_id" | "land_office_name" | "land_office_position" | "private_office_id" | "private_office_name" | "email" | "is_email_verified" | "mobile_no" | "verfity_at" | "is_verify" | "user_status" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status" | "register_method_id" | "private_office_address", ExtArgs["result"]["tb_user"]>
 export type tb_userInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tb_account?: boolean | Prisma.tb_user$tb_accountArgs<ExtArgs>
   tb_legal_entity_represent?: boolean | Prisma.tb_user$tb_legal_entity_representArgs<ExtArgs>
@@ -3859,7 +3754,6 @@ export type tb_userInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   tb_user_consent?: boolean | Prisma.tb_user$tb_user_consentArgs<ExtArgs>
   tb_user_role_tb_user_role_assigned_byTotb_user?: boolean | Prisma.tb_user$tb_user_role_tb_user_role_assigned_byTotb_userArgs<ExtArgs>
   tb_user_role_tb_user_role_user_idTotb_user?: boolean | Prisma.tb_user$tb_user_role_tb_user_role_user_idTotb_userArgs<ExtArgs>
-  tb_user_verfity?: boolean | Prisma.tb_user$tb_user_verfityArgs<ExtArgs>
   _count?: boolean | Prisma.Tb_userCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type tb_userIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3884,7 +3778,6 @@ export type $tb_userPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     tb_user_consent: Prisma.$tb_user_consentPayload<ExtArgs>[]
     tb_user_role_tb_user_role_assigned_byTotb_user: Prisma.$tb_user_rolePayload<ExtArgs>[]
     tb_user_role_tb_user_role_user_idTotb_user: Prisma.$tb_user_rolePayload<ExtArgs>[]
-    tb_user_verfity: Prisma.$tb_user_verfityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     user_id: string
@@ -3910,16 +3803,18 @@ export type $tb_userPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     private_office_id: string | null
     private_office_name: string | null
     email: string | null
-    is_email_verified: boolean | null
+    is_email_verified: number | null
     mobile_no: string | null
     verfity_at: Date | null
-    is_verify: boolean | null
+    is_verify: number | null
     user_status: string
     created_at: Date
     updated_at: Date | null
     update_by: string | null
     created_by: string | null
     record_status: string | null
+    register_method_id: bigint | null
+    private_office_address: string | null
   }, ExtArgs["result"]["tb_user"]>
   composites: {}
 }
@@ -4324,7 +4219,6 @@ export interface Prisma__tb_userClient<T, Null = never, ExtArgs extends runtime.
   tb_user_consent<T extends Prisma.tb_user$tb_user_consentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_user$tb_user_consentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_user_consentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tb_user_role_tb_user_role_assigned_byTotb_user<T extends Prisma.tb_user$tb_user_role_tb_user_role_assigned_byTotb_userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_user$tb_user_role_tb_user_role_assigned_byTotb_userArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_user_rolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tb_user_role_tb_user_role_user_idTotb_user<T extends Prisma.tb_user$tb_user_role_tb_user_role_user_idTotb_userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_user$tb_user_role_tb_user_role_user_idTotb_userArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_user_rolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  tb_user_verfity<T extends Prisma.tb_user$tb_user_verfityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_user$tb_user_verfityArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_user_verfityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4377,16 +4271,18 @@ export interface tb_userFieldRefs {
   readonly private_office_id: Prisma.FieldRef<"tb_user", 'String'>
   readonly private_office_name: Prisma.FieldRef<"tb_user", 'String'>
   readonly email: Prisma.FieldRef<"tb_user", 'String'>
-  readonly is_email_verified: Prisma.FieldRef<"tb_user", 'Boolean'>
+  readonly is_email_verified: Prisma.FieldRef<"tb_user", 'Int'>
   readonly mobile_no: Prisma.FieldRef<"tb_user", 'String'>
   readonly verfity_at: Prisma.FieldRef<"tb_user", 'DateTime'>
-  readonly is_verify: Prisma.FieldRef<"tb_user", 'Boolean'>
+  readonly is_verify: Prisma.FieldRef<"tb_user", 'Int'>
   readonly user_status: Prisma.FieldRef<"tb_user", 'String'>
   readonly created_at: Prisma.FieldRef<"tb_user", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"tb_user", 'DateTime'>
   readonly update_by: Prisma.FieldRef<"tb_user", 'String'>
   readonly created_by: Prisma.FieldRef<"tb_user", 'String'>
   readonly record_status: Prisma.FieldRef<"tb_user", 'String'>
+  readonly register_method_id: Prisma.FieldRef<"tb_user", 'BigInt'>
+  readonly private_office_address: Prisma.FieldRef<"tb_user", 'String'>
 }
     
 
@@ -4996,30 +4892,6 @@ export type tb_user$tb_user_role_tb_user_role_user_idTotb_userArgs<ExtArgs exten
   take?: number
   skip?: number
   distinct?: Prisma.Tb_user_roleScalarFieldEnum | Prisma.Tb_user_roleScalarFieldEnum[]
-}
-
-/**
- * tb_user.tb_user_verfity
- */
-export type tb_user$tb_user_verfityArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the tb_user_verfity
-   */
-  select?: Prisma.tb_user_verfitySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the tb_user_verfity
-   */
-  omit?: Prisma.tb_user_verfityOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.tb_user_verfityInclude<ExtArgs> | null
-  where?: Prisma.tb_user_verfityWhereInput
-  orderBy?: Prisma.tb_user_verfityOrderByWithRelationInput | Prisma.tb_user_verfityOrderByWithRelationInput[]
-  cursor?: Prisma.tb_user_verfityWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Tb_user_verfityScalarFieldEnum | Prisma.Tb_user_verfityScalarFieldEnum[]
 }
 
 /**

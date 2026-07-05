@@ -135,8 +135,3 @@ export type tb_user_consent = Prisma.tb_user_consentModel
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  */
 export type tb_user_role = Prisma.tb_user_roleModel
-/**
- * Model tb_user_verfity
- * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
- */
-export type tb_user_verfity = Prisma.tb_user_verfityModel

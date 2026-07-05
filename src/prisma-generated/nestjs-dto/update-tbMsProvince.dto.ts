@@ -1,5 +1,4 @@
 export class UpdateTbMsProvinceDto {
-  province_id?: string;
   province_name?: string;
   updated_at?: Date | null;
   update_by?: string | null;

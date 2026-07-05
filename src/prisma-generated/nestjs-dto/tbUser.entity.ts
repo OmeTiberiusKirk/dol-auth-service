@@ -7,7 +7,6 @@ import { TbMsUserType } from './tbMsUserType.entity';
 import { TbUserAddress } from './tbUserAddress.entity';
 import { TbUserConsent } from './tbUserConsent.entity';
 import { TbUserRole } from './tbUserRole.entity';
-import { TbUserVerfity } from './tbUserVerfity.entity';
 
 export class TbUser {
   user_id!: string;
@@ -33,16 +32,18 @@ export class TbUser {
   private_office_id!: string | null;
   private_office_name!: string | null;
   email!: string | null;
-  is_email_verified!: boolean | null;
+  is_email_verified!: number | null;
   mobile_no!: string | null;
   verfity_at!: Date | null;
-  is_verify!: boolean | null;
+  is_verify!: number | null;
   user_status!: string;
   created_at!: Date;
   updated_at!: Date | null;
   update_by!: string | null;
   created_by!: string | null;
   record_status!: string | null;
+  register_method_id!: bigint | null;
+  private_office_address!: string | null;
   tb_account?: TbAccount[];
   tb_legal_entity_represent?: TbLegalEntityRepresent[];
   tb_log_access_session?: TbLogAccessSession[];
@@ -53,5 +54,4 @@ export class TbUser {
   tb_user_consent?: TbUserConsent[];
   tb_user_role_tb_user_role_assigned_byTotb_user?: TbUserRole[];
   tb_user_role_tb_user_role_user_idTotb_user?: TbUserRole[];
-  tb_user_verfity?: TbUserVerfity[];
 }

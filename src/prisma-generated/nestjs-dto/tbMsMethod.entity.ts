@@ -1,3 +1,4 @@
+import { TbAccount } from './tbAccount.entity';
 import { TbLogAccessSession } from './tbLogAccessSession.entity';
 
 export class TbMsMethod {
@@ -12,5 +13,6 @@ export class TbMsMethod {
   updated_at!: Date | null;
   update_by!: string | null;
   record_status!: string | null;
+  tb_account?: TbAccount | null;
   tb_log_access_session?: TbLogAccessSession[];
 }

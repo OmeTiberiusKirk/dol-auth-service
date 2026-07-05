@@ -1,7 +1,10 @@
+import { TbMsProvince } from './tbMsProvince.entity';
+import { TbMsTambol } from './tbMsTambol.entity';
+
 export class TbMsAmphur {
   amphur_id!: string;
   amphur_name!: string | null;
-  province_id!: string | null;
+  province_id!: string;
   province_name!: string | null;
   created_at!: Date;
   updated_at!: Date | null;
@@ -9,4 +12,6 @@ export class TbMsAmphur {
   created_by!: string | null;
   record_status!: string | null;
   amphur_code!: string;
+  tb_ms_province?: TbMsProvince;
+  tb_ms_tambol?: TbMsTambol[];
 }

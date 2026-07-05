@@ -1,5 +1,4 @@
 export class UpdateTbMsLandOfficeDto {
-  land_office_id?: string;
   land_office_name?: string;
   province_id?: number;
   province_name?: string;

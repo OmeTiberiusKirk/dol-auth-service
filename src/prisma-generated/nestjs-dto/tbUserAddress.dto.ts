@@ -19,4 +19,6 @@ export class TbUserAddressDto {
   update_by!: string | null;
   created_by!: string | null;
   record_status!: string | null;
+  post_code!: string | null;
+  tel_no!: string | null;
 }

@@ -1,5 +1,6 @@
 import { TbUser } from './tbUser.entity';
 import { TbMsChannel } from './tbMsChannel.entity';
+import { TbMsMethod } from './tbMsMethod.entity';
 import { TbHisFailedLogin } from './tbHisFailedLogin.entity';
 import { TbLogAccessSession } from './tbLogAccessSession.entity';
 
@@ -15,11 +16,13 @@ export class TbAccount {
   password_expired_at!: Date | null;
   created_at!: Date;
   updated_at!: Date | null;
-  created_by!: string;
+  created_by!: string | null;
   updated_by!: string | null;
   record_status!: string | null;
+  last_login_method_id!: bigint | null;
   tb_user?: TbUser;
   tb_ms_channel?: TbMsChannel | null;
+  tb_ms_method?: TbMsMethod | null;
   tb_his_failed_login?: TbHisFailedLogin[];
   tb_log_access_session?: TbLogAccessSession[];
 }

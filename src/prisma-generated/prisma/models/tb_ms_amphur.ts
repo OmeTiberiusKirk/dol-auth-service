@@ -180,7 +180,7 @@ export type tb_ms_amphurGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type Tb_ms_amphurGroupByOutputType = {
   amphur_id: string
   amphur_name: string | null
-  province_id: string | null
+  province_id: string
   province_name: string | null
   created_at: Date
   updated_at: Date | null
@@ -214,7 +214,7 @@ export type tb_ms_amphurWhereInput = {
   NOT?: Prisma.tb_ms_amphurWhereInput | Prisma.tb_ms_amphurWhereInput[]
   amphur_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
   amphur_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
-  province_id?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
+  province_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
   province_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
   created_at?: Prisma.DateTimeFilter<"tb_ms_amphur"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_amphur"> | Date | string | null
@@ -222,12 +222,14 @@ export type tb_ms_amphurWhereInput = {
   created_by?: Prisma.UuidNullableFilter<"tb_ms_amphur"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
   amphur_code?: Prisma.StringFilter<"tb_ms_amphur"> | string
+  tb_ms_province?: Prisma.XOR<Prisma.Tb_ms_provinceScalarRelationFilter, Prisma.tb_ms_provinceWhereInput>
+  tb_ms_tambol?: Prisma.Tb_ms_tambolListRelationFilter
 }
 
 export type tb_ms_amphurOrderByWithRelationInput = {
   amphur_id?: Prisma.SortOrder
   amphur_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  province_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  province_id?: Prisma.SortOrder
   province_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -235,28 +237,33 @@ export type tb_ms_amphurOrderByWithRelationInput = {
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   record_status?: Prisma.SortOrderInput | Prisma.SortOrder
   amphur_code?: Prisma.SortOrder
+  tb_ms_province?: Prisma.tb_ms_provinceOrderByWithRelationInput
+  tb_ms_tambol?: Prisma.tb_ms_tambolOrderByRelationAggregateInput
 }
 
 export type tb_ms_amphurWhereUniqueInput = Prisma.AtLeast<{
   amphur_code?: string
+  amphur_id_province_id?: Prisma.tb_ms_amphurAmphur_idProvince_idCompoundUniqueInput
   AND?: Prisma.tb_ms_amphurWhereInput | Prisma.tb_ms_amphurWhereInput[]
   OR?: Prisma.tb_ms_amphurWhereInput[]
   NOT?: Prisma.tb_ms_amphurWhereInput | Prisma.tb_ms_amphurWhereInput[]
   amphur_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
   amphur_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
-  province_id?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
+  province_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
   province_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
   created_at?: Prisma.DateTimeFilter<"tb_ms_amphur"> | Date | string
   updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_amphur"> | Date | string | null
   update_by?: Prisma.UuidNullableFilter<"tb_ms_amphur"> | string | null
   created_by?: Prisma.UuidNullableFilter<"tb_ms_amphur"> | string | null
   record_status?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
-}, "amphur_code">
+  tb_ms_province?: Prisma.XOR<Prisma.Tb_ms_provinceScalarRelationFilter, Prisma.tb_ms_provinceWhereInput>
+  tb_ms_tambol?: Prisma.Tb_ms_tambolListRelationFilter
+}, "amphur_id_province_id" | "amphur_code">
 
 export type tb_ms_amphurOrderByWithAggregationInput = {
   amphur_id?: Prisma.SortOrder
   amphur_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  province_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  province_id?: Prisma.SortOrder
   province_name?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -275,7 +282,7 @@ export type tb_ms_amphurScalarWhereWithAggregatesInput = {
   NOT?: Prisma.tb_ms_amphurScalarWhereWithAggregatesInput | Prisma.tb_ms_amphurScalarWhereWithAggregatesInput[]
   amphur_id?: Prisma.StringWithAggregatesFilter<"tb_ms_amphur"> | string
   amphur_name?: Prisma.StringNullableWithAggregatesFilter<"tb_ms_amphur"> | string | null
-  province_id?: Prisma.StringNullableWithAggregatesFilter<"tb_ms_amphur"> | string | null
+  province_id?: Prisma.StringWithAggregatesFilter<"tb_ms_amphur"> | string
   province_name?: Prisma.StringNullableWithAggregatesFilter<"tb_ms_amphur"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"tb_ms_amphur"> | Date | string
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"tb_ms_amphur"> | Date | string | null
@@ -288,7 +295,6 @@ export type tb_ms_amphurScalarWhereWithAggregatesInput = {
 export type tb_ms_amphurCreateInput = {
   amphur_id: string
   amphur_name?: string | null
-  province_id?: string | null
   province_name?: string | null
   created_at?: Date | string
   updated_at?: Date | string | null
@@ -296,12 +302,14 @@ export type tb_ms_amphurCreateInput = {
   created_by?: string | null
   record_status?: string | null
   amphur_code: string
+  tb_ms_province: Prisma.tb_ms_provinceCreateNestedOneWithoutTb_ms_amphurInput
+  tb_ms_tambol?: Prisma.tb_ms_tambolCreateNestedManyWithoutTb_ms_amphurInput
 }
 
 export type tb_ms_amphurUncheckedCreateInput = {
   amphur_id: string
   amphur_name?: string | null
-  province_id?: string | null
+  province_id: string
   province_name?: string | null
   created_at?: Date | string
   updated_at?: Date | string | null
@@ -309,12 +317,12 @@ export type tb_ms_amphurUncheckedCreateInput = {
   created_by?: string | null
   record_status?: string | null
   amphur_code: string
+  tb_ms_tambol?: Prisma.tb_ms_tambolUncheckedCreateNestedManyWithoutTb_ms_amphurInput
 }
 
 export type tb_ms_amphurUpdateInput = {
   amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -322,12 +330,14 @@ export type tb_ms_amphurUpdateInput = {
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+  tb_ms_province?: Prisma.tb_ms_provinceUpdateOneRequiredWithoutTb_ms_amphurNestedInput
+  tb_ms_tambol?: Prisma.tb_ms_tambolUpdateManyWithoutTb_ms_amphurNestedInput
 }
 
 export type tb_ms_amphurUncheckedUpdateInput = {
   amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_id?: Prisma.StringFieldUpdateOperationsInput | string
   province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -335,12 +345,13 @@ export type tb_ms_amphurUncheckedUpdateInput = {
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+  tb_ms_tambol?: Prisma.tb_ms_tambolUncheckedUpdateManyWithoutTb_ms_amphurNestedInput
 }
 
 export type tb_ms_amphurCreateManyInput = {
   amphur_id: string
   amphur_name?: string | null
-  province_id?: string | null
+  province_id: string
   province_name?: string | null
   created_at?: Date | string
   updated_at?: Date | string | null
@@ -353,7 +364,6 @@ export type tb_ms_amphurCreateManyInput = {
 export type tb_ms_amphurUpdateManyMutationInput = {
   amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -366,7 +376,7 @@ export type tb_ms_amphurUpdateManyMutationInput = {
 export type tb_ms_amphurUncheckedUpdateManyInput = {
   amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
   amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_id?: Prisma.StringFieldUpdateOperationsInput | string
   province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -374,6 +384,11 @@ export type tb_ms_amphurUncheckedUpdateManyInput = {
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type tb_ms_amphurAmphur_idProvince_idCompoundUniqueInput = {
+  amphur_id: string
+  province_id: string
 }
 
 export type tb_ms_amphurCountOrderByAggregateInput = {
@@ -415,6 +430,21 @@ export type tb_ms_amphurMinOrderByAggregateInput = {
   amphur_code?: Prisma.SortOrder
 }
 
+export type Tb_ms_amphurListRelationFilter = {
+  every?: Prisma.tb_ms_amphurWhereInput
+  some?: Prisma.tb_ms_amphurWhereInput
+  none?: Prisma.tb_ms_amphurWhereInput
+}
+
+export type tb_ms_amphurOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type Tb_ms_amphurScalarRelationFilter = {
+  is?: Prisma.tb_ms_amphurWhereInput
+  isNot?: Prisma.tb_ms_amphurWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -431,6 +461,277 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type tb_ms_amphurCreateNestedManyWithoutTb_ms_provinceInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput> | Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput[] | Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput[]
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput[]
+  createMany?: Prisma.tb_ms_amphurCreateManyTb_ms_provinceInputEnvelope
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+}
+
+export type tb_ms_amphurUncheckedCreateNestedManyWithoutTb_ms_provinceInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput> | Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput[] | Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput[]
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput[]
+  createMany?: Prisma.tb_ms_amphurCreateManyTb_ms_provinceInputEnvelope
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+}
+
+export type tb_ms_amphurUpdateManyWithoutTb_ms_provinceNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput> | Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput[] | Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput[]
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput[]
+  upsert?: Prisma.tb_ms_amphurUpsertWithWhereUniqueWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpsertWithWhereUniqueWithoutTb_ms_provinceInput[]
+  createMany?: Prisma.tb_ms_amphurCreateManyTb_ms_provinceInputEnvelope
+  set?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  disconnect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  delete?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  update?: Prisma.tb_ms_amphurUpdateWithWhereUniqueWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpdateWithWhereUniqueWithoutTb_ms_provinceInput[]
+  updateMany?: Prisma.tb_ms_amphurUpdateManyWithWhereWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpdateManyWithWhereWithoutTb_ms_provinceInput[]
+  deleteMany?: Prisma.tb_ms_amphurScalarWhereInput | Prisma.tb_ms_amphurScalarWhereInput[]
+}
+
+export type tb_ms_amphurUncheckedUpdateManyWithoutTb_ms_provinceNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput> | Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput[] | Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput[]
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput[]
+  upsert?: Prisma.tb_ms_amphurUpsertWithWhereUniqueWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpsertWithWhereUniqueWithoutTb_ms_provinceInput[]
+  createMany?: Prisma.tb_ms_amphurCreateManyTb_ms_provinceInputEnvelope
+  set?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  disconnect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  delete?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput | Prisma.tb_ms_amphurWhereUniqueInput[]
+  update?: Prisma.tb_ms_amphurUpdateWithWhereUniqueWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpdateWithWhereUniqueWithoutTb_ms_provinceInput[]
+  updateMany?: Prisma.tb_ms_amphurUpdateManyWithWhereWithoutTb_ms_provinceInput | Prisma.tb_ms_amphurUpdateManyWithWhereWithoutTb_ms_provinceInput[]
+  deleteMany?: Prisma.tb_ms_amphurScalarWhereInput | Prisma.tb_ms_amphurScalarWhereInput[]
+}
+
+export type tb_ms_amphurCreateNestedOneWithoutTb_ms_tambolInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_tambolInput>
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_tambolInput
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput
+}
+
+export type tb_ms_amphurUpdateOneRequiredWithoutTb_ms_tambolNestedInput = {
+  create?: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_tambolInput>
+  connectOrCreate?: Prisma.tb_ms_amphurCreateOrConnectWithoutTb_ms_tambolInput
+  upsert?: Prisma.tb_ms_amphurUpsertWithoutTb_ms_tambolInput
+  connect?: Prisma.tb_ms_amphurWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tb_ms_amphurUpdateToOneWithWhereWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUpdateWithoutTb_ms_tambolInput>, Prisma.tb_ms_amphurUncheckedUpdateWithoutTb_ms_tambolInput>
+}
+
+export type tb_ms_amphurCreateWithoutTb_ms_provinceInput = {
+  amphur_id: string
+  amphur_name?: string | null
+  province_name?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  amphur_code: string
+  tb_ms_tambol?: Prisma.tb_ms_tambolCreateNestedManyWithoutTb_ms_amphurInput
+}
+
+export type tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput = {
+  amphur_id: string
+  amphur_name?: string | null
+  province_name?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  amphur_code: string
+  tb_ms_tambol?: Prisma.tb_ms_tambolUncheckedCreateNestedManyWithoutTb_ms_amphurInput
+}
+
+export type tb_ms_amphurCreateOrConnectWithoutTb_ms_provinceInput = {
+  where: Prisma.tb_ms_amphurWhereUniqueInput
+  create: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput>
+}
+
+export type tb_ms_amphurCreateManyTb_ms_provinceInputEnvelope = {
+  data: Prisma.tb_ms_amphurCreateManyTb_ms_provinceInput | Prisma.tb_ms_amphurCreateManyTb_ms_provinceInput[]
+  skipDuplicates?: boolean
+}
+
+export type tb_ms_amphurUpsertWithWhereUniqueWithoutTb_ms_provinceInput = {
+  where: Prisma.tb_ms_amphurWhereUniqueInput
+  update: Prisma.XOR<Prisma.tb_ms_amphurUpdateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedUpdateWithoutTb_ms_provinceInput>
+  create: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_provinceInput>
+}
+
+export type tb_ms_amphurUpdateWithWhereUniqueWithoutTb_ms_provinceInput = {
+  where: Prisma.tb_ms_amphurWhereUniqueInput
+  data: Prisma.XOR<Prisma.tb_ms_amphurUpdateWithoutTb_ms_provinceInput, Prisma.tb_ms_amphurUncheckedUpdateWithoutTb_ms_provinceInput>
+}
+
+export type tb_ms_amphurUpdateManyWithWhereWithoutTb_ms_provinceInput = {
+  where: Prisma.tb_ms_amphurScalarWhereInput
+  data: Prisma.XOR<Prisma.tb_ms_amphurUpdateManyMutationInput, Prisma.tb_ms_amphurUncheckedUpdateManyWithoutTb_ms_provinceInput>
+}
+
+export type tb_ms_amphurScalarWhereInput = {
+  AND?: Prisma.tb_ms_amphurScalarWhereInput | Prisma.tb_ms_amphurScalarWhereInput[]
+  OR?: Prisma.tb_ms_amphurScalarWhereInput[]
+  NOT?: Prisma.tb_ms_amphurScalarWhereInput | Prisma.tb_ms_amphurScalarWhereInput[]
+  amphur_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
+  amphur_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
+  province_id?: Prisma.StringFilter<"tb_ms_amphur"> | string
+  province_name?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
+  created_at?: Prisma.DateTimeFilter<"tb_ms_amphur"> | Date | string
+  updated_at?: Prisma.DateTimeNullableFilter<"tb_ms_amphur"> | Date | string | null
+  update_by?: Prisma.UuidNullableFilter<"tb_ms_amphur"> | string | null
+  created_by?: Prisma.UuidNullableFilter<"tb_ms_amphur"> | string | null
+  record_status?: Prisma.StringNullableFilter<"tb_ms_amphur"> | string | null
+  amphur_code?: Prisma.StringFilter<"tb_ms_amphur"> | string
+}
+
+export type tb_ms_amphurCreateWithoutTb_ms_tambolInput = {
+  amphur_id: string
+  amphur_name?: string | null
+  province_name?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  amphur_code: string
+  tb_ms_province: Prisma.tb_ms_provinceCreateNestedOneWithoutTb_ms_amphurInput
+}
+
+export type tb_ms_amphurUncheckedCreateWithoutTb_ms_tambolInput = {
+  amphur_id: string
+  amphur_name?: string | null
+  province_id: string
+  province_name?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  amphur_code: string
+}
+
+export type tb_ms_amphurCreateOrConnectWithoutTb_ms_tambolInput = {
+  where: Prisma.tb_ms_amphurWhereUniqueInput
+  create: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_tambolInput>
+}
+
+export type tb_ms_amphurUpsertWithoutTb_ms_tambolInput = {
+  update: Prisma.XOR<Prisma.tb_ms_amphurUpdateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedUpdateWithoutTb_ms_tambolInput>
+  create: Prisma.XOR<Prisma.tb_ms_amphurCreateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedCreateWithoutTb_ms_tambolInput>
+  where?: Prisma.tb_ms_amphurWhereInput
+}
+
+export type tb_ms_amphurUpdateToOneWithWhereWithoutTb_ms_tambolInput = {
+  where?: Prisma.tb_ms_amphurWhereInput
+  data: Prisma.XOR<Prisma.tb_ms_amphurUpdateWithoutTb_ms_tambolInput, Prisma.tb_ms_amphurUncheckedUpdateWithoutTb_ms_tambolInput>
+}
+
+export type tb_ms_amphurUpdateWithoutTb_ms_tambolInput = {
+  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+  tb_ms_province?: Prisma.tb_ms_provinceUpdateOneRequiredWithoutTb_ms_amphurNestedInput
+}
+
+export type tb_ms_amphurUncheckedUpdateWithoutTb_ms_tambolInput = {
+  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_id?: Prisma.StringFieldUpdateOperationsInput | string
+  province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type tb_ms_amphurCreateManyTb_ms_provinceInput = {
+  amphur_id: string
+  amphur_name?: string | null
+  province_name?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string | null
+  update_by?: string | null
+  created_by?: string | null
+  record_status?: string | null
+  amphur_code: string
+}
+
+export type tb_ms_amphurUpdateWithoutTb_ms_provinceInput = {
+  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+  tb_ms_tambol?: Prisma.tb_ms_tambolUpdateManyWithoutTb_ms_amphurNestedInput
+}
+
+export type tb_ms_amphurUncheckedUpdateWithoutTb_ms_provinceInput = {
+  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+  tb_ms_tambol?: Prisma.tb_ms_tambolUncheckedUpdateManyWithoutTb_ms_amphurNestedInput
+}
+
+export type tb_ms_amphurUncheckedUpdateManyWithoutTb_ms_provinceInput = {
+  amphur_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amphur_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  record_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amphur_code?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+
+/**
+ * Count Type Tb_ms_amphurCountOutputType
+ */
+
+export type Tb_ms_amphurCountOutputType = {
+  tb_ms_tambol: number
+}
+
+export type Tb_ms_amphurCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_tambol?: boolean | Tb_ms_amphurCountOutputTypeCountTb_ms_tambolArgs
+}
+
+/**
+ * Tb_ms_amphurCountOutputType without action
+ */
+export type Tb_ms_amphurCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tb_ms_amphurCountOutputType
+   */
+  select?: Prisma.Tb_ms_amphurCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * Tb_ms_amphurCountOutputType without action
+ */
+export type Tb_ms_amphurCountOutputTypeCountTb_ms_tambolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.tb_ms_tambolWhereInput
+}
 
 
 export type tb_ms_amphurSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -444,6 +745,9 @@ export type tb_ms_amphurSelect<ExtArgs extends runtime.Types.Extensions.Internal
   created_by?: boolean
   record_status?: boolean
   amphur_code?: boolean
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
+  tb_ms_tambol?: boolean | Prisma.tb_ms_amphur$tb_ms_tambolArgs<ExtArgs>
+  _count?: boolean | Prisma.Tb_ms_amphurCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_amphur"]>
 
 export type tb_ms_amphurSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -457,6 +761,7 @@ export type tb_ms_amphurSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   created_by?: boolean
   record_status?: boolean
   amphur_code?: boolean
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_amphur"]>
 
 export type tb_ms_amphurSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -470,6 +775,7 @@ export type tb_ms_amphurSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   created_by?: boolean
   record_status?: boolean
   amphur_code?: boolean
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tb_ms_amphur"]>
 
 export type tb_ms_amphurSelectScalar = {
@@ -486,14 +792,28 @@ export type tb_ms_amphurSelectScalar = {
 }
 
 export type tb_ms_amphurOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"amphur_id" | "amphur_name" | "province_id" | "province_name" | "created_at" | "updated_at" | "update_by" | "created_by" | "record_status" | "amphur_code", ExtArgs["result"]["tb_ms_amphur"]>
+export type tb_ms_amphurInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
+  tb_ms_tambol?: boolean | Prisma.tb_ms_amphur$tb_ms_tambolArgs<ExtArgs>
+  _count?: boolean | Prisma.Tb_ms_amphurCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type tb_ms_amphurIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
+}
+export type tb_ms_amphurIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tb_ms_province?: boolean | Prisma.tb_ms_provinceDefaultArgs<ExtArgs>
+}
 
 export type $tb_ms_amphurPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "tb_ms_amphur"
-  objects: {}
+  objects: {
+    tb_ms_province: Prisma.$tb_ms_provincePayload<ExtArgs>
+    tb_ms_tambol: Prisma.$tb_ms_tambolPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     amphur_id: string
     amphur_name: string | null
-    province_id: string | null
+    province_id: string
     province_name: string | null
     created_at: Date
     updated_at: Date | null
@@ -895,6 +1215,8 @@ readonly fields: tb_ms_amphurFieldRefs;
  */
 export interface Prisma__tb_ms_amphurClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tb_ms_province<T extends Prisma.tb_ms_provinceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_ms_provinceDefaultArgs<ExtArgs>>): Prisma.Prisma__tb_ms_provinceClient<runtime.Types.Result.GetResult<Prisma.$tb_ms_provincePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  tb_ms_tambol<T extends Prisma.tb_ms_amphur$tb_ms_tambolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tb_ms_amphur$tb_ms_tambolArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tb_ms_tambolPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -951,6 +1273,10 @@ export type tb_ms_amphurFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_amphur to fetch.
    */
   where: Prisma.tb_ms_amphurWhereUniqueInput
@@ -969,6 +1295,10 @@ export type tb_ms_amphurFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_amphur to fetch.
    */
   where: Prisma.tb_ms_amphurWhereUniqueInput
@@ -986,6 +1316,10 @@ export type tb_ms_amphurFindFirstArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the tb_ms_amphur
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
   /**
    * Filter, which tb_ms_amphur to fetch.
    */
@@ -1035,6 +1369,10 @@ export type tb_ms_amphurFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exten
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
+  /**
    * Filter, which tb_ms_amphur to fetch.
    */
   where?: Prisma.tb_ms_amphurWhereInput
@@ -1082,6 +1420,10 @@ export type tb_ms_amphurFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the tb_ms_amphur
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
   /**
    * Filter, which tb_ms_amphurs to fetch.
    */
@@ -1131,6 +1473,10 @@ export type tb_ms_amphurCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
+  /**
    * The data needed to create a tb_ms_amphur.
    */
   data: Prisma.XOR<Prisma.tb_ms_amphurCreateInput, Prisma.tb_ms_amphurUncheckedCreateInput>
@@ -1164,6 +1510,10 @@ export type tb_ms_amphurCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    */
   data: Prisma.tb_ms_amphurCreateManyInput | Prisma.tb_ms_amphurCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1178,6 +1528,10 @@ export type tb_ms_amphurUpdateArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the tb_ms_amphur
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
   /**
    * The data needed to update a tb_ms_amphur.
    */
@@ -1230,6 +1584,10 @@ export type tb_ms_amphurUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * Limit how many tb_ms_amphurs to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1244,6 +1602,10 @@ export type tb_ms_amphurUpsertArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Omit specific fields from the tb_ms_amphur
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
   /**
    * The filter to search for the tb_ms_amphur to update in case it exists.
    */
@@ -1271,6 +1633,10 @@ export type tb_ms_amphurDeleteArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
+  /**
    * Filter which tb_ms_amphur to delete.
    */
   where: Prisma.tb_ms_amphurWhereUniqueInput
@@ -1291,6 +1657,30 @@ export type tb_ms_amphurDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * tb_ms_amphur.tb_ms_tambol
+ */
+export type tb_ms_amphur$tb_ms_tambolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tb_ms_tambol
+   */
+  select?: Prisma.tb_ms_tambolSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tb_ms_tambol
+   */
+  omit?: Prisma.tb_ms_tambolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_tambolInclude<ExtArgs> | null
+  where?: Prisma.tb_ms_tambolWhereInput
+  orderBy?: Prisma.tb_ms_tambolOrderByWithRelationInput | Prisma.tb_ms_tambolOrderByWithRelationInput[]
+  cursor?: Prisma.tb_ms_tambolWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Tb_ms_tambolScalarFieldEnum | Prisma.Tb_ms_tambolScalarFieldEnum[]
+}
+
+/**
  * tb_ms_amphur without action
  */
 export type tb_ms_amphurDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1302,4 +1692,8 @@ export type tb_ms_amphurDefaultArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the tb_ms_amphur
    */
   omit?: Prisma.tb_ms_amphurOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tb_ms_amphurInclude<ExtArgs> | null
 }

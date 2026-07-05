@@ -8,7 +8,7 @@ export class TbAccountDto {
   password_expired_at!: Date | null;
   created_at!: Date;
   updated_at!: Date | null;
-  created_by!: string;
+  created_by!: string | null;
   updated_by!: string | null;
   record_status!: string | null;
 }

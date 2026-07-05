@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { BigIntInterceptor } from './common/intercepters/bigint.interceptor';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -13,6 +14,8 @@ async function bootstrap(): Promise<void> {
       },
     },
   );
+
+  app.useGlobalInterceptors(new BigIntInterceptor());
 
   // app.useGlobalPipes(
   //   new ValidationPipe({

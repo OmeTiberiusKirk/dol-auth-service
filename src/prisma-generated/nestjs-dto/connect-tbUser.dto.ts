@@ -1,4 +1,3 @@
 export class ConnectTbUserDto {
-  user_id?: string;
-  email?: string;
+  user_id!: string;
 }

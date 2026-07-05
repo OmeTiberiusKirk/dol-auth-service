@@ -68,8 +68,7 @@ export const ModelName = {
   tb_user: 'tb_user',
   tb_user_address: 'tb_user_address',
   tb_user_consent: 'tb_user_consent',
-  tb_user_role: 'tb_user_role',
-  tb_user_verfity: 'tb_user_verfity'
+  tb_user_role: 'tb_user_role'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -179,7 +178,8 @@ export const Tb_accountScalarFieldEnum = {
   updated_at: 'updated_at',
   created_by: 'created_by',
   updated_by: 'updated_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  last_login_method_id: 'last_login_method_id'
 } as const
 
 export type Tb_accountScalarFieldEnum = (typeof Tb_accountScalarFieldEnum)[keyof typeof Tb_accountScalarFieldEnum]
@@ -380,7 +380,9 @@ export const Tb_userScalarFieldEnum = {
   updated_at: 'updated_at',
   update_by: 'update_by',
   created_by: 'created_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  register_method_id: 'register_method_id',
+  private_office_address: 'private_office_address'
 } as const
 
 export type Tb_userScalarFieldEnum = (typeof Tb_userScalarFieldEnum)[keyof typeof Tb_userScalarFieldEnum]
@@ -407,7 +409,9 @@ export const Tb_user_addressScalarFieldEnum = {
   updated_at: 'updated_at',
   update_by: 'update_by',
   created_by: 'created_by',
-  record_status: 'record_status'
+  record_status: 'record_status',
+  post_code: 'post_code',
+  tel_no: 'tel_no'
 } as const
 
 export type Tb_user_addressScalarFieldEnum = (typeof Tb_user_addressScalarFieldEnum)[keyof typeof Tb_user_addressScalarFieldEnum]
@@ -452,23 +456,6 @@ export const Tb_user_roleScalarFieldEnum = {
 } as const
 
 export type Tb_user_roleScalarFieldEnum = (typeof Tb_user_roleScalarFieldEnum)[keyof typeof Tb_user_roleScalarFieldEnum]
-
-
-export const Tb_user_verfityScalarFieldEnum = {
-  user_verify_id: 'user_verify_id',
-  user_id: 'user_id',
-  verify_flag: 'verify_flag',
-  verify_by: 'verify_by',
-  verify_at: 'verify_at',
-  verify_desc: 'verify_desc',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  update_by: 'update_by',
-  created_by: 'created_by',
-  record_status: 'record_status'
-} as const
-
-export type Tb_user_verfityScalarFieldEnum = (typeof Tb_user_verfityScalarFieldEnum)[keyof typeof Tb_user_verfityScalarFieldEnum]
 
 
 export const SortOrder = {

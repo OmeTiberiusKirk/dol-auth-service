@@ -8,7 +8,7 @@ export class RegistrationController {
   constructor(private registrationService: RegistrationService) {}
 
   @MessagePattern('REG001')
-  async handleReg001(@Payload() data: CreateUserDto): Promise<string> {
+  async handleReg001(@Payload() data: CreateUserDto) {
     return this.registrationService.createUser(data);
   }
 }

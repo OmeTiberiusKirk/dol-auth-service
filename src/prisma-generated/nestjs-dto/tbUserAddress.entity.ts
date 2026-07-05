@@ -2,7 +2,7 @@ import { TbUser } from './tbUser.entity';
 
 export class TbUserAddress {
   user_address_id!: string;
-  user_id!: string | null;
+  user_id!: string;
   address_type!: number | null;
   home_no!: string | null;
   moo!: string | null;
@@ -22,5 +22,7 @@ export class TbUserAddress {
   update_by!: string | null;
   created_by!: string | null;
   record_status!: string | null;
-  tb_user?: TbUser | null;
+  post_code!: string | null;
+  tel_no!: string | null;
+  tb_user?: TbUser;
 }

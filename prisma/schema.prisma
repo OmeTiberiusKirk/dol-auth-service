@@ -24,23 +24,26 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_ms_amphur {
-  amphur_id     String    @db.VarChar(4)
-  amphur_name   String?   @db.VarChar(100)
-  province_id   String?   @db.VarChar(4)
-  province_name String?   @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-  amphur_code   String    @id(map: "tb_ms_amphur_pk") @db.VarChar(8)
+  amphur_id      String         @db.VarChar(4)
+  amphur_name    String?        @db.VarChar(100)
+  province_id    String         @db.VarChar(4)
+  province_name  String?        @db.VarChar(100)
+  created_at     DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime?      @db.Timestamptz(6)
+  update_by      String?        @db.Uuid
+  created_by     String?        @db.Uuid
+  record_status  String?        @default("N") @db.VarChar
+  amphur_code    String         @unique(map: "tb_ms_amphur_unique") @db.VarChar(8)
+  tb_ms_province tb_ms_province @relation(fields: [province_id], references: [province_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_ms_amphur_tb_ms_province_fk")
+  tb_ms_tambol   tb_ms_tambol[]
 
+  @@id([amphur_id, province_id], map: "tb_ms_amphur_pk")
   @@schema("mas")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_ms_land_office {
-  land_office_id   String    @unique(map: "tb_ms_land_office_unique") @db.VarChar
+  land_office_id   String    @id(map: "tb_ms_land_office_pk") @db.VarChar(10)
   land_office_name String    @db.VarChar(100)
   province_id      Int
   province_name    String    @db.VarChar
@@ -55,13 +58,14 @@ model tb_ms_land_office {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_ms_province {
-  province_id   String    @unique(map: "tb_ms_province_unique") @db.VarChar(4)
-  province_name String    @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
+  province_id   String         @id(map: "tb_ms_province_pk") @db.VarChar(4)
+  province_name String         @db.VarChar(100)
+  created_at    DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime?      @db.Timestamptz(6)
+  update_by     String?        @db.Uuid
+  created_by    String?        @db.Uuid
+  record_status String?        @default("N") @db.VarChar
+  tb_ms_amphur  tb_ms_amphur[]
 
   @@schema("mas")
 }
@@ -82,20 +86,22 @@ model tb_ms_scale {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_ms_tambol {
-  tambol_id     String    @db.VarChar(4)
-  tambol_name   String    @db.VarChar(100)
-  amphur_id     String    @db.VarChar(4)
-  amphur_name   String    @db.VarChar(100)
-  province_id   String    @db.VarChar(4)
-  province_name String    @db.VarChar(100)
-  created_at    DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime? @db.Timestamptz(6)
-  update_by     String?   @db.Uuid
-  created_by    String?   @db.Uuid
-  record_status String?   @default("N") @db.VarChar
-  tambol_code   String    @id(map: "pk_tb_ms_tambol") @unique(map: "tb_ms_tambol_unique") @db.VarChar(10)
-  amphur_code   String?   @db.VarChar(10)
+  tambol_id     String       @db.VarChar(4)
+  tambol_name   String       @db.VarChar(100)
+  amphur_id     String       @db.VarChar(4)
+  amphur_name   String       @db.VarChar(100)
+  province_id   String       @db.VarChar(4)
+  province_name String       @db.VarChar(100)
+  created_at    DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime?    @db.Timestamptz(6)
+  update_by     String?      @db.Uuid
+  created_by    String?      @db.Uuid
+  record_status String?      @default("N") @db.VarChar
+  tambol_code   String       @unique(map: "tb_ms_tambol_unique_1") @db.VarChar(10)
+  amphur_code   String?      @db.VarChar(10)
+  tb_ms_amphur  tb_ms_amphur @relation(fields: [amphur_id, province_id], references: [amphur_id, province_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_ms_tambol_tb_ms_amphur_fk")
 
+  @@id([tambol_id, amphur_id, province_id], map: "tb_ms_tambol_pk")
   @@schema("mas")
 }
 
@@ -105,7 +111,7 @@ model tb_account {
   account_id            String                  @id(map: "pk_tb_account") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id               String                  @db.Uuid
   username              String?                 @db.VarChar(150)
-  account_status        String                  @default("PENDING") @db.VarChar(30)
+  account_status        String                  @db.VarChar(30)
   last_login_at         DateTime?               @db.Timestamptz(6)
   last_login_channel_id BigInt?
   password              String?                 @db.VarChar(255)
@@ -113,11 +119,13 @@ model tb_account {
   password_expired_at   DateTime?               @db.Timestamptz(6)
   created_at            DateTime                @default(now()) @db.Timestamptz(6)
   updated_at            DateTime?               @db.Timestamptz(6)
-  created_by            String                  @db.Uuid
+  created_by            String?                 @db.Uuid
   updated_by            String?                 @db.Uuid
   record_status         String?                 @default("N") @db.VarChar
+  last_login_method_id  BigInt?                 @unique(map: "tb_account_unique")
   tb_user               tb_user                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tb_account_user")
   tb_ms_channel         tb_ms_channel?          @relation(fields: [last_login_channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_account_tb_ms_channel_fk")
+  tb_ms_method          tb_ms_method?           @relation(fields: [last_login_method_id], references: [method_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_account_tb_ms_method_fk")
   tb_his_failed_login   tb_his_failed_login[]
   tb_log_access_session tb_log_access_session[]
 
@@ -242,6 +250,7 @@ model tb_ms_method {
   updated_at            DateTime?               @db.Timestamptz(6)
   update_by             String?                 @db.Uuid
   record_status         String?                 @default("N") @db.VarChar
+  tb_account            tb_account?
   tb_log_access_session tb_log_access_session[]
 
   @@schema("reg")
@@ -344,17 +353,19 @@ model tb_user {
   land_office_position                           String?                     @db.VarChar(100)
   private_office_id                              String?                     @db.VarChar(100)
   private_office_name                            String?                     @db.VarChar(100)
-  email                                          String?                     @unique(map: "email_unique") @db.VarChar(100)
-  is_email_verified                              Boolean?
+  email                                          String?                     @db.VarChar(100)
+  is_email_verified                              Int?
   mobile_no                                      String?                     @db.VarChar(10)
   verfity_at                                     DateTime?                   @db.Timestamptz(6)
-  is_verify                                      Boolean?
+  is_verify                                      Int?
   user_status                                    String                      @default("PENDING") @db.VarChar(30)
   created_at                                     DateTime                    @default(now()) @db.Timestamptz(6)
   updated_at                                     DateTime?                   @db.Timestamptz(6)
   update_by                                      String?                     @db.Uuid
   created_by                                     String?                     @db.Uuid
   record_status                                  String?                     @default("N") @db.VarChar
+  register_method_id                             BigInt?
+  private_office_address                         String?
   tb_account                                     tb_account[]
   tb_legal_entity_represent                      tb_legal_entity_represent[]
   tb_log_access_session                          tb_log_access_session[]
@@ -363,9 +374,10 @@ model tb_user {
   tb_ms_user_type                                tb_ms_user_type             @relation(fields: [user_type_id], references: [user_type_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_tb_ms_user_type_fk")
   tb_user_address                                tb_user_address[]
   tb_user_consent                                tb_user_consent[]
+  tb_user_deleted                                tb_user_deleted[]           @ignore
   tb_user_role_tb_user_role_assigned_byTotb_user tb_user_role[]              @relation("tb_user_role_assigned_byTotb_user")
   tb_user_role_tb_user_role_user_idTotb_user     tb_user_role[]              @relation("tb_user_role_user_idTotb_user")
-  tb_user_verfity                                tb_user_verfity[]
+  tb_user_verfity                                tb_user_verfity[]           @ignore
 
   @@index([legal_code], map: "idx_tb_user_legal_entity_id")
   @@index([user_type_id], map: "idx_tb_user_user_type_code")
@@ -374,8 +386,8 @@ model tb_user {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_user_address {
-  user_address_id String    @id(map: "tb_user_address_pk") @unique(map: "tb_user_address_unique") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id         String?   @db.Uuid
+  user_address_id String    @id(map: "tb_user_address_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id         String    @db.Uuid
   address_type    Int?
   home_no         String?   @db.VarChar(20)
   moo             String?   @db.VarChar(10)
@@ -395,7 +407,9 @@ model tb_user_address {
   update_by       String?   @db.Uuid
   created_by      String?   @db.Uuid
   record_status   String?   @db.VarChar
-  tb_user         tb_user?  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_address_tb_user_fk")
+  post_code       String?   @db.VarChar(5)
+  tel_no          String?   @db.VarChar(10)
+  tb_user         tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_address_tb_user_fk")
 
   @@schema("reg")
 }
@@ -421,6 +435,22 @@ model tb_user_consent {
   tb_ms_channel       tb_ms_channel? @relation(fields: [channel_id], references: [channel_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_consent_tb_ms_channel_fk")
 
   @@index([user_id], map: "idx_tb_user_consent_user_id")
+  @@schema("reg")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model tb_user_deleted {
+  user_deleted_id String?   @unique(map: "tb_user_deleted_unique") @db.Uuid
+  user_id         String?   @db.Uuid
+  deleted_reason  String?   @db.VarChar(200)
+  is_deleted      Boolean?
+  deleted_by      String?   @db.Uuid
+  deleted_at      DateTime? @db.Timestamptz(6)
+  record_status   String?   @default("N") @db.VarChar
+  tb_user         tb_user?  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_deleted_tb_user_fk")
+
+  @@ignore
   @@schema("reg")
 }
 
@@ -451,21 +481,24 @@ model tb_user_role {
   @@schema("reg")
 }
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model tb_user_verfity {
-  user_verify_id String    @id(map: "tb_user_verfity_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id        String    @db.Uuid
-  verify_flag    String?   @default("0") @db.Char(1)
-  verify_by      String?   @db.Uuid
-  verify_at      DateTime? @db.Timestamptz(6)
-  verify_desc    String?
-  created_at     DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at     DateTime? @db.Timestamptz(6)
-  update_by      String?   @db.Uuid
-  created_by     String    @db.Uuid
-  record_status  String?   @default("N") @db.VarChar
-  tb_user        tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_verfity_tb_user_fk")
+  user_verify_id           String?   @db.Uuid
+  user_id                  String    @db.Uuid
+  verify_flag              String?   @default("0") @db.Char(1)
+  verify_by                String?   @db.Uuid
+  verify_at                DateTime? @db.Timestamptz(6)
+  verify_desc              String?
+  created_at               DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime? @db.Timestamptz(6)
+  update_by                String?   @db.Uuid
+  created_by               String    @db.Uuid
+  record_status            String?   @default("N") @db.VarChar
+  verify_by_land_office_id String?   @db.VarChar(50)
+  tb_user                  tb_user   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "tb_user_verfity_tb_user_fk")
 
   @@unique([user_verify_id, user_id], map: "tb_user_verfity_unique")
+  @@ignore
   @@schema("reg")
 }
