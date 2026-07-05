@@ -1,12 +1,10 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { validate } from 'class-validator';
 import { RpcException } from '@nestjs/microservices';
 import { Prisma } from 'src/prisma-generated/prisma/client';
 import nodemailer from 'nodemailer';
 import { config } from 'dotenv';
 import { CreateUserDto } from 'src/common/dto/create-user.dto';
-import { CreatePersonalDto } from 'src/common/dto/create-personal.dto';
 config();
 
 @Injectable()
@@ -14,23 +12,8 @@ export class RegistrationService {
   constructor(private prisma: PrismaService) {}
 
   async createUser(data: CreateUserDto) {
-    const personal = new CreatePersonalDto(data.personal);
-    // const address = new CreateAddressDto(data.address);
-    const errors = await validate(personal);
-
-    if (errors.length > 0) {
-      const message = errors.flatMap((error) =>
-        Object.values(error.constraints ?? {}),
-      );
-
-      throw new RpcException({
-        statusCode: HttpStatus.BAD_REQUEST,
-        message,
-      });
-    }
-
     try {
-      // const result = await this.prisma.tb_user.create({ data: personal });
+      await this.prisma.tb_user.create({ data: data.personal });
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         throw new RpcException({

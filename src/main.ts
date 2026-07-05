@@ -1,12 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import {
-  MicroserviceOptions,
-  RpcException,
-  Transport,
-} from '@nestjs/microservices';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
-import { HttpStatus, ValidationPipe } from '@nestjs/common';
-import { ValidationError } from 'class-validator';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -20,23 +14,23 @@ async function bootstrap(): Promise<void> {
     },
   );
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-      exceptionFactory: (errors: ValidationError[]) => {
-        const message = errors.flatMap((error) =>
-          Object.values(error.constraints ?? {}),
-        );
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     transform: true,
+  //     whitelist: true,
+  //     exceptionFactory: (errors: ValidationError[]) => {
+  //       const message = errors.flatMap((error) =>
+  //         Object.values(error.constraints ?? {}),
+  //       );
 
-        return new RpcException({
-          statusCode: HttpStatus.BAD_REQUEST,
-          error: 'Bad Request',
-          message,
-        });
-      },
-    }),
-  );
+  //       return new RpcException({
+  //         statusCode: HttpStatus.BAD_REQUEST,
+  //         error: 'Bad Request',
+  //         message,
+  //       });
+  //     },
+  //   }),
+  // );
 
   await app.listen();
 }
